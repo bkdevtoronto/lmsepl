@@ -1,0 +1,34 @@
+@import url('~/shared/sidedrawer.css');
+
+.settings-section {
+    margin: 0;
+}
+.settings-section-switch-label {
+    font-size: 16;
+    margin: 20px 0 20px 16px;
+}
+
+.settings-section-switch {
+    horizontal-align: right;
+    margin-top: 6;
+    background-color: #300a3c;
+    color: #108858;
+    margin: 16px 16px 18px 0;
+}
+
+.line {
+    height: 1;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.btn-save {
+    background-color: #108858;
+    color: white;
+    font-family: "Roboto-Medium";
+}
+
+.btn-logout {
+    background-color: #A50000;
+    color: white;
+    font-family: "Roboto-Medium";
+}
