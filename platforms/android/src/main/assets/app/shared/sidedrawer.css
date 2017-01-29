@@ -1,16 +1,3 @@
-* {
-    font-family: "Roboto-Light";
-}
-
-.action-label {
-    color: #108858;
-    font-size: 18;
-    text-transform:uppercase;
-    font-weight: bold;
-    vertical-align: center;
-    font-family: "Roboto-Medium";
-}
-
 .sd-left {
     background-color: #300a3c;
     color: white;

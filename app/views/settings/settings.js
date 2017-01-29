@@ -5,23 +5,21 @@ var dialogs = require("ui/dialogs");
 
 var drawer;
 
-var settings = [
-    ["toggleableItem", "boolean"]
-];
-settings.forEach(function(e){
-    if(appSettings.hasKey(e[0])) {
-        if(e[1]=="boolean"){
-            settings[0][2] = appSettings.getBoolean(e[0]);
-        }
-    }
-})
+var username = appSettings.getString("username");
 
 exports.loaded = function(args){
     var page = args.object;
     page.bindingContext = {
-        "toggleableItem" : settings[0][2]
+        //"toggleableItem" : settings[1][2],
+        "username" : username
     };
     drawer = view.getViewById(page,"sideDrawer");
+
+    var usernameField = view.getViewById(page,'username');
+        var fArray = [];
+        fArray[0] = new android.text.InputFilter.LengthFilter(16);
+        usernameField.android.setFilters(fArray);
+
     console.log("Settings page successfully");
 }
 

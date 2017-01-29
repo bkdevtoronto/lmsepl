@@ -16,6 +16,27 @@
     margin: 16px 16px 18px 0;
 }
 
+.settings-section-input-text {
+    horizontal-align: right;
+    font-size: 14;
+    margin-right: 16px;
+}
+
+.settings-section-input-text-label {
+    horizontal-align: left;
+    margin-top: 6;
+    margin: 20px 0 20px 16px;
+}
+
+.settings-header {
+    background-color: #108858;
+    color: white;
+    font-family: "Roboto-Medium";
+    padding: 5 16;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
 .line {
     height: 1;
     background-color: rgba(0,0,0,0.1);

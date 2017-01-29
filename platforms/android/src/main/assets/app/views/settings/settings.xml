@@ -27,9 +27,14 @@
         <sd.RadSideDrawer.mainContent>
             <ScrollView row="1" class="settings-section">
                 <StackLayout>
-                    <GridLayout ios:columns="auto,*" android:rows="auto,auto" verticalAlignment="top">
+                    <!--<GridLayout ios:columns="auto,*" android:rows="auto,auto" verticalAlignment="top">
                         <Label text="Toggleable Item" class="settings-section-switch-label" />
                         <Switch checked="{{ toggleableItem }}" class="settings-section-switch" />
+                    </GridLayout>-->
+                    <Label class="settings-header" text="Profile" />
+                    <GridLayout ios:columns="auto,*" android:rows="auto,auto" verticalAlignment="top">
+                        <Label class="settings-section-input-text-label" text="Username" />
+                        <TextField id="username" text="{{ username }}" class="settings-section-input-text" ios:col="0" android:row="0" />
                     </GridLayout>
                     <StackLayout class="line" />
                     <Button tap="save" class="btn-save" text="Save" />

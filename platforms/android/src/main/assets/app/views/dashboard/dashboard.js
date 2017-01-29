@@ -37,8 +37,8 @@ exports.loaded = function(args){
         username: appSettings.getString("username"),
         scorevalue: "high #420"
     };
-    drawer = view.getViewById(page,"sideDrawer");
     loader.hide();
+    drawer = view.getViewById(page,"sideDrawer");
     console.log("Dashboard loaded successfully");
 }
 

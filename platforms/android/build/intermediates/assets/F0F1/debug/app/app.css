@@ -13,6 +13,7 @@ Page {
     margin: 0;
     padding: 0;
     border: none;
+    font-family: "Roboto-Light";
 }
 
 .btn {
@@ -22,6 +23,19 @@ Page {
 .boldFont {
     font-family: "Gravity-Bold";
     text-transform: uppercase;
+}
+
+.action-label {
+    color: #108858;
+    font-size: 18;
+    text-transform:uppercase;
+    font-weight: bold;
+    vertical-align: center;
+    font-family: "Roboto-Medium";
+}
+
+.fa {
+    font-family: FontAwesome, fontawesome-webfont;
 }
 
 /*

@@ -4,25 +4,44 @@ var tnsOAuthModule = require("nativescript-oauth");
 var fetchModule = require("fetch");
 var http = require("http"); //https://www.thepolyglotdeveloper.com/2016/02/use-the-http-module-instead-of-fetch-in-nativescript/
 var dockModule = require ("ui/layouts/dock-layout");
-
 var imageCacheModule = require("ui/image-cache");
 var imageSource = require("image-source");
 var fs = require("file-system");
+var loadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
+
+var loader = new loadingIndicator;
+var loaderOptions = {
+    message: 'Loading...',
+    progress: 0,
+    android: {
+        indeterminate: true,
+        cancelable: false,
+        max: 100,
+        progressNumberFormat: "%1d/%2d",
+        progressPercentFormat: 0.53,
+        progressStyle: 1,
+        secondaryProgress: 1
+    },
+    ios: {
+        details: "Please wait",
+        square: false,
+        margin: 10,
+        dimBackground:true,
+        color: "#4b9ed6"
+    }
+};
+
+loader.show(loaderOptions);
 
 // Retrieve API URL
 var apiURL = appSettings.getString("apiURL");
 
 exports.loaded = function(args){
     var page = args.object;
-    if(appSettings.hasKey("img")){
-        page.bindingContext = {
-            showLoading: 0,
-        };
-    } else {
-        page.bindingContext = { showLoading: 0 };
-    }
-    console.log("Application started successfully");
+    page.bindingContext = {};
 
+    loader.hide();
+    console.log("Application started successfully");
     if(appSettings.hasKey("username")&&appSettings.hasKey("email")&&appSettings.hasKey("fbid")&&appSettings.hasKey("img")){
         console.log("Details stored");
         frameModule.topmost().navigate("views/dashboard/dashboard");
@@ -52,12 +71,16 @@ exports.fbConnect = function(args){
                             appSettings.setString("fbimg","http://graph.facebook.com/"+user.id+"/picture?type=large");
                             //console.log('https://graph.facebook.com/me?fields=id,name,email,picture&access_token='+token);
 
-                            //Check if user's data already exists                            
+                            //Check if user's data already exists
                             fetchModule.fetch(apiURL+"users/fbid/"+appSettings.getString("fbid"),{
                                     method: "get"
                                 }).then(function(response){
                                     var r = JSON.parse(response._bodyText);
                                     if(r.response=="success"){
+                                        var loaderOptionsFbconnect = loaderOptions;
+                                        loaderOptionsFbconnect.message = "Verifying user data...";
+                                        loader.show(loaderOptionsFbconnect);
+
                                         var usr = r.data[0];
                                         appSettings.setString("username",r.data[0].username);
                                         var img = r.data[0].img.split("/")[r.data[0].img.split("/").length-1];
@@ -68,7 +91,7 @@ exports.fbConnect = function(args){
                                         var cache = new imageCacheModule.Cache();
                                         cache.maxRequests = 5;
                                         cache.enableDownload();
-                                        console.log(url);
+                                        //console.log(url);
 
                                         var imgSouce = imageSource.ImageSource;
                                         var image = cache.get(url);
@@ -88,6 +111,7 @@ exports.fbConnect = function(args){
                                         }
 
                                         cache.disableDownload();
+                                        loader.hide();
                                         console.log("Login sucessful");
                                         frameModule.topmost().navigate("views/dashboard/dashboard");
                                     } else {
