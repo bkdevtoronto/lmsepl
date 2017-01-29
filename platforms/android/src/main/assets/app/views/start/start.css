@@ -3,7 +3,7 @@ Page {
 }
 
 .logo_part1 {
-    background-image:url("~/images/logopart_1.png");
+    background-image:url("res://logopart_1");
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
@@ -17,7 +17,7 @@ Page {
 }
 
 .logo_part2 {
-    background-image:url("~/images/logopart_2.png");
+    background-image:url("res://logopart_2");
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
@@ -31,7 +31,7 @@ Page {
 }
 
 .logo_part3 {
-    background-image:url("~/images/logopart_3.png");
+    background-image:url("res://logopart_3");
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;

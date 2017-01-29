@@ -32,6 +32,10 @@
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
     {
+        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\logopart_1.png",
+        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-xxxhdpi\\logopart_1.png"
+    },
+    {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png",
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
@@ -40,12 +44,12 @@
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-xxxhdpi\\icon.png"
     },
     {
-        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\ic_expand.png",
-        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\List-2016.3.1118-dev-release\\res\\drawable-xxxhdpi-v4\\ic_expand.png"
-    },
-    {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png",
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\ic_expand.png",
+        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\List-2016.3.1118-dev-release\\res\\drawable-xxxhdpi-v4\\ic_expand.png"
     },
     {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png",
@@ -80,6 +84,10 @@
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_ic_clear_mtrl_alpha.png"
     },
     {
+        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\logopart_3.png",
+        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-xxxhdpi\\logopart_3.png"
+    },
+    {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\abc_ic_star_black_36dp.png",
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_ic_star_black_36dp.png"
     },
@@ -112,12 +120,12 @@
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
     },
     {
-        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_36dp.png",
-        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_36dp.png"
-    },
-    {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\shadow_profilepic200.png",
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-xxxhdpi\\shadow_profilepic200.png"
+    },
+    {
+        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_36dp.png",
+        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_36dp.png"
     },
     {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\icon_menu_g.png",
@@ -126,6 +134,10 @@
     {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_16dp.png",
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\logopart_2.png",
+        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-xxxhdpi\\logopart_2.png"
     },
     {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-xxxhdpi-v4\\abc_ic_star_black_16dp.png",

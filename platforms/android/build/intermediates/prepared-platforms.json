@@ -1,4 +1,5 @@
 {
+    "nativescript-loading-indicator": true,
     "nativescript-oauth": true,
     "url": true,
     "punycode": true,

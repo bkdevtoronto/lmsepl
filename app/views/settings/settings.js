@@ -16,7 +16,6 @@ settings.forEach(function(e){
     }
 })
 
-
 exports.loaded = function(args){
     var page = args.object;
     page.bindingContext = {
@@ -29,6 +28,11 @@ exports.loaded = function(args){
 exports.toggleDrawer = toggleDrawer;
 function toggleDrawer(args){
     drawer.toggleDrawerState();
+}
+
+exports.navDashboard = navDashboard;
+function navDashboard(){
+    frameModule.topmost().navigate("views/dashboard/dashboard");
 }
 
 exports.save = save;

@@ -1,4 +1,6 @@
-<Page xmlns:sd="nativescript-telerik-ui/sidedrawer" loaded="loaded">
+<Page xmlns:sd="nativescript-telerik-ui/sidedrawer"
+    xmlns:shared="shared"
+    loaded="loaded">
     <ActionBar title="Dashboard">
         <android>
             <NavigationButton icon="res://icon_menu_g" tap="toggleDrawer" />
@@ -18,18 +20,21 @@
     <!-- side drawer content -->
     <sd:RadSideDrawer id="sideDrawer">
         <sd:RadSideDrawer.drawerContent>
-            <shared:sidedrawer />
+            <shared:drawer />
         </sd:RadSideDrawer.drawerContent>
 
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent>
-            <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
+            <GridLayout class="loadingCont" rows="*" columns="*" style="{{ showLoading ? 'height:1px' : '' }}">
+                <ActivityIndicator class="loadingBar" busy="true" />
+            </GridLayout>
+            <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center" class="mainContainer">
                 <AbsoluteLayout width="200">
                     <Image left="0" top="0" width="200" height="200" src="res://shadow_profilepic200" class="profilePic-shadow" />
                     <Image left="50" top="50" width="100" height="100" src="{{ profilePic }}" class="profilePic" />
                     <StackLayout top="160" orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                        <Label class="dashboard-username" text="{{ username }}" />
-                        <StackLayout class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
+                        <Label width="200" class="dashboard-username" text="{{ username }}" />
+                        <StackLayout width="200" class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
                             <Label class="dashboard-scoremeta" text="Score" />
                             <Label class="dashboard-scorevalue" text="{{ scorevalue }}" />
                         </StackLayout>

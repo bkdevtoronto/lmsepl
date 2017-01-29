@@ -4,12 +4,20 @@
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-ldpi\\icon_menu_g.png"
     },
     {
+        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-ldpi-v4\\logopart_2.png",
+        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-ldpi\\logopart_2.png"
+    },
+    {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-ldpi-v4\\background.png",
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-ldpi\\background.png"
     },
     {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-ldpi-v4\\shadow_profilepic200.png",
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-ldpi\\shadow_profilepic200.png"
+    },
+    {
+        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-ldpi-v4\\logopart_3.png",
+        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-ldpi\\logopart_3.png"
     },
     {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-ldpi-v4\\roll_bottom.png",
@@ -22,5 +30,9 @@
     {
         "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-ldpi-v4\\logo.png",
         "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-ldpi\\logo.png"
+    },
+    {
+        "merged": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\build\\intermediates\\res\\merged\\F0F1\\debug\\drawable-ldpi-v4\\logopart_1.png",
+        "source": "A:\\Documents\\apps\\lms\\lms\\Last Man EPL\\platforms\\android\\src\\main\\res\\drawable-ldpi\\logopart_1.png"
     }
 ]

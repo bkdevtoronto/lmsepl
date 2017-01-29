@@ -10,6 +10,7 @@
     }
   },
   "dependencies": {
+    "nativescript-loading-indicator": "^2.2.2",
     "nativescript-oauth": "^1.2.1",
     "nativescript-telerik-ui": "^1.5.1",
     "nativescript-theme-core": "^0.2.1",
