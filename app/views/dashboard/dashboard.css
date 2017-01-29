@@ -57,7 +57,11 @@ Page {
     animation-delay: 0s;
     animation-timing-function: ease-in;
 
+<<<<<<< HEAD
     margin-top: -40px;
+=======
+    margin-top: -25px;
+>>>>>>> dev
 }
 
 @keyframes mainContainer-anim {

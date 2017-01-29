@@ -33,8 +33,18 @@
                     </GridLayout>-->
                     <Label class="settings-header" text="Profile" />
                     <GridLayout ios:columns="auto,*" android:rows="auto,auto" verticalAlignment="top">
+<<<<<<< HEAD
                         <Label class="settings-section-input-text-label" text="Username" />
                         <TextField id="username" text="{{ username }}" class="settings-section-input-text" ios:col="0" android:row="0" />
+=======
+                        <Label class="settings-section-input-text-label" text="Username" hint="Username" />
+                        <TextField id="username" text="{{ username }}" class="settings-section-input-text" ios:col="0" android:row="0" />
+                    </GridLayout>
+                    <StackLayout class="line" />
+                    <GridLayout ios:columns="auto,*" android:rows="auto,auto" verticalAlignment="middle">
+                        <Label class="settings-section-img-label" text="Avatar" />
+                        <Image id="img" src="{{ img }}" class="settings-section-img" ios:col="0" android:row="0" tap="changeImg" />
+>>>>>>> dev
                     </GridLayout>
                     <StackLayout class="line" />
                     <Button tap="save" class="btn-save" text="Save" />

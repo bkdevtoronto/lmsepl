@@ -14,6 +14,7 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,6 +29,7 @@
             android:name="com.tns.NativeScriptActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_kimera"
+            android:screenOrientation="portrait"
             android:theme="@style/LaunchScreenTheme" >
             <meta-data
                 android:name="SET_THEME_ON_LAUNCH"
