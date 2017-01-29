@@ -35,6 +35,8 @@ A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\image-source\image-source.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\location\location-common.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\location\location.js
+A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-imagepicker\bundle-entry-points.js
+A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-imagepicker\viewmodel.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-loading-indicator\loading-indicator.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-loading-indicator\src\interfaces.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-loading-indicator\src\android\progress-dialog.js
@@ -49,6 +51,7 @@ A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-oauth\tns-oauth-utils.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-oauth\tns-oauth-webview-helper.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-oauth\tns-oauth.js
+A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-permissions\permissions.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-telerik-ui\scripts\email-prompt.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\nativescript-telerik-ui\scripts\eula-prompt.js
 A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\tns_modules\platform\platform.js

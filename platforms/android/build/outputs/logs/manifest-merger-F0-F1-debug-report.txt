@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:2:1-43:12
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:2:1-45:12
 	package
 		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:3:2-28
 		INJECTED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml
@@ -71,20 +71,24 @@ MERGED from [com.android.support:support-v4:23.4.0] A:\Documents\apps\lms\lms\La
 		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:14:3-29
 		INJECTED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml
 		INJECTED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml
-uses-permission#android.permission.READ_INTERNAL_STORAGE
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
 ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:17:2-76
 	android:name
 		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:17:19-74
+uses-permission#android.permission.READ_INTERNAL_STORAGE
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:18:2-76
+	android:name
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:18:19-74
 uses-permission#android.permission.WRITE_INTERNAL_STORAGE
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:18:2-77
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:19:2-77
 	android:name
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:18:19-75
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:19:19-75
 uses-permission#android.permission.INTERNET
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:19:2-63
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:20:2-63
 	android:name
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:19:19-61
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:20:19-61
 application
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:21:2-42:16
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:22:2-44:16
 MERGED from [com.android.support:support-v4:23.4.0] A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.4.0] A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
@@ -117,42 +121,44 @@ MERGED from [com.android.support:support-vector-drawable:23.4.0] A:\Documents\ap
 MERGED from [com.android.support:support-v4:23.4.0] A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.4.0] A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
 	android:label
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:25:3-35
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:26:3-35
 	android:allowBackup
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:23:3-29
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:24:3-29
 	android:icon
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:24:3-32
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:25:3-32
 	android:theme
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:26:3-34
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:27:3-34
 	android:name
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:22:3-49
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:23:3-49
 activity#com.tns.NativeScriptActivity
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:28:3-40:14
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:29:3-42:14
+	android:screenOrientation
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:34:4-40
 	android:label
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:30:4-49
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:31:4-49
 	android:configChanges
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:31:4-65
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:32:4-65
 	android:theme
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:32:4-44
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:33:4-44
 	android:name
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:29:4-47
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:30:4-47
 meta-data#SET_THEME_ON_LAUNCH
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:34:4-87
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:36:4-87
 	android:resource
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:34:50-84
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:36:50-84
 	android:name
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:34:15-49
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:36:15-49
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:36:4-39:20
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:38:4-41:20
 action#android.intent.action.MAIN
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:37:5-57
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:39:5-57
 	android:name
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:37:13-54
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:39:13-54
 category#android.intent.category.LAUNCHER
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:38:5-65
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:40:5-65
 	android:name
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:38:15-62
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:40:15-62
 activity#com.tns.ErrorReportActivity
-ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:41:3-57
+ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:43:3-57
 	android:name
-		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:41:13-55
+		ADDED from A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\AndroidManifest.xml:43:13-55
