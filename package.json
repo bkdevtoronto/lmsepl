@@ -1,8 +1,8 @@
 {
-  "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
-  "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "description": "Last Man Standing EPL",
+  "license": "SEE LICENSE IN https://github.com/benkahandevelopment/lmsepl/README.md",
+  "readme": "Last Man Standing EPL",
+  "repository": "https://github.com/benkahandevelopment/lmsepl",
   "nativescript": {
     "id": "com.bkdev.lmsepl",
     "tns-android": {
