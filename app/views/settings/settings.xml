@@ -1,6 +1,7 @@
 <Page xmlns:sd="nativescript-telerik-ui/sidedrawer"
+    xmlns:shared="shared"
     loaded="loaded">
-    <ActionBar title="Settings">
+    <ActionBar title="Dashboard">
         <android>
             <NavigationButton icon="res://icon_menu_g" tap="toggleDrawer" />
         </android>
@@ -12,43 +13,29 @@
             ios:horizontalAlignment="center"
             android:horizontalAlignment="center">
             <!--<Img src="res://logo" class="action-image" />-->
-            <Label text="Dashboard" class="action-label" />
+            <Label text="Settings" class="action-label" />
         </StackLayout>
     </ActionBar>
 
     <!-- side drawer content -->
     <sd:RadSideDrawer id="sideDrawer">
         <sd:RadSideDrawer.drawerContent>
-            <StackLayout class="sidedrawer-left">
-                <StackLayout class="sidedrawer-header">
-                    <Label text="Hello RadSideDrawer!" class="sidedrawer-header-brand" />
-                </StackLayout>
-                <StackLayout class="sidedrawer-content">
-                    <Label text="Home" class="sidedrawer-list-item-text" />
-                    <Label text="Basics" class="sidedrawer-list-item-text" />
-                    <Label text="Options" class="sidedrawer-list-item-text" />
-                    <Label text="Help" class="sidedrawer-list-item-text" />
-                    <Label text="Advanced" class="sidedrawer-list-item-text" />
-                </StackLayout>
-            </StackLayout>
-
+            <shared:drawer />
         </sd:RadSideDrawer.drawerContent>
 
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent>
-            <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                <AbsoluteLayout width="200">
-                    <Image left="0" top="0" width="200" height="200" src="res://shadow_profilepic200" class="profilePic-shadow" />
-                    <Image left="50" top="50" width="100" height="100" src="{{ profilePic }}" class="profilePic" />
-                    <StackLayout top="160" orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                        <Label class="dashboard-username" text="{{ username }}" />
-                        <StackLayout class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
-                            <Label class="dashboard-scoremeta" text="Score" />
-                            <Label class="dashboard-scorevalue" text="{{ scorevalue }}" />
-                        </StackLayout>
-                    </StackLayout>
-                </AbsoluteLayout>
-            </StackLayout>
+            <ScrollView row="1" class="settings-section">
+                <StackLayout>
+                    <GridLayout ios:columns="auto,*" android:rows="auto,auto" verticalAlignment="top">
+                        <Label text="Toggleable Item" class="settings-section-switch-label" />
+                        <Switch checked="{{ toggleableItem }}" class="settings-section-switch" />
+                    </GridLayout>
+                    <StackLayout class="line" />
+                    <Button tap="save" class="btn-save" text="Save" />
+                    <Button tap="logout" class="btn-logout" text="Log Out" />
+                </StackLayout>
+            </ScrollView>
         </sd.RadSideDrawer.mainContent>
     </sd:RadSideDrawer>
 </Page>

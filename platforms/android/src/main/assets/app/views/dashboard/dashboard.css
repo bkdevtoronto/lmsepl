@@ -1,3 +1,5 @@
+@import url('~/shared/sidedrawer.css');
+
 Page {
     background-color: #108858;
     background-image:url("res://roll_bottom");
@@ -49,12 +51,13 @@ Page {
 
 .mainContainer {
     transform:translate(0,0);
-
     animation-name: mainContainer-anim;
     animation-duration: 0.4s;
     animation-fill-mode: forwards;
     animation-delay: 0s;
     animation-timing-function: ease-in;
+
+    margin-top: -45px;
 }
 
 @keyframes mainContainer-anim {
@@ -68,24 +71,18 @@ Page {
     vertical-align: center;
 }
 
-.action-label {
-    color: #108858;
-    font-size: 18;
-    text-transform:uppercase;
-    font-weight: bold;
-    vertical-align: center;
-}
-
 .dashboard-username {
     color:white;
     font-size: 24px;
 }
 
 .dashboard-scoremeta {
-    color: #2ED492;
     font-size: 12px;
     text-transform: uppercase;
     margin: 4px;
+    color: #000;
+    opacity: 0.5;
+    margin-top:5px;
 }
 
 .dashboard-scorevalue {
@@ -94,4 +91,5 @@ Page {
     text-transform: uppercase;
     font-size: 12px;
     margin: 4px;
+    font-family: "Roboto-Medium";
 }

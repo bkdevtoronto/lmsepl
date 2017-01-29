@@ -1,6 +1,7 @@
 var frameModule = require("ui/frame");
 var appSettings = require("application-settings");
 var view = require("ui/core/view");
+var frameModule = require("ui/frame");
 
 var drawer;
 
@@ -18,4 +19,9 @@ exports.loaded = function(args){
 exports.toggleDrawer = toggleDrawer;
 function toggleDrawer(args){
     drawer.toggleDrawerState();
+}
+
+exports.navSettings = navSettings;
+function navSettings(){
+    frameModule.topmost().navigate("views/settings/settings");
 }

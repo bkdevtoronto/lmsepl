@@ -30,8 +30,8 @@
                     <Image left="0" top="0" width="200" height="200" src="res://shadow_profilepic200" class="profilePic-shadow" />
                     <Image left="50" top="50" width="100" height="100" src="{{ profilePic }}" class="profilePic" />
                     <StackLayout top="160" orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                        <Label class="dashboard-username" text="{{ username }}" />
-                        <StackLayout class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
+                        <Label width="200" class="dashboard-username" text="{{ username }}" />
+                        <StackLayout width="200" class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
                             <Label class="dashboard-scoremeta" text="Score" />
                             <Label class="dashboard-scorevalue" text="{{ scorevalue }}" />
                         </StackLayout>
