@@ -1,0 +1,18 @@
+<Page loaded="loaded" actionBarHidden="true">
+    <GridLayout>
+        <StackLayout orientation="vertical" verticalAlignment="center" horizontalAlignment="center">
+            <AbsoluteLayout>
+                <Label width="200" height="120" text="" class="logo_part1" />
+                <Label width="200" height="120" text="" class="logo_part2" />
+                <Label width="200" height="120" text="" class="logo_part3" />
+                <StackLayout orientation="vertical" class="formStack" top="0" left="0">
+                    <Label class="logoLabel" text="" />
+                    <Button class="fbConnect boldFont" ontap="fbConnect" text="CONNECT WITH FACEBOOK" />
+                </StackLayout>
+            </AbsoluteLayout>
+        </StackLayout>
+        <GridLayout class="loadingCont" rows="*" columns="*" visibility="{{ showLoading===1 ? 'visible' : 'collapsed' }}">
+            <ActivityIndicator class="loadingBar" busy="true" />
+        </GridLayout>
+    </GridLayout>
+</Page>

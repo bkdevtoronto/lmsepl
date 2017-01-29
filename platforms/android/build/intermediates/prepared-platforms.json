@@ -1,0 +1,10 @@
+{
+    "nativescript-oauth": true,
+    "url": true,
+    "punycode": true,
+    "querystring": true,
+    "nativescript-telerik-ui": true,
+    "nativescript-theme-core": true,
+    "tns-core-modules": true,
+    "tns-core-modules-widgets": true
+}

@@ -1,0 +1,9 @@
+<Page loaded="loaded" actionBarHidden="true">
+    <StackLayout orientation="vertical" verticalAlignment="center" horizontalAlignment="center">
+        <StackLayout class="page">
+            <Label id="pageTitle" text="{{ pageTitle }}" />
+            <Label id="pageDesc" text="{{ pageDesc }}" />
+            <Button text="Next" ontap="nextPage" />
+        </StackLayout>
+    </StackLayout>
+</Page>

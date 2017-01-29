@@ -1,0 +1,3 @@
+A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\views\firstlaunch\firstlaunch.js
+A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\views\start\start.js
+A:\Documents\apps\lms\lms\Last Man EPL\platforms\android\src\main\assets\app\app.js

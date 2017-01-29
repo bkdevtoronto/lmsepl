@@ -1,0 +1,56 @@
+Page {
+    background-color: #108858;
+    background-image:url("res://roll_bottom");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+}
+
+.profilePic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border-width: 4px;
+    border-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0;
+}
+
+.profilePic-shadow {
+    opacity: 0.3;
+}
+
+.action-image {
+    width: 40;
+    height: 40;
+    vertical-align: center;
+}
+
+.action-label {
+    color: #108858;
+    font-size: 18;
+    text-transform:uppercase;
+    font-weight: bold;
+    vertical-align: center;
+}
+
+.dashboard-username {
+    color:white;
+    font-size: 24px;
+}
+
+.dashboard-scoremeta {
+    color: #2ED492;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 4px;
+}
+
+.dashboard-scorevalue {
+    color: #fff;
+    opacity: 0.5;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin: 4px;
+}
