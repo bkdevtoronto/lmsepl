@@ -9,11 +9,6 @@ var loadingIndicator = require("nativescript-loading-indicator").LoadingIndicato
 var http = require("http");
 var permissions = require( "nativescript-permissions" );
 
-<<<<<<< HEAD
-var drawer;
-
-var username = appSettings.getString("username");
-=======
 var loader = new loadingIndicator;
 var loaderOptions = {
     message: 'Loading...',
@@ -40,8 +35,6 @@ loader.show(loaderOptions);
 
 var drawer;
 var imgLocal;
->>>>>>> dev
-
 exports.loaded = function(args){
     var username = appSettings.getString("username");
     //var img = appSettings.hasKey("tmpImg") ? appSettings.getString("tmpImg") : appSettings.getString("img");
@@ -49,13 +42,8 @@ exports.loaded = function(args){
 
     var page = args.object;
     page.bindingContext = {
-<<<<<<< HEAD
-        //"toggleableItem" : settings[1][2],
-        "username" : username
-=======
         "username" : username,
         "img" : img
->>>>>>> dev
     };
     drawer = view.getViewById(page,"sideDrawer");
 
@@ -64,12 +52,8 @@ exports.loaded = function(args){
         fArray[0] = new android.text.InputFilter.LengthFilter(16);
         usernameField.android.setFilters(fArray);
 
-<<<<<<< HEAD
-    console.log("Settings page successfully");
-=======
     loader.hide();
     console.log("Settings page successfully loaded");
->>>>>>> dev
 }
 
 exports.toggleDrawer = toggleDrawer;
