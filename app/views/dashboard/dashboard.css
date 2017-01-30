@@ -2,9 +2,13 @@
 
 Page {
     background-color: #108858;
-    background-image:url("res://roll_bottom");
+    /*background-image:url("res://roll_bottom");
     background-repeat: repeat-x;
-    background-position: center bottom;
+    background-position: center bottom;*/
+    background-image:url("res://bg_photo_2");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 .profilePic {
@@ -74,13 +78,14 @@ Page {
 .dashboard-username {
     color:white;
     font-size: 24px;
+    text-align: center;
 }
 
 .dashboard-scoremeta {
     font-size: 12px;
     text-transform: uppercase;
     margin: 4px;
-    color: #000;
+    color: #fff;
     opacity: 0.5;
     margin-top:5px;
 }

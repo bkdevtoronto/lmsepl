@@ -3,17 +3,14 @@ var appSettings = require("application-settings");
 var view = require("ui/core/view");
 var dialogs = require("ui/dialogs");
 var imageModule = require("image-source");
+var observable = require("data/observable");
 var fs = require("file-system");
 var imagepicker = require("nativescript-imagepicker");
 var loadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
 var http = require("http");
-var permissions = require( "nativescript-permissions" );
+var permissions = require("nativescript-permissions");
+var icModule = require("nativescript-imagecropper");
 
-<<<<<<< HEAD
-var drawer;
-
-var username = appSettings.getString("username");
-=======
 var loader = new loadingIndicator;
 var loaderOptions = {
     message: 'Loading...',
@@ -39,37 +36,31 @@ var loaderOptions = {
 loader.show(loaderOptions);
 
 var drawer;
-var imgLocal;
->>>>>>> dev
+var imgView;
+var imgTmp = null;
+var page;
+var apiURL = appSettings.getString("apiURL");
 
 exports.loaded = function(args){
     var username = appSettings.getString("username");
-    //var img = appSettings.hasKey("tmpImg") ? appSettings.getString("tmpImg") : appSettings.getString("img");
+    //var img = appSettings.hasKey("imgTmp") ? appSettings.getString("imgTmp") : appSettings.getString("img");
     var img = appSettings.getString("img");
 
-    var page = args.object;
+    page = args.object;
     page.bindingContext = {
-        //"toggleableItem" : settings[1][2],
-<<<<<<< HEAD
         "username" : username
-=======
-        "username" : username,
-        "img" : img
->>>>>>> dev
     };
-    drawer = view.getViewById(page,"sideDrawer");
 
+    imgView = view.getViewById(page, "img");
+    imgView.imageSource = imageModule.fromFile(img);
+    drawer = view.getViewById(page,"sideDrawer");
     var usernameField = view.getViewById(page,'username');
         var fArray = [];
         fArray[0] = new android.text.InputFilter.LengthFilter(16);
         usernameField.android.setFilters(fArray);
 
-<<<<<<< HEAD
-    console.log("Settings page successfully");
-=======
     loader.hide();
     console.log("Settings page successfully loaded");
->>>>>>> dev
 }
 
 exports.toggleDrawer = toggleDrawer;
@@ -84,8 +75,7 @@ function navDashboard(){
 
 exports.save = save;
 function save(args){
-    var page = args.object.bindingContext;
-    //appSettings.setBoolean("toggleableItem", page["toggleableItem"]);
+    page = args.object.bindingContext;
     var n_username = page["username"];
 
     console.log("Settings saved");
@@ -94,12 +84,16 @@ function save(args){
 exports.changeImg = changeImg;
 function changeImg(args){
     var page = args.object;
-    console.log("Image change selected");
+
+    var context = imagepicker.create({
+        mode: "single"
+    });
+
     permissions.requestPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE, "We need this permission to allow us to save your new Avatar to your profile")
         .then(function(){
             permiss = true;
             console.log("Permissions accepted");
-            //Do image replacement
+            startSelection(context);
         })
         .catch(function(){
             console.log("Permissions denied");
@@ -123,4 +117,41 @@ function logout(args){
             return false;
         }
     })
+}
+
+function startSelection(context) {
+    context
+    .authorize()
+    .then(function(){
+        return context.present();
+    })
+    .then(function(selection){
+        var selected_item = selection[0];
+
+        var cropper = new icModule.ImageCropper();
+
+        selected_item.getImage().then(function(originalSource){
+            cropper.show(originalSource, {width:100, height: 100}).then(function(args){
+                if(args.image !== null){
+                    let folder = fs.knownFolders.documents();
+                    let path = fs.path.join(folder.path, "tmpImg.png");
+                    let saved = args.image.saveToFile(path, "png");
+                    imgTmp = path;
+                    imgView.imageSource = imageModule.fromFile(path);
+                }
+            })
+            .catch(function(e){
+                console.log("Image crop error: "+e);
+            })
+        })
+    });
+}
+
+function extractImageName(fileUri) {
+    var imageName = fileUri.match(/[^/]*$/);
+    return imageName;
+}
+
+function sendImages(uri, fileUri) {
+    imageName = extractImageName(fileUri);
 }

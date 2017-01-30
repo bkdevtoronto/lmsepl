@@ -1,5 +1,9 @@
 Page {
     background-color: #108858;
+    background-image:url("res://bg_photo_1");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 .logo_part1 {

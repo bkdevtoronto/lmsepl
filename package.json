@@ -10,6 +10,7 @@
     }
   },
   "dependencies": {
+    "nativescript-imagecropper": "0.0.7",
     "nativescript-imagepicker": "^2.4.1",
     "nativescript-loading-indicator": "^2.2.2",
     "nativescript-oauth": "^1.2.1",

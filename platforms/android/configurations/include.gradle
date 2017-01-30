@@ -1,4 +1,4 @@
 
 android {
-    flavorDimensions "nativescripttelerikui", "tnscoremoduleswidgets"
+    flavorDimensions "nativescriptimagecropper", "nativescripttelerikui", "tnscoremoduleswidgets"
 }

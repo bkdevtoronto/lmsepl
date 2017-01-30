@@ -1,6 +1,6 @@
 <Page xmlns:sd="nativescript-telerik-ui/sidedrawer"
     xmlns:shared="shared"
-    loaded="loaded">
+    navigatedTo="loaded">
     <ActionBar title="Dashboard">
         <android>
             <NavigationButton icon="res://icon_menu_g" tap="toggleDrawer" />
@@ -33,18 +33,13 @@
                     </GridLayout>-->
                     <Label class="settings-header" text="Profile" />
                     <GridLayout ios:columns="auto,*" android:rows="auto,auto" verticalAlignment="top">
-<<<<<<< HEAD
-                        <Label class="settings-section-input-text-label" text="Username" />
-                        <TextField id="username" text="{{ username }}" class="settings-section-input-text" ios:col="0" android:row="0" />
-=======
                         <Label class="settings-section-input-text-label" text="Username" hint="Username" />
                         <TextField id="username" text="{{ username }}" class="settings-section-input-text" ios:col="0" android:row="0" />
                     </GridLayout>
                     <StackLayout class="line" />
                     <GridLayout ios:columns="auto,*" android:rows="auto,auto" verticalAlignment="middle">
                         <Label class="settings-section-img-label" text="Avatar" />
-                        <Image id="img" src="{{ img }}" class="settings-section-img" ios:col="0" android:row="0" tap="changeImg" />
->>>>>>> dev
+                        <Image id="img" class="settings-section-img" ios:col="0" android:row="0" tap="changeImg" />
                     </GridLayout>
                     <StackLayout class="line" />
                     <Button tap="save" class="btn-save" text="Save" />

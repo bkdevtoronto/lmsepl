@@ -85,7 +85,7 @@ exports.fbConnect = function(args){
                                         appSettings.setString("username",r.data[0].username);
                                         var img = r.data[0].img.split("/")[r.data[0].img.split("/").length-1];
                                         var url = apiURL+"../lms_img/prof/"+img;
-                                        var path = fs.path.join(fs.knownFolders.documents().path, "profilePic.jpg");
+                                        var path = fs.path.join(fs.knownFolders.documents().path, "profilePic.png");
                                         appSettings.setString("img",path);
 
                                         var cache = new imageCacheModule.Cache();
@@ -104,7 +104,7 @@ exports.fbConnect = function(args){
                                                 completed: (image, key) => {
                                                     if(url===key){
                                                         imgSouce = imageSource.fromNativeSource(image);
-                                                        var saved = imgSouce.saveToFile(path, "jpg");
+                                                        var saved = imgSouce.saveToFile(path, "png");
                                                     }
                                                 }
                                             });
