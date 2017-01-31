@@ -86,15 +86,13 @@ Page {
     text-transform: uppercase;
     margin: 4px;
     color: #fff;
-    opacity: 0.5;
-    margin-top:5px;
+    opacity: 0.3;
 }
 
 .dashboard-scorevalue {
     color: #fff;
-    opacity: 0.5;
+    opacity: 0.6;
     text-transform: uppercase;
     font-size: 12px;
     margin: 4px;
-    font-family: "Roboto-Medium";
 }
