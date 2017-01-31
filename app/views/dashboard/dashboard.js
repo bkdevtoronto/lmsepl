@@ -49,5 +49,18 @@ function toggleDrawer(args){
 
 exports.navSettings = navSettings;
 function navSettings(){
-    frameModule.topmost().navigate("views/settings/settings");
+    navigate("settings");
+}
+
+function navigate(view){
+    toggleDrawer();
+    frameModule.topmost().navigate({
+        moduleName: "views/"+view+"/"+view,
+        animated: true,
+        clearHistory: true,
+        transition: {
+            name: "fade",
+            curve: "easeIn"
+        }
+    });
 }
