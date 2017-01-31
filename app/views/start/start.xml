@@ -11,8 +11,5 @@
                 </StackLayout>
             </AbsoluteLayout>
         </StackLayout>
-        <GridLayout class="loadingCont" rows="*" columns="*" visibility="{{ showLoading===1 ? 'visible' : 'collapsed' }}">
-            <ActivityIndicator class="loadingBar" busy="true" />
-        </GridLayout>
     </GridLayout>
 </Page>

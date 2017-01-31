@@ -25,9 +25,6 @@
 
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent>
-            <GridLayout class="loadingCont" rows="*" columns="*" style="{{ showLoading ? 'height:1px' : '' }}">
-                <ActivityIndicator class="loadingBar" busy="true" />
-            </GridLayout>
             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center" class="mainContainer">
                 <AbsoluteLayout width="200">
                     <Image left="0" top="0" width="200" height="200" src="res://shadow_profilepic200" class="profilePic-shadow" />
