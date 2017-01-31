@@ -1,27 +1,27 @@
 {
-	"name": "tns-template-hello-world",
+	"name": "Last Man Standing EPL",
 	"main": "app.js",
-	"version": "2.4.1",
-	"author": "Telerik <support@telerik.com>",
-	"description": "Nativescript hello-world project template",
+	"version": "0.0.1",
+	"author": "Ben Kahan Development <ben@bkdev.co.uk>",
+	"description": "Social sports game with live updates",
 	"license": "Apache-2.0",
 	"keywords": [
-		"telerik",
-		"mobile",
-		"nativescript",
-		"{N}",
-		"tns",
-		"appbuilder",
-		"template"
+		"football",
+		"soccer",
+		"last man standing",
+		"premier league",
+		"epl",
+		"english premier league",
+		"gambling"
 	],
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/NativeScript/template-hello-world.git"
+		"url": "git://github.com/benkahandevelopment/lmsepl.git"
 	},
 	"bugs": {
-		"url": "https://github.com/NativeScript/template-hello-world/issues"
+		"url": "https://github.com/benkahandevelopment/lmsepl/issues"
 	},
-	"homepage": "https://github.com/NativeScript/template-hello-world",
+	"homepage": "https://www.lastmanstanding.football",
 	"android": {
 		"v8Flags": "--expose_gc"
 	},
