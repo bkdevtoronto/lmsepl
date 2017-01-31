@@ -104,15 +104,25 @@ exports.fbConnect = function(args){
                                                     if(url===key){
                                                         imgSouce = imageSource.fromNativeSource(image);
                                                         var saved = imgSouce.saveToFile(path, "png");
+                                                        cache.disableDownload();
+                                                        loader.hide();
+                                                        console.log("Login sucessful");
+                                                        appSettings.setString("img",path);
+                                                        frameModule.topmost().navigate({
+                                                            moduleName: "views/dashboard/dashboard",
+                                                            animated: true,
+                                                            clearHistory: true,
+                                                            transition: {
+                                                                name: "slideTop",
+                                                                duration: 380,
+                                                                curve: "easeIn",
+                                                            }
+                                                        });
                                                     }
                                                 }
                                             });
                                         }
 
-                                        cache.disableDownload();
-                                        loader.hide();
-                                        console.log("Login sucessful");
-                                        frameModule.topmost().navigate("views/dashboard/dashboard");
                                     } else {
                                         fetchModule.fetch(apiURL+"users", {
                                             method: "POST",
