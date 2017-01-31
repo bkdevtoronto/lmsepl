@@ -1,22 +1,56 @@
 .sd-left {
-    background-color: #300a3c;
+    background-color: #108858;
     color: white;
+    border-width: 0 1 0 0;
+    border-color: rgba(255,255,255,0.2);
+    width:250;
 }
 
 .sd-list-item-text {
     font-size: 12px;
     font-family: "Roboto-Medium";
     text-transform: uppercase;
-    padding: 15px 0 15px 10px;
+    padding: 15px 0 15px 20px;
     border-width: 0 0 1 0;
-    border-color: rgba(255,255,255,0.1);
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    border-color: rgba(255,255,255,0.2);
     text-align: left;
+
+    opacity: 0.8;
 }
 
 .sd-list-item-text:active {
     background-color: white;
-    color: #300a3c;
+    color: #108858;
+    opacity: 1;
+}
+
+.sd-header{
+    padding: 10px;
+
+    border-width: 0 0 1 0;
+    border-color: rgba(255,255,255,0.1);
+    background-color:#300a3c;
+}
+
+.sd-profile-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: white;
+}
+
+.sd-profile-meta{
+    margin-left: 10px;
+    opacity: 1;
+}
+
+.sd-profile-meta-name {
+    font-family: "Roboto Bold";
+    width: 190;
+}
+
+.sd-profile-meta-label{
+    font-size: 10px;
+    text-transform: uppercase;
 }

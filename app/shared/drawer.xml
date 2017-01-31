@@ -1,4 +1,11 @@
 <StackLayout class="sd-left">
+    <GridLayout class="sd-header" columns="50,*" rows="auto">
+        <Image col="0" row="0" class="sd-profile-pic" src="{{ profilePic }}" />
+        <StackLayout col="1" row="0" class="sd-profile-meta" orientation="vertical" verticalAlignment="center" horizontalAlignment="left">
+            <Label class="sd-profile-meta-name" text="{{ username }}" />
+            <Label class="sd-profile-meta-label" text="Score" />
+        </StackLayout>
+    </GridLayout>
     <StackLayout class="sd-content">
         <Button text="Dashboard" class="sd-list-item-text" tap="navDashboard" />
         <Button text="Settings" class="sd-list-item-text" tap="navSettings" />
