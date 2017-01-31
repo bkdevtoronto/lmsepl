@@ -1,15 +1,9 @@
-/*
-In NativeScript, the app.js file is the entry point to your application.
-You can use this file to perform app-level initialization, but the primary
-purpose of the file is to pass control to the app’s first module.
-*/
-
 require("./bundle-config");
 var application = require("application");
 var applicationSettings = require("application-settings");
 var tnsOAuthModule = require("nativescript-oauth");
 
-// API root URL
+// API root URLs
 applicationSettings.setString("apiURL","https://api.lastmanstanding.football/");
 applicationSettings.setString("imgURL", "https://img.lastmanstanding.football/");
 
@@ -22,7 +16,4 @@ tnsOAuthModule.initFacebook(facebookInitOptions);
 
 application.start({ moduleName: "views/start/start" });
 
-/*
-Do not place any code after the application has been started as it will not
-be executed on iOS.
-*/
+//End of start code
