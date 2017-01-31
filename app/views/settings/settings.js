@@ -43,12 +43,12 @@ var apiURL = appSettings.getString("apiURL");
 
 exports.loaded = function(args){
     var username = appSettings.getString("username");
-    //var img = appSettings.hasKey("imgTmp") ? appSettings.getString("imgTmp") : appSettings.getString("img");
     var img = appSettings.getString("img");
 
     page = args.object;
     page.bindingContext = {
-        "username" : username
+        "username" : username,
+        "profilePic" : img
     };
 
     imgView = view.getViewById(page, "img");
@@ -70,7 +70,20 @@ function toggleDrawer(args){
 
 exports.navDashboard = navDashboard;
 function navDashboard(){
-    frameModule.topmost().navigate("views/dashboard/dashboard");
+    navigate("dashboard");
+}
+
+function navigate(view){
+    toggleDrawer();
+    frameModule.topmost().navigate({
+        moduleName: "views/"+view+"/"+view,
+        animated: true,
+        clearHistory: true,
+        transition: {
+            name: "fade",
+            curve: "easeIn"
+        }
+    });
 }
 
 exports.save = save;
@@ -145,13 +158,4 @@ function startSelection(context) {
             })
         })
     });
-}
-
-function extractImageName(fileUri) {
-    var imageName = fileUri.match(/[^/]*$/);
-    return imageName;
-}
-
-function sendImages(uri, fileUri) {
-    imageName = extractImageName(fileUri);
 }
