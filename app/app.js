@@ -10,7 +10,8 @@ var applicationSettings = require("application-settings");
 var tnsOAuthModule = require("nativescript-oauth");
 
 // API root URL
-applicationSettings.setString("apiURL","https://www.akuk.co.uk/projects/lms2/");
+applicationSettings.setString("apiURL","https://api.lastmanstanding.football/");
+applicationSettings.setString("imgURL", "https://img.lastmanstanding.football/");
 
 var facebookInitOptions = TnsOAuthOptionsFacebook = {
     clientId: '204313853306507',

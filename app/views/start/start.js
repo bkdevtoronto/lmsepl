@@ -35,8 +35,9 @@ loader.show(loaderOptions);
 
 // Retrieve API URL
 var apiURL = appSettings.getString("apiURL");
+var imgURL = appSettings.getString("imgURL");
 
-exports.loaded = function(args){
+exports.navigatedTo = function(args){
     var page = args.object;
     page.bindingContext = {};
 
@@ -67,9 +68,7 @@ exports.fbConnect = function(args){
                             appSettings.setString("username",user.name);
                             appSettings.setString("email",user.email);
                             appSettings.setString("fbid",user.id);
-                            //appSettings.setString("img",user.picture.data.url);
                             appSettings.setString("fbimg","http://graph.facebook.com/"+user.id+"/picture?type=large");
-                            //console.log('https://graph.facebook.com/me?fields=id,name,email,picture&access_token='+token);
 
                             //Check if user's data already exists
                             fetchModule.fetch(apiURL+"users/fbid/"+appSettings.getString("fbid"),{
@@ -84,14 +83,14 @@ exports.fbConnect = function(args){
                                         var usr = r.data[0];
                                         appSettings.setString("username",r.data[0].username);
                                         var img = r.data[0].img.split("/")[r.data[0].img.split("/").length-1];
-                                        var url = apiURL+"../lms_img/prof/"+img;
+                                        var url = imgURL+"prof/"+img;
+                                        console.log(url);
                                         var path = fs.path.join(fs.knownFolders.documents().path, "profilePic.png");
                                         appSettings.setString("img",path);
 
                                         var cache = new imageCacheModule.Cache();
                                         cache.maxRequests = 5;
                                         cache.enableDownload();
-                                        //console.log(url);
 
                                         var imgSouce = imageSource.ImageSource;
                                         var image = cache.get(url);

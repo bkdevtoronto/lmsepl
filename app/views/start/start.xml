@@ -1,4 +1,4 @@
-<Page loaded="loaded" actionBarHidden="true">
+<Page navigatedTo="navigatedTo" actionBarHidden="true">
     <GridLayout>
         <StackLayout orientation="vertical" verticalAlignment="center" horizontalAlignment="center">
             <AbsoluteLayout>
