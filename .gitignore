@@ -25,3 +25,8 @@ hooks/
 fonts/
 App_Resources/
 .tmp_backup/
+
+#Irrelevant files
+.npmrc
+app/bundle-config.js
+app/references.d.ts
