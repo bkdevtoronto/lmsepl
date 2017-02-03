@@ -1,21 +1,7 @@
 <Page xmlns:sd="nativescript-telerik-ui/sidedrawer"
     xmlns:shared="shared"
-    loaded="loaded">
-    <ActionBar title="Dashboard">
-        <android>
-            <NavigationButton icon="res://icon_menu_g" tap="toggleDrawer" />
-        </android>
-        <ios>
-            <ActionItem icon="res://icon_menu_g" ios.position="left" tap="toggleDrawer" />
-        </ios>
-
-        <StackLayout orientation="horizontal"
-            ios:horizontalAlignment="center"
-            android:horizontalAlignment="center">
-            <!--<Img src="res://logo" class="action-image" />-->
-            <Label text="Dashboard" class="action-label" />
-        </StackLayout>
-    </ActionBar>
+    loaded="loaded"
+    actionBarHidden="true">
 
     <!-- side drawer content -->
     <sd:RadSideDrawer id="sideDrawer">
@@ -26,6 +12,10 @@
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent>
             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center" class="mainContainer">
+                <GridLayout class="action-bar" columns="50,*,50" rows="auto" marginBottom="-35" >
+                    <Image row="0" col="0" class="action-icon-left" src="res://icon_menu_g" tap="toggleDrawer" />
+                    <Label row="0" col="1" class="action-label" text="Dashboard" />
+                </GridLayout>
                 <AbsoluteLayout width="200">
                     <Image left="0" top="0" width="200" height="200" src="res://shadow_profilepic200" class="profilePic-shadow" />
                     <Image left="50" top="50" width="100" height="100" src="{{ profilePic }}" class="profilePic" />

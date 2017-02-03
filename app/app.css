@@ -32,6 +32,7 @@ Page {
     font-weight: bold;
     vertical-align: center;
     font-family: "Roboto-Medium";
+    text-align: center;
 }
 
 .fa {

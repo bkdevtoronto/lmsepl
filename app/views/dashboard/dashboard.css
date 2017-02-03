@@ -96,3 +96,17 @@ Page {
     font-size: 12px;
     margin: 4px;
 }
+
+.action-bar {
+    margin-top:24;
+    height: 50;
+    background-color: rgba(255,255,255,0.7);
+    border-width: 0 0 1 0;
+    border-color: #300a3c;
+}
+
+.action-icon-left {
+    width: 20;
+    height: 20;
+    margin: 15;
+}
