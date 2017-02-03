@@ -88,8 +88,18 @@ function navigate(view){
 
 exports.save = save;
 function save(args){
-    page = args.object.bindingContext;
-    var n_username = page["username"];
+    page = args.object;
+    var n_username = page.bindingContext["username"];
+    var n_img = imgTmp ? imgTmp : null;
+
+    loader.show(loaderOptions);
+
+    //Upload
+
+    loader.hide();
+
+    console.log(n_username);
+    console.log(n_img);
 
     console.log("Settings saved");
 }
