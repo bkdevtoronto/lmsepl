@@ -81,6 +81,7 @@ exports.fbConnect = function(args){
                                         loader.show(loaderOptionsFbconnect);
 
                                         var usr = r.data[0];
+                                        appSettings.setString("id", r.data[0].id);
                                         appSettings.setString("username",r.data[0].username);
                                         var img = r.data[0].img.split("/")[r.data[0].img.split("/").length-1];
                                         var url = imgURL+"prof/"+img;
