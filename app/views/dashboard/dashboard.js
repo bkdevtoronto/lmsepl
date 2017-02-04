@@ -43,9 +43,6 @@ exports.loaded = function(args){
                     groupArray.push(item);
                     console.log(JSON.stringify(groupArray));
                 });
-            } else {
-                item = { name: "You haven't joined any leagues yet!", date: false };
-                groupArray.push(item);
             }
 
             /* Page Data */
