@@ -39,8 +39,8 @@
                         </ListView.itemTemplate>
                     </ListView>
                     <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
-                        <Button class="list-groups-button-start" text="Start League" tap="groupStart" />
-                        <Button class="list-groups-button-join" text="Join League" tap="groupJoin" />
+                        <Button class="list-groups-button-start" text="Start League" tap="navGroupStart" />
+                        <Button class="list-groups-button-join" text="Join League" tap="navGroupJoin" />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

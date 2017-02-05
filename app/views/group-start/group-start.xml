@@ -3,17 +3,31 @@
     loaded="loaded"
     actionBarHidden="true">
 
-    <!-- side drawer content -->
-    <sd:RadSideDrawer id="sideDrawer">
-        <sd:RadSideDrawer.drawerContent>
-            <shared:drawer />
-        </sd:RadSideDrawer.drawerContent>
-
-        <!-- The main content -->
-        <sd.RadSideDrawer.mainContent>
-            <StackLayout orientation="vertical" horizontalAlign="center" verticalAlign="center">
-                <Label text="test" />
+    <ScrollView>
+        <StackLayout class="main-container" orientation="vertical" horizontalAlignment="center" verticalAlignment="center">
+            <Label class="main-container-title" text="Start League" />
+            <Label class="form-label" text="League Name" />
+            <TextField class="form-field-text" hint="La League-a" text="{{ groupName }}" />
+            <StackLayout class="line" />
+            <Label class="form-label" text="Entry cost" />
+            <Label class="form-label-hint" text="Leave blank or '0' for free-to-pay" />
+            <StackLayout class="form-field-group" orientation="horizontal" horizontalAlignment="right">
+                <Label class="form-field-group-key" text="£" />
+                <TextField class="form-field-group-number" keyboardType="number" text="{{ groupCost }}" />
             </StackLayout>
-        </sd.RadSideDrawer.mainContent>
-    </sd:RadSideDrawer>
+            <StackLayout class="line" />
+            <Label class="form-label" text="Visibility" />
+            <StackLayout class="form-field-group" orientation="horizontal" horizontalAlignment="right">
+                <GridLayout columns="auto,auto" rows="auto" verticalAlignment="top">
+                    <Label text="Public" col="0" row="0" class="form-field-group-key" />
+                    <Switch col="1" row="0" checked="{{ groupPublic }}" class="form-field-group-switch" />
+                </GridLayout>
+            </StackLayout>
+            <!--<StackLayout class="line" />-->
+            <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
+                <Button class="list-groups-button-cancel" text="Cancel" tap="btnBack" />
+                <Button class="list-groups-button-create" text="Create League" tap="btnCreate" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </Page>

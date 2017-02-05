@@ -41,7 +41,6 @@ exports.loaded = function(args){
                 r.data[0].forEach(function(e){
                     var item = { name: e.name, date: e.date };
                     groupArray.push(item);
-                    console.log(JSON.stringify(groupArray));
                 });
             }
 
@@ -73,6 +72,18 @@ function toggleDrawer(args){
 exports.navSettings = navSettings;
 function navSettings(){
     navigate("settings");
+}
+
+exports.navGroupStart = navGroupStart;
+function navGroupStart(){
+    frameModule.topmost().navigate({
+        moduleName: "views/group-start/group-start",
+        aniamted: true,
+        transition: {
+            name: "slideLeft",
+            curve: "easeIn"
+        }
+    });
 }
 
 function navigate(view){
