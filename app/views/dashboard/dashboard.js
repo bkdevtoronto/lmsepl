@@ -13,10 +13,10 @@ var drawer;
 
 /* Loading Indicator */
 var loader = new loadingIndicator;
-var loaderOptions = { message: 'Loading...', progress: 0, android: {
-        indeterminate: true, cancelable: false, max: 100, progressNumberFormat: "%1d/%2d", progressPercentFormat: 0.53, progressStyle: 1, secondaryProgress: 1
-    }, ios: {
-        details: "Please wait", square: false, margin: 10, dimBackground:true, color: "#4b9ed6" }
+var loaderOptions = {
+    message: 'Loading...', progress: 0,
+    android: { indeterminate: true, cancelable: false, max: 100, progressNumberFormat: "%1d/%2d", progressPercentFormat: 0.53, progressStyle: 1, secondaryProgress: 1 },
+    ios: { details: "Please wait", square: false, margin: 10, dimBackground:true, color: "#4b9ed6" }
 };
 loader.show(loaderOptions);
 
