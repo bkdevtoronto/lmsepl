@@ -12,38 +12,60 @@
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent>
             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                <GridLayout class="action-bar" columns="50,*,50" rows="auto" marginBottom="-35" >
+                <GridLayout class="action-bar" columns="50,*,50" rows="auto" marginBottom="-50" >
                     <Image row="0" col="0" class="action-icon-left" src="res://icon_menu_g" tap="toggleDrawer" />
                     <Label row="0" col="1" class="action-label" text="Dashboard" />
                 </GridLayout>
-                <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center" class="mainContainer">
-                    <AbsoluteLayout>
-                        <Image left="0" top="0" width="200" height="200" src="res://shadow_profilepic200" class="profilePic-shadow" />
-                        <Image left="50" top="50" width="100" height="100" src="{{ profilePic }}" class="profilePic" />
-                        <StackLayout top="160" orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                            <Label width="200" class="dashboard-username" text="{{ username }}" />
-                            <StackLayout width="200" class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
-                                <Label class="dashboard-scoremeta" text="Score" />
-                                <Label class="dashboard-scorevalue" text="{{ scorevalue }}" />
+                <ScrollView>
+                    <StackLayout>
+                        <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center" class="mainContainer">
+                            <AbsoluteLayout>
+                                <Image left="0" top="0" width="200" height="200" src="res://shadow_profilepic200" class="profilePic-shadow" />
+                                <Image left="50" top="50" width="100" height="100" src="{{ profilePic }}" class="profilePic" />
+                                <StackLayout top="160" orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
+                                    <Label width="200" class="dashboard-username" text="{{ username }}" />
+                                    <StackLayout width="200" class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
+                                        <Label class="dashboard-scoremeta" text="Score" />
+                                        <Label class="dashboard-scorevalue" text="{{ scorevalue }}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </AbsoluteLayout>
+                        </StackLayout>
+                        <StackLayout class="groups-container" class="list-groups">
+                            <Label class="list-groups-title" text="Leagues" />
+                            <ListView items="{{ groups }}" height="{{ groupsHeight }}" itemTap="groupTap">
+                                <ListView.itemTemplate>
+                                    <GridLayout class="list-groups-item" columns="25,*,25" rows="auto">
+                                        <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
+                                        <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
+                                    </GridLayout>
+                                </ListView.itemTemplate>
+                            </ListView>
+                            <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
+                                <Button class="list-groups-button-start" text="Start League" tap="navGroupStart" />
+                                <Button class="list-groups-button-join" text="Join League" tap="navGroupJoin" />
                             </StackLayout>
                         </StackLayout>
-                    </AbsoluteLayout>
-                </StackLayout>
-                <StackLayout class="groups-container" class="list-groups">
-                    <Label class="list-groups-title" text="Leagues" />
-                    <ListView items="{{ groups }}" itemTap="groupTap">
-                        <ListView.itemTemplate>
-                            <GridLayout class="list-groups-item" columns="25,*,25" rows="auto">
-                                <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
-                                <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
-                            </GridLayout>
-                        </ListView.itemTemplate>
-                    </ListView>
-                    <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
-                        <Button class="list-groups-button-start" text="Start League" tap="navGroupStart" />
-                        <Button class="list-groups-button-join" text="Join League" tap="navGroupJoin" />
+
+                        <!-- another set of groups -->
+                        <!--<StackLayout class="groups-container" class="list-groups">
+                            <Label class="list-groups-title" text="Leagues" />
+                            <ListView items="{{ groups }}" itemTap="groupTap" class="list-view">
+                                <ListView.itemTemplate>
+                                    <GridLayout class="list-groups-item" columns="25,*,25" rows="auto">
+                                        <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
+                                        <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
+                                    </GridLayout>
+                                </ListView.itemTemplate>
+                            </ListView>
+                            <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
+                                <Button class="list-groups-button-start" text="Start League" tap="navGroupStart" />
+                                <Button class="list-groups-button-join" text="Join League" tap="navGroupJoin" />
+                            </StackLayout>
+                        </StackLayout>-->
+                        <!-- /another set of groups -->
                     </StackLayout>
-                </StackLayout>
+                </ScrollView>
             </StackLayout>
         </sd.RadSideDrawer.mainContent>
     </sd:RadSideDrawer>

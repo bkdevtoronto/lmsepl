@@ -60,6 +60,7 @@ Page {
     animation-fill-mode: forwards;
     animation-delay: 0s;
     animation-timing-function: ease-in;
+    padding-top:15;
 }
 
 @keyframes mainContainer-anim {
@@ -101,6 +102,7 @@ Page {
     background-color: rgba(255,255,255,0.7);
     border-width: 0 0 1 0;
     border-color: #300a3c;
+    z-index:10;
 }
 
 .action-icon-left {

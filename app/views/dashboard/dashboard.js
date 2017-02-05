@@ -44,12 +44,16 @@ exports.loaded = function(args){
                 });
             }
 
+            var height = groupArray.length * 40;
+            var groupsHeight = height;
+
             /* Page Data */
             pageData = new observableModule.fromObject({
                 groups: new observableArray(groupArray),
                 profilePic: appSettings.getString("img"),
                 username: appSettings.getString("username"),
-                scorevalue: "420"
+                scorevalue: "420",
+                groupsHeight: groupsHeight
             });
 
 
