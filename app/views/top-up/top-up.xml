@@ -1,0 +1,8 @@
+<Page xmlns:shared="shared"
+    navigatedTo="loaded"
+    actionBarHidden="true">
+
+    <StackLayout>
+        <Label text="PayPal API"/>
+    </StackLayout>
+</Page>
