@@ -12,7 +12,7 @@
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent>
             <StackLayout orientation="vertical" horizontalAlign="center" verticalAlign="center">
-                
+                <Label text="test" />
             </StackLayout>
         </sd.RadSideDrawer.mainContent>
     </sd:RadSideDrawer>
