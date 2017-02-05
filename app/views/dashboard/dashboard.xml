@@ -34,6 +34,7 @@
                     <ListView items="{{ groups }}" itemTap="groupTap">
                         <ListView.itemTemplate>
                             <GridLayout class="list-groups-item" columns="25,*,25" rows="auto">
+                                <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
                                 <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
                             </GridLayout>
                         </ListView.itemTemplate>

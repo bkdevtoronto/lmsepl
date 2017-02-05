@@ -39,7 +39,7 @@ exports.loaded = function(args){
             var r = JSON.parse(response._bodyText);
             if(r.response=="success"){
                 r.data[0].forEach(function(e){
-                    var item = { name: e.name, date: e.date };
+                    var item = { icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player", name: e.name, date: e.date };
                     groupArray.push(item);
                 });
             }
