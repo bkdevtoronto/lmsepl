@@ -78,6 +78,11 @@ function navSettings(){
     navigate("settings");
 }
 
+exports.navTopUp = navTopUp;
+function navTopUp(){
+    navigate("top-up");
+}
+
 exports.navGroupStart = navGroupStart;
 function navGroupStart(){
     frameModule.topmost().navigate({
