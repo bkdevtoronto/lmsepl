@@ -1,3 +1,4 @@
+var googleAnalytics = require("nativescript-google-analytics");
 var frameModule = require("ui/frame");
 var appSettings = require("application-settings");
 var view = require("ui/core/view");
@@ -61,6 +62,7 @@ exports.loaded = function(args){
 
     loader.hide();
     console.log("Settings page successfully loaded");
+    googleAnalytics.logView("Settings");
 }
 
 exports.toggleDrawer = toggleDrawer;

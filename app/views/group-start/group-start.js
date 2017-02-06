@@ -1,3 +1,4 @@
+var googleAnalytics = require("nativescript-google-analytics");
 var frameModule = require("ui/frame");
 var appSettings = require("application-settings");
 var dialogs = require("ui/dialogs");
@@ -75,6 +76,8 @@ function btnCreate(args){
         console.log(JSON.stringify(error));
         loader.hide();
     })
+
+    googleAnalytics.logView("Group-Start");
 
 
 }

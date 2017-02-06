@@ -1,3 +1,4 @@
+var googleAnalytics = require("nativescript-google-analytics");
 var frameModule = require("ui/frame");
 var appSettings = require("application-settings");
 var tnsOAuthModule = require("nativescript-oauth");
@@ -47,10 +48,19 @@ exports.navigatedTo = function(args){
         console.log("Details stored");
         frameModule.topmost().navigate("views/dashboard/dashboard");
     }
+
+    googleAnalytics.logView("Start");
 }
 
 exports.fbConnect = function(args){
     console.log("Facebook Connect button tapped");
+
+    googleAnalytics.logEvent({
+        category: "Button",
+        action: "Connect to Facebook",
+        //label: "MyLabel",
+        //value: 7
+    });
 
     //Connect to user's Facebook profile and retreive data
     tnsOAuthModule.login()

@@ -7,6 +7,7 @@ var loadingIndicator = require("nativescript-loading-indicator").LoadingIndicato
 var listViewModule = require("ui/list-view");
 var observableModule = require("data/observable");
 var observableArray = require("data/observable-array").ObservableArray;
+var googleAnalytics = require("nativescript-google-analytics");
 
 var page;
 var drawer;
@@ -65,6 +66,8 @@ exports.loaded = function(args){
 
 
     console.log("Dashboard loaded successfully");
+
+    googleAnalytics.logView("Dashboard");
 }
 
 exports.toggleDrawer = toggleDrawer;
