@@ -10,7 +10,7 @@
         </sd:RadSideDrawer.drawerContent>
 
         <!-- The main content -->
-        <sd.RadSideDrawer.mainContent>
+        <sd.RadSideDrawer.mainContent class="main-content-sd">
             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
                 <GridLayout class="action-bar" columns="50,*,50" rows="auto" marginBottom="-50" >
                     <Image row="0" col="0" class="action-icon-left" src="res://icon_menu_g" tap="toggleDrawer" />
@@ -64,6 +64,7 @@
                             </StackLayout>
                         </StackLayout>-->
                         <!-- /another set of groups -->
+                        <Label class="admob-spacer" text="" />
                     </StackLayout>
                 </ScrollView>
             </StackLayout>

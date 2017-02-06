@@ -9,6 +9,9 @@ var observableModule = require("data/observable");
 var observableArray = require("data/observable-array").ObservableArray;
 var googleAnalytics = require("nativescript-google-analytics");
 
+/* Ads */
+var admob = require("nativescript-admob");
+
 var page;
 var drawer;
 
@@ -33,6 +36,30 @@ exports.loaded = function(args){
     var groupArray = [];
     var pageData;
     page = args.object;
+
+    /* Ads */
+    admob.createBanner({
+        // if this 'view' property is not set, the banner is overlayed on the current top most view
+        // view: ..,
+        testing: true, // set to false to get real banners
+        size: admob.AD_SIZE.SMART_BANNER, // anything in admob.AD_SIZE, like admob.AD_SIZE.SMART_BANNER
+        //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY", // add your own
+        androidBannerId: "ca-app-pub-6311725785805657/1855866252", // add your own
+        // Android automatically adds the connected device as test device with testing:true, iOS does not
+        //iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
+        margins: {
+            // if both are set, top wins
+            //top: 10
+            bottom: 0
+        }
+    }).then(
+        function() {
+            console.log("admob createBanner done");
+        },
+        function(error) {
+            console.log("admob createBanner error: " + error);
+        }
+    )
 
     fetchModule.fetch(apiURL+"groups/user/"+userId,{
             method: "get"

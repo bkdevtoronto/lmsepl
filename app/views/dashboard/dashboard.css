@@ -68,6 +68,10 @@ Page {
     100% { opacity: 1; transform:translate(0,0); }
 }
 
+.admob-spacer {
+    height: 50;
+}
+
 .action-image {
     width: 40;
     height: 40;
