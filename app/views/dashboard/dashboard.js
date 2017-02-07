@@ -39,19 +39,12 @@ exports.loaded = function(args){
 
     /* Ads */
     admob.createBanner({
-        // if this 'view' property is not set, the banner is overlayed on the current top most view
-        // view: ..,
-        testing: true, // set to false to get real banners
-        size: admob.AD_SIZE.SMART_BANNER, // anything in admob.AD_SIZE, like admob.AD_SIZE.SMART_BANNER
-        //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY", // add your own
-        androidBannerId: "ca-app-pub-6311725785805657/1855866252", // add your own
-        // Android automatically adds the connected device as test device with testing:true, iOS does not
+        testing: true,
+        size: admob.AD_SIZE.SMART_BANNER,
+        androidBannerId: "ca-app-pub-6311725785805657/1855866252",
+        //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY",
         //iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
-        margins: {
-            // if both are set, top wins
-            //top: 10
-            bottom: 0
-        }
+        margins: { bottom: 0 }
     }).then(
         function() {
             console.log("admob createBanner done");
@@ -67,7 +60,12 @@ exports.loaded = function(args){
             var r = JSON.parse(response._bodyText);
             if(r.response=="success"){
                 r.data[0].forEach(function(e){
-                    var item = { icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player", name: e.name, date: e.date };
+                    var item = {
+                        icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
+                        name: e.name,
+                        date: e.date,
+                        active: e.active==1 ? true : false
+                    };
                     groupArray.push(item);
                 });
             }

@@ -35,7 +35,7 @@
                             <Label class="list-groups-title" text="Leagues" />
                             <ListView items="{{ groups }}" height="{{ groupsHeight }}" itemTap="groupTap">
                                 <ListView.itemTemplate>
-                                    <GridLayout class="list-groups-item" columns="25,*,25" rows="auto">
+                                    <GridLayout class="list-groups-item" columns="25,*,25" rows="auto" opacity="{{ active ? 1 : 0.6 }}">
                                         <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
                                         <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
                                     </GridLayout>

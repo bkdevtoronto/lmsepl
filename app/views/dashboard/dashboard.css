@@ -179,3 +179,7 @@ Page {
     opacity: 0.5;
     margin: 0 -5 0 5;
 }
+
+.list-groups-item-label.inactive {
+    opacity: 0.25;
+}
