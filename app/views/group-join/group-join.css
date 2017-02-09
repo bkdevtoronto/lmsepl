@@ -1,0 +1,32 @@
+@import url('~/shared/sidedrawer.css');
+
+Page {
+    background-color: #108858;
+    background-image:url("res://bg_photo_2");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.main-container {
+    background-color: white;
+    border-radius: 2;
+    font-size: 14;
+}
+
+.list-groups-item {
+    padding: 10;
+}
+
+.list-groups-item-icon {
+    width: 20;
+    height: 20;
+    opacity: 0.5;
+    margin: 0 5 0 0;
+}
+
+.list-groups-label {
+    padding: 0 0 0 10;
+}
+
+.searchbar {}

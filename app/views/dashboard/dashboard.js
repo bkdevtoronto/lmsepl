@@ -82,22 +82,16 @@ exports.loaded = function(args){
                 groupsHeight: groupsHeight
             });
 
-
             page.bindingContext = pageData;
             drawer = view.getViewById(page,"sideDrawer");
+            console.log("Dashboard loaded successfully");
+            googleAnalytics.logView("Dashboard");
             loader.hide();
         });
-
-
-
-    console.log("Dashboard loaded successfully");
-
-    googleAnalytics.logView("Dashboard");
 }
 
 exports.toggleDrawer = toggleDrawer;
 function toggleDrawer(args){
-
     drawer.toggleDrawerState();
 }
 
@@ -115,7 +109,19 @@ exports.navGroupStart = navGroupStart;
 function navGroupStart(){
     frameModule.topmost().navigate({
         moduleName: "views/group-start/group-start",
-        aniamted: true,
+        animated: true,
+        transition: {
+            name: "slideLeft",
+            curve: "easeIn"
+        }
+    });
+}
+
+exports.navGroupJoin = navGroupJoin;
+function navGroupJoin(){
+    frameModule.topmost().navigate({
+        moduleName: "views/group-join/group-join",
+        animated: true,
         transition: {
             name: "slideLeft",
             curve: "easeIn"

@@ -1,0 +1,16 @@
+<Page xmlns:sd="nativescript-telerik-ui/sidedrawer"
+    xmlns:shared="shared"
+    loaded="loaded"
+    actionBarHidden="true">
+    <StackLayout class="main-container" orientation="vertical" horizontalAlignment="center" verticalAlignment="top">
+        <SearchBar row="0" class="searchbar" hint="Enter a search term..." text="{{ searchPhrase }}" submit="onSubmit" />
+        <ListView row="1" items="{{ searchResults }}" class="list-group" itemTap="onTap()">
+            <ListView.itemTemplate>
+                <GridLayout class="list-groups-item" columns="25,*,25" rows="auto" opacity="{{ active ? 1 : 0.6 }}">
+                    <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
+                    <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </StackLayout>
+</Page>

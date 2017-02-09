@@ -25,6 +25,7 @@ exports.loaded = function(args){
     };
 
     loader.hide();
+    googleAnalytics.logView("Group-Start");
     console.log("Page successfully loaded");
 }
 
@@ -75,10 +76,7 @@ function btnCreate(args){
     },function(error){
         console.log(JSON.stringify(error));
         loader.hide();
-    })
-
-    googleAnalytics.logView("Group-Start");
-
+    });
 
 }
 
