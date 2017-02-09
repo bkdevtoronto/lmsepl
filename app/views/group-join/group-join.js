@@ -17,16 +17,6 @@ loader.show({
 var page;
 var apiURL = appSettings.getString("apiURL");
 
-/*var reset = {
-    id: null,
-    name: "Enter a search term...",
-    ismember: false,
-    active: false,
-    paid: false,
-    cost: null,
-    icon: null
-}*/
-
 exports.loaded = function(args){
     var pageData;
 
@@ -41,6 +31,29 @@ exports.loaded = function(args){
     loader.hide();
     console.log("Page successfully loaded");
     googleAnalytics.logView("Join Group");
+}
+
+exports.onTap = function(args) {
+    var tappedIndex = args.index;
+    var tappedView = args.view;
+    tappedItem = tappedView.bindingContext;
+    dialogs.confirm({
+        title: "Join League",
+        message: "Are you sure you want to join "+tappedItem.name+"?",
+        okButtonText: "Yes",
+        cancelButtonText: "No",
+        neutralButtonText: "Not yet"
+    }).then(function(e){
+        if(e){
+            console.log("Confirmed");
+        } else {
+            console.log("Declined");
+        }
+    });
+}
+
+exports.onClear = function(){
+    page.bindingContext.searchResults = {};
 }
 
 exports.onSubmit = function(args) {
@@ -58,13 +71,20 @@ exports.onSubmit = function(args) {
         }).then(function(response){
             var r = JSON.parse(response._bodyText);
             if(r.response=="success"){
+                var m = [];
+                if(appSettings.hasKey("groups")){
+                    var g = JSON.parse(appSettings.getString("groups"));
+                    g.forEach(function(e){
+                        m.push(e["id"]);
+                    });
+                }
+
                 r.data[0].forEach(function(e){
                     a.push({
                         name: e.name,
-                        icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
                         active: e.active==1 ? true : false,
                         id: e.id,
-                        ismember: false,
+                        ismember: m.indexOf(e.id)!==-1 ? true : false,
                         paid: e.paid==1 ? true : false,
                         cost: e.cost
                     });

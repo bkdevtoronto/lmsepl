@@ -3,12 +3,15 @@
     loaded="loaded"
     actionBarHidden="true">
     <StackLayout class="main-container" orientation="vertical" horizontalAlignment="center" verticalAlignment="top">
-        <SearchBar row="0" class="searchbar" hint="Enter a search term..." text="{{ searchPhrase }}" submit="onSubmit" />
-        <ListView row="1" items="{{ searchResults }}" class="list-group" itemTap="onTap()">
+        <SearchBar row="0" class="searchbar" hint="Enter a search term..." text="{{ searchPhrase }}" submit="onSubmit" clear="onClear" />
+        <ListView row="1" items="{{ searchResults }}" class="list-group" itemTap="onTap">
             <ListView.itemTemplate>
-                <GridLayout class="list-groups-item" columns="25,*,25" rows="auto" opacity="{{ active ? 1 : 0.6 }}">
-                    <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
-                    <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
+                <GridLayout class="list-groups-item" columns="*,auto,auto,auto,auto,auto" rows="auto" opacity="{{ active ? 1 : 1 }}">
+                    <Label row="0" col="0" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
+                    <Label row="0" col="1" class="list-groups-icon-member" text="Member" visibility="{{ ismember ? 'visible' : 'collapse' }}" />
+                    <Label row="0" col="4" class="list-groups-icon-active" text="Active" visibility="{{ active ? 'visible' : 'collapse' }}" />
+                    <Label row="0" col="3" class="list-groups-icon-inactive" text="Inactive" visibility="{{ active ? 'collapse' : 'visible' }}" />
+                    <Label row="0" col="2" class="list-groups-icon-paid" text="Premium" visibility="{{ paid ? 'visible' : 'collapse' }}" />
                 </GridLayout>
             </ListView.itemTemplate>
         </ListView>

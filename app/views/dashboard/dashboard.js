@@ -64,10 +64,13 @@ exports.loaded = function(args){
                         icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
                         name: e.name,
                         date: e.date,
-                        active: e.active==1 ? true : false
+                        active: e.active==1 ? true : false,
+                        id: e.gid
                     };
                     groupArray.push(item);
                 });
+                //Save groups to app settings
+                appSettings.setString("groups",JSON.stringify(groupArray));
             }
 
             var height = groupArray.length * 40;

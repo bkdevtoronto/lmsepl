@@ -14,19 +14,77 @@ Page {
     font-size: 14;
 }
 
+.list-group {}
+
 .list-groups-item {
-    padding: 10;
+    /*padding: 10;*/
 }
 
 .list-groups-item-icon {
     width: 20;
     height: 20;
     opacity: 0.5;
-    margin: 0 5 0 0;
+    margin: 10 5 10 10;
 }
 
 .list-groups-label {
-    padding: 0 0 0 10;
+    padding: 10 0 10 10;
 }
 
 .searchbar {}
+
+.list-groups-icon-member {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #108858;
+    color: white;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-active {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #fff;
+    color: #108858;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-inactive {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #ccc;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-paid {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #300a3c;
+    color: white;
+    text-transform: uppercase;
+}
