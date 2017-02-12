@@ -86,16 +86,19 @@ exports.loaded = function(args){
         }).then(function(response){
             var r = JSON.parse(response._bodyText);
             if(r.response=="success"){
-                r.data[0].forEach(function(e){
-                    var item = {
-                        icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
-                        name: e.name,
-                        date: e.date,
-                        active: e.active==1 ? true : false,
-                        id: e.gid
-                    };
-                    groupArray.push(item);
-                });
+                if(r.data){
+                    r.data[0].forEach(function(e){
+                        var item = {
+                            icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
+                            name: e.name,
+                            date: e.date,
+                            active: e.active==1 ? true : false,
+                            id: e.gid
+                        };
+                        groupArray.push(item);
+                    });
+                }
+                
                 //Save groups to app settings
                 appSettings.setString("groups",JSON.stringify(groupArray));
 
@@ -115,9 +118,17 @@ exports.loaded = function(args){
                 page.bindingContext = pageData;
                 console.log("Dashboard loaded successfully");
                 loader.hide();
+            } else if(r.response=="failure"){
+                loader.hide();
+                r.errors.forEach(function(e){
+                    dialogs.alert({
+                        title: "Error Info:",
+                        message: JSON.stringify(e),
+                        okButtonText: "Damn"
+                    }).then(function(){
+                    });
+                });
             } else {
-                var height = groupArray.length * 40;
-                var groupsHeight = height;
 
                 /* Page Data */
                 pageData = new observableModule.fromObject({
@@ -125,7 +136,7 @@ exports.loaded = function(args){
                     profilePic: appSettings.getString("img"),
                     username: appSettings.getString("username"),
                     scorevalue: "420",
-                    groupsHeight: groupsHeight
+                    groupsHeight: 0
                 });
 
                 page.bindingContext = pageData;
