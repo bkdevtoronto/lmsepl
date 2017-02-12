@@ -45,7 +45,30 @@ exports.onTap = function(args) {
         neutralButtonText: "Not yet"
     }).then(function(e){
         if(e){
-            console.log("Confirmed");
+            fetchModule.fetch(apiURL+"groups/join", {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    uid: appSettings.getString("id"),
+                    gid: tappedItem.id
+                })
+            }).then(function(response){
+                var r = JSON.parse(response._bodyText);
+                console.log(JSON.stringify(r));
+                if(r.response=="success"){
+                    dialogs.alert({
+                        title: "Join League",
+                        message: "You are now a member of "+tappedItem.name+"!",
+                        okButtonText: "Back to Dashboard"
+                    }).then(function(){
+                        frameModule.topmost().navigate("/views/dashboard/dashboard");
+                    })
+                } else {
+                    console.log("Failure to join group");
+                }
+            },function(error){
+                console.log(JSON.stringify(error));
+            });
         } else {
             console.log("Declined");
         }

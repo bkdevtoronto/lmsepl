@@ -74,17 +74,12 @@ exports.loaded = function(args){
         testing: true,
         size: admob.AD_SIZE.SMART_BANNER,
         androidBannerId: "ca-app-pub-6311725785805657/1855866252",
-        //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY",
-        //iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
+        //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY", iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
         margins: { bottom: 0 }
     }).then(
-        function() {
-            console.log("admob createBanner done");
-        },
-        function(error) {
-            console.log("admob createBanner error: " + error);
-        }
-    )
+        function() { /* console.log("admob createBanner done"); */ },
+        function(error) { console.log("admob createBanner error: " + error); }
+    );
 
     fetchModule.fetch(apiURL+"groups/user/"+userId,{
             method: "get"
@@ -99,7 +94,7 @@ exports.loaded = function(args){
                         active: e.active==1 ? true : false,
                         id: e.gid
                     };
-                    groupArray.push(item);                    
+                    groupArray.push(item);
                 });
                 //Save groups to app settings
                 appSettings.setString("groups",JSON.stringify(groupArray));
