@@ -37,42 +37,49 @@ exports.onTap = function(args) {
     var tappedIndex = args.index;
     var tappedView = args.view;
     tappedItem = tappedView.bindingContext;
-    dialogs.confirm({
-        title: "Join League",
-        message: "Are you sure you want to join "+tappedItem.name+"?",
-        okButtonText: "Yes",
-        cancelButtonText: "No",
-        neutralButtonText: "Not yet"
-    }).then(function(e){
-        if(e){
-            fetchModule.fetch(apiURL+"groups/join", {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify({
-                    uid: appSettings.getString("id"),
-                    gid: tappedItem.id
-                })
-            }).then(function(response){
-                var r = JSON.parse(response._bodyText);
-                console.log(JSON.stringify(r));
-                if(r.response=="success"){
-                    dialogs.alert({
-                        title: "Join League",
-                        message: "You are now a member of "+tappedItem.name+"!",
-                        okButtonText: "Back to Dashboard"
-                    }).then(function(){
-                        frameModule.topmost().navigate("/views/dashboard/dashboard");
+
+    if(tappedItem.ismember){
+        frameModule.topmost().navigate({
+            moduleName: "/views/group/group",
+            context: { gid: tappedItem.id }
+        });
+    } else {
+        dialogs.confirm({
+            title: "Join League",
+            message: "Are you sure you want to join "+tappedItem.name+"?",
+            okButtonText: "Yes",
+            cancelButtonText: "No",
+            neutralButtonText: "Not yet"
+        }).then(function(e){
+            if(e){
+                //User pressed "yes"
+                fetchModule.fetch(apiURL+"groups/join", {
+                    method: "POST",
+                    headers: {"Content-Type":"application/json"},
+                    body: JSON.stringify({
+                        uid: appSettings.getString("id"),
+                        gid: tappedItem.id
                     })
-                } else {
-                    console.log("Failure to join group");
-                }
-            },function(error){
-                console.log(JSON.stringify(error));
-            });
-        } else {
-            console.log("Declined");
-        }
-    });
+                }).then(function(response){
+                    var r = JSON.parse(response._bodyText);
+                    console.log(JSON.stringify(r));
+                    if(r.response=="success"){
+                        dialogs.alert({
+                            title: "Join League",
+                            message: "You are now a member of "+tappedItem.name+"!",
+                            okButtonText: "Back to Dashboard"
+                        }).then(function(){
+                            frameModule.topmost().navigate("/views/dashboard/dashboard");
+                        })
+                    } else {
+                        console.log("Failure to join group");
+                    }
+                },function(error){
+                    console.log(JSON.stringify(error));
+                });
+            }
+        });
+    }
 }
 
 exports.onClear = function(){
