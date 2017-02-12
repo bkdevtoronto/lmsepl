@@ -1,0 +1,90 @@
+@import url('~/shared/sidedrawer.css');
+
+Page {
+    background-color: #108858;
+    background-image:url("res://bg_photo_2");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.main-container {
+    background-color: white;
+    border-radius: 2;
+    font-size: 14;
+}
+
+.list-group {}
+
+.list-groups-item {
+    /*padding: 10;*/
+}
+
+.list-groups-item-icon {
+    width: 20;
+    height: 20;
+    opacity: 0.5;
+    margin: 10 5 10 10;
+}
+
+.list-groups-label {
+    padding: 10 0 10 10;
+}
+
+.searchbar {}
+
+.list-groups-icon-member {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #108858;
+    color: white;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-active {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #fff;
+    color: #108858;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-inactive {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #ccc;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-paid {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #300a3c;
+    color: white;
+    text-transform: uppercase;
+}

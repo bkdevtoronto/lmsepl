@@ -1,0 +1,7 @@
+<Page xmlns:sd="nativescript-telerik-ui/sidedrawer"
+    xmlns:shared="shared"
+    loaded="loaded"
+    actionBarHidden="true">
+    <StackLayout class="main-container" orientation="vertical" horizontalAlignment="center" verticalAlignment="top">
+    </StackLayout>
+</Page>
