@@ -2,6 +2,41 @@
     xmlns:shared="shared"
     loaded="loaded"
     actionBarHidden="true">
-    <StackLayout class="main-container" orientation="vertical" horizontalAlignment="center" verticalAlignment="top">
-    </StackLayout>
+
+    <!-- side drawer content -->
+    <sd:RadSideDrawer id="sideDrawer">
+        <sd:RadSideDrawer.drawerContent>
+            <shared:drawer />
+        </sd:RadSideDrawer.drawerContent>
+
+        <!-- The main content -->
+        <sd.RadSideDrawer.mainContent class="main-content-sd">
+            <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
+                <GridLayout class="action-bar" columns="50,*,50" rows="auto" marginBottom="-50" tap="toggleDrawer" >
+                    <Image row="0" col="0" class="action-icon-left" src="res://icon_menu_g" />
+                    <Label row="0" col="1" class="action-label" text="{{ teamName }}" />
+                </GridLayout>
+                <ScrollView>
+                    <StackLayout style="margin-top:50">
+                        <StackLayout class="list-groups">
+                            <Label class="list-groups-title" text="Members" />
+                            <ListView items="{{ groupArray }}" height="{{ groupsHeight }}" itemTap="groupTap">
+                                <ListView.itemTemplate>
+                                    <GridLayout class="list-groups-item" columns="25,*,25" rows="auto">
+                                        <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
+                                        <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
+                                    </GridLayout>
+                                </ListView.itemTemplate>
+                            </ListView>
+                            <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
+                                <Button class="list-groups-button-start" text="Button 1" tap="" />
+                                <Button class="list-groups-button-join" text="Button 2" tap="" />
+                            </StackLayout>
+                        </StackLayout>
+                        <Label class="admob-spacer" text="" />
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </sd.RadSideDrawer.mainContent>
+    </sd:RadSideDrawer>
 </Page>

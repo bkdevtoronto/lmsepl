@@ -63,7 +63,6 @@ exports.loaded = function(args){
         }).then(function(){
             console.log("Dashboard loaded - no internet connection");
         });
-
         loader.hide();
         return false;
     }
