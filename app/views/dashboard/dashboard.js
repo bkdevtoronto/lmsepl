@@ -141,6 +141,17 @@ exports.loaded = function(args){
         });
 }
 
+exports.groupTap = function(args){
+    var tappedIndex = args.index;
+    var tappedView = args.view;
+    tappedItem = tappedView.bindingContext;
+
+    frameModule.topmost().navigate({
+        moduleName: "/views/group/group",
+        context: { gid: tappedItem.id }
+    });
+}
+
 exports.toggleDrawer = toggleDrawer;
 function toggleDrawer(args){
     drawer.toggleDrawerState();
