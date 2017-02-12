@@ -56,7 +56,7 @@ Page {
 .mainContainer {
     transform:translate(0,0);
     animation-name: mainContainer-anim;
-    animation-duration: 0.4s;
+    animation-duration: 0.2s;
     animation-fill-mode: forwards;
     animation-delay: 0s;
     animation-timing-function: ease-in;
@@ -122,6 +122,21 @@ Page {
     border-width: 0 0 2 0;
     font-size: 12;
     border-color: #108858;
+
+    transform:scale(0);
+    transform:translate(0,0);
+    opacity: 0;
+    animation-name: list-groups-anim;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.2s;
+    animation-timing-function: ease-in;
+}
+
+@keyframes list-groups-anim {
+    0% { opacity: 0; margin-top: 20; transform: scale(0); transform:translate(0,20); }
+    60% { opacity: 0; }
+    100% { opacity: 1; margin-top: 10; transform: scale(1); transform:translate(0,0); }
 }
 
 .list-groups-title {
