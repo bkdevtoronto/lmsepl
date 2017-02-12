@@ -3,11 +3,13 @@ var appSettings = require("application-settings");
 var view = require("ui/core/view");
 var frameModule = require("ui/frame");
 var fetchModule = require("fetch");
+var dialogs = require("ui/dialogs");
 var loadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
 var listViewModule = require("ui/list-view");
 var observableModule = require("data/observable");
 var observableArray = require("data/observable-array").ObservableArray;
 var googleAnalytics = require("nativescript-google-analytics");
+var connectivity = require("connectivity");
 
 /* Ads */
 var admob = require("nativescript-admob");
@@ -30,12 +32,42 @@ var apiURL = appSettings.getString("apiURL");
 /**
  * Page Functions
  */
+
 exports.loaded = function(args){
+    drawer = view.getViewById(page,"sideDrawer");
+
     /* Load Data - Leagues */
     var userId = appSettings.getString("id");
     var groupArray = [];
     var pageData;
     page = args.object;
+
+    googleAnalytics.logView("Dashboard");
+
+    var connectionType = connectivity.getConnectionType();
+    if(connectivity.connectionType.none){
+
+        /* Page Data */
+        pageData = new observableModule.fromObject({
+            groups: new observableArray(groupArray),
+            profilePic: appSettings.getString("img"),
+            username: appSettings.getString("username"),
+            scorevalue: "-",
+            groupsHeight: 0
+        });
+
+        page.bindingContext = pageData;
+        dialogs.alert({
+            title: "No Connection",
+            message: "Please try again when you have connection to the internet.",
+            okButtonText: "OK"
+        }).then(function(){
+            console.log("Dashboard loaded - no internet connection");
+        });
+
+        loader.hide();
+        return false;
+    }
 
     /* Ads */
     admob.createBanner({
@@ -67,29 +99,50 @@ exports.loaded = function(args){
                         active: e.active==1 ? true : false,
                         id: e.gid
                     };
-                    groupArray.push(item);
+                    groupArray.push(item);                    
                 });
                 //Save groups to app settings
                 appSettings.setString("groups",JSON.stringify(groupArray));
+
+                //Finish loading page
+                var height = groupArray.length * 40;
+                var groupsHeight = height;
+
+                /* Page Data */
+                pageData = new observableModule.fromObject({
+                    groups: new observableArray(groupArray),
+                    profilePic: appSettings.getString("img"),
+                    username: appSettings.getString("username"),
+                    scorevalue: "420",
+                    groupsHeight: groupsHeight
+                });
+
+                page.bindingContext = pageData;
+                console.log("Dashboard loaded successfully");
+                loader.hide();
+            } else {
+                var height = groupArray.length * 40;
+                var groupsHeight = height;
+
+                /* Page Data */
+                pageData = new observableModule.fromObject({
+                    groups: new observableArray(groupArray),
+                    profilePic: appSettings.getString("img"),
+                    username: appSettings.getString("username"),
+                    scorevalue: "420",
+                    groupsHeight: groupsHeight
+                });
+
+                page.bindingContext = pageData;
+                dialogs.alert({
+                    title: "Error",
+                    message: "Unable to load data into dashboard.",
+                    okButtonText: "OK"
+                }).then(function(){
+                    console.log("Dashboard did not load properly");
+                });
+                loader.hide();
             }
-
-            var height = groupArray.length * 40;
-            var groupsHeight = height;
-
-            /* Page Data */
-            pageData = new observableModule.fromObject({
-                groups: new observableArray(groupArray),
-                profilePic: appSettings.getString("img"),
-                username: appSettings.getString("username"),
-                scorevalue: "420",
-                groupsHeight: groupsHeight
-            });
-
-            page.bindingContext = pageData;
-            drawer = view.getViewById(page,"sideDrawer");
-            console.log("Dashboard loaded successfully");
-            googleAnalytics.logView("Dashboard");
-            loader.hide();
         });
 }
 
