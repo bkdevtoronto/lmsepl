@@ -34,13 +34,12 @@ var apiURL = appSettings.getString("apiURL");
  */
 
 exports.loaded = function(args){
-    drawer = view.getViewById(page,"sideDrawer");
-
     /* Load Data - Leagues */
     var userId = appSettings.getString("id");
     var groupArray = [];
     var pageData;
     page = args.object;
+    drawer = view.getViewById(page,"sideDrawer");
 
     googleAnalytics.logView("Dashboard");
 
@@ -98,7 +97,6 @@ exports.loaded = function(args){
                         groupArray.push(item);
                     });
                 }
-                
                 //Save groups to app settings
                 appSettings.setString("groups",JSON.stringify(groupArray));
 
@@ -119,15 +117,27 @@ exports.loaded = function(args){
                 console.log("Dashboard loaded successfully");
                 loader.hide();
             } else if(r.response=="failure"){
-                loader.hide();
-                r.errors.forEach(function(e){
-                    dialogs.alert({
-                        title: "Error Info:",
-                        message: JSON.stringify(e),
-                        okButtonText: "Damn"
-                    }).then(function(){
-                    });
+                /* Page Data */
+                pageData = new observableModule.fromObject({
+                    groups: new observableArray(groupArray),
+                    profilePic: appSettings.getString("img"),
+                    username: appSettings.getString("username"),
+                    scorevalue: "420",
+                    groupsHeight: 0
                 });
+
+                page.bindingContext = pageData;
+                if(r.errors){
+                    r.errors.forEach(function(e){
+                        dialogs.alert({
+                            title: "Error Info:",
+                            message: JSON.stringify(e),
+                            okButtonText: "Damn"
+                        });
+                    });
+                }
+                loader.hide();
+
             } else {
 
                 /* Page Data */

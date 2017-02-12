@@ -89,9 +89,12 @@ exports.onClear = function(){
 exports.onSubmit = function(args) {
     var s = page.bindingContext.searchPhrase;
     var a = [];
+    page.getViewById("searchbar").android.clearFocus();
+
     loader.show();
 
     if(!s||s==""){
+        loader.hide();
         console.log("No search input");
         return false;
     }
@@ -109,16 +112,18 @@ exports.onSubmit = function(args) {
                     });
                 }
 
-                r.data[0].forEach(function(e){
-                    a.push({
-                        name: e.name,
-                        active: e.active==1 ? true : false,
-                        id: e.id,
-                        ismember: m.indexOf(e.id)!==-1 ? true : false,
-                        paid: e.paid==1 ? true : false,
-                        cost: e.cost
+                if(r.data){
+                    r.data[0].forEach(function(e){
+                        a.push({
+                            name: e.name,
+                            active: e.active==1 ? true : false,
+                            id: e.id,
+                            ismember: m.indexOf(e.id)!==-1 ? true : false,
+                            paid: e.paid==1 ? true : false,
+                            cost: e.cost
+                        });
                     });
-                });
+                }
                 page.bindingContext.searchResults = new observableArray(a);
                 loader.hide();
             } else {

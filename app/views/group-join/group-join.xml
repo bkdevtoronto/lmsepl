@@ -3,7 +3,7 @@
     loaded="loaded"
     actionBarHidden="true">
     <StackLayout class="main-container" orientation="vertical" horizontalAlignment="center" verticalAlignment="top">
-        <SearchBar row="0" class="searchbar" hint="Enter a search term..." text="{{ searchPhrase }}" submit="onSubmit" clear="onClear" />
+        <SearchBar row="0" class="searchbar" id="searchbar" hint="Enter a search term..." text="{{ searchPhrase }}" submit="onSubmit" clear="onClear" />
         <ListView row="1" items="{{ searchResults }}" class="list-group" itemTap="onTap">
             <ListView.itemTemplate>
                 <GridLayout class="list-groups-item" columns="*,auto,auto,auto,auto,auto" rows="auto" opacity="{{ active ? 1 : 1 }}">
