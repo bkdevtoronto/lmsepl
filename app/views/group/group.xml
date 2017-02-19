@@ -12,9 +12,10 @@
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent class="main-content-sd">
             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                <GridLayout class="action-bar" columns="50,*,50" rows="auto" marginBottom="-50" tap="toggleDrawer" >
+                <GridLayout class="action-bar" columns="50,*,50" rows="auto,auto" marginBottom="-50" tap="toggleDrawer" >
                     <Image row="0" col="0" class="action-icon-left" src="res://icon_menu_g" />
                     <Label row="0" col="1" class="action-label" text="{{ teamName }}" />
+                    <Label row="1" col="0" colspan="2" text="{{ teamDate }}" />
                 </GridLayout>
                 <ScrollView>
                     <StackLayout style="margin-top:50">

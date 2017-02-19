@@ -52,7 +52,8 @@ exports.loaded = function(args){
                         var item = {
                             name: e.username,
                             id: e.id,
-                            icon: r.groupmeta[0][0].captain==e.id ? "res://icon_league_captain" : "res://icon_league_player"
+                            icon: r.groupmeta[0][0].captain==e.id ? "res://icon_league_captain" : "res://icon_league_player",
+                            teamDate: "Est. 1989"
                         };
                         groupArray.push(item);
                     });
