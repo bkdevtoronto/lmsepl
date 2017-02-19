@@ -31,7 +31,6 @@
                                 </StackLayout>
                             </AbsoluteLayout>
                         </StackLayout>
-                        <StackLayout>
                         <StackLayout class="list-groups">
                             <Label class="list-groups-title" text="Leagues" />
                             <ListView items="{{ groups }}" height="{{ groupsHeight }}" itemTap="groupTap">
