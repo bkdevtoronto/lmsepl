@@ -43,10 +43,10 @@ exports.loaded = function(args){
     );
 
     fetchModule.fetch(apiURL+"groups/id/"+groupId,{
-            method: "get"
+            method: "get",
+            headers: {uid: appSettings.getString("id")} //https://www.npmjs.com/package/node-fetch#options
         }).then(function(response){
             var r = JSON.parse(response._bodyText);
-            console.log(JSON.stringify(r));
             if(r.response=="success"){
                 if(r.members){
                     r.members[0].forEach(function(e){
@@ -59,14 +59,15 @@ exports.loaded = function(args){
                     });
                 }
 
-                var d = "Est. " + formatDate(new Date(r.groupmeta[0][0].date));
-
                 pageData = new observableModule.fromObject({
                     groupArray : new observableArray(groupArray),
                     groupsHeight: (groupArray.length * 40)+5,
                     teamName: r.groupmeta[0][0].name,
                     active : r.groupmeta[0][0].active==1 ? true : false,
-                    teamDate: d,
+                    teamDate: "Est. " + formatDate(new Date(r.groupmeta[0][0].date)),
+                    gw: r.groupmeta.gw,
+                    selectionName: r.groupmeta.selectionName,
+                    selectionId: r.groupmeta.selectionId,
 
                     profilePic: appSettings.getString("img"),
                     username: appSettings.getString("username"),

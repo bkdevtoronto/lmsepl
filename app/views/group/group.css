@@ -23,6 +23,60 @@ Page {
     font-style: italic;
 }
 
+.group-meta {
+    margin: 10 10 0 10;
+    padding: 10;
+    background-color: #300a3c;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 2;
+    border-width: 2 0 0 0;
+    border-color: white;
+}
+
+.group-meta:active {
+    border-color: #300a3c;
+    background-color: white;
+    color: #108858;
+}
+
+.group-meta-gw-label {
+    text-transform: uppercase;
+    font-size: 10;
+    text-align: center;
+    padding: 0 10 0 0;
+    margin: 0 10 0 0;
+    border-width: 0 1 0 0;
+    border-color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+}
+
+.group-meta-gw-number {
+    font-size: 24;
+    text-align: center;
+    font-family: 'Roboto-Black';
+    padding: 0 10 0 0;
+    margin: 0 10 0 0;
+    border-width: 0 1 0 0;
+    border-color: rgba(255,255,255,0.2);
+    vertical-align: center;
+}
+
+.group-meta-team-label {
+    text-transform: uppercase;
+    font-size: 10;
+    text-align: right;
+    color: rgba(255,255,255,0.6);
+}
+
+.group-meta-team-name {
+    text-align: right;
+    text-transform: uppercase;
+    vertical-align: center;
+    font-size: 18;
+    font-family: 'Roboto-Black';
+}
+
 .main-container {
     background-color: white;
     border-radius: 2;

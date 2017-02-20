@@ -21,6 +21,13 @@
                     <StackLayout>
                         <Label class="group-msg msg-active" visibility="{{ active ? 'visible' : 'collapsed' }}" text="This group is currently active" />
                         <Label class="group-msg msg-inactive" visibility="{{ active ? 'collapsed' : 'visible' }}" text="This group is currently inactive" />
+                        <GridLayout class="group-meta" columns="auto,*" rows="auto,auto">
+                            <Label row="0" col="0" text="Gameweek" class="group-meta-gw-label" />
+                            <Label row="1" col="0" text="{{ gw }}" class="group-meta-gw-number" />
+                            <Label row="0" col="1" text="Selection" class="group-meta-team-label" />
+                            <Label row="1" col="1" text="{{ selectionName }}" id="{{ selectionId }}" class="group-meta-team-name" />
+                        </GridLayout>
+
                         <StackLayout class="list-groups">
                             <Label class="list-groups-title" text="Members" />
                             <ListView items="{{ groupArray }}" height="{{ groupsHeight }}" itemTap="groupTap">
