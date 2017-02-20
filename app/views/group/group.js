@@ -7,6 +7,7 @@ var observableArray = require("data/observable-array").ObservableArray;
 var loadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
 var fetchModule = require("fetch");
 var view = require("ui/core/view");
+var pages = require("ui/page");
 
 /* Ads */
 var admob = require("nativescript-admob");
@@ -20,12 +21,12 @@ loader.show({
 });
 var page;
 var apiURL = appSettings.getString("apiURL");
+var pageData;
 
 exports.loaded = function(args){
-    var pageData;
     var gotData;
     var groupArray = [];
-    var page = args.object;
+    page = args.object;
     gotData = page.navigationContext;
     drawer = view.getViewById(page,"sideDrawer");
     var groupId = gotData.gid;
@@ -42,6 +43,8 @@ exports.loaded = function(args){
         function(error) { console.log("admob createBanner error: " + error); }
     );
 
+    console.log(apiURL+"groups/id/"+groupId);
+
     fetchModule.fetch(apiURL+"groups/id/"+groupId,{
             method: "get",
             headers: {uid: appSettings.getString("id")} //https://www.npmjs.com/package/node-fetch#options
@@ -50,12 +53,37 @@ exports.loaded = function(args){
             if(r.response=="success"){
                 if(r.members){
                     r.members[0].forEach(function(e){
+                        var tN = null;
+                        var tId = null;
+                        r.selections[0].forEach(function(a){
+                            if(a.uid==e.id){
+                                tN = a.name;
+                                tId = a.cid;
+                            }
+                        });
                         var item = {
                             name: e.username,
                             id: e.id,
-                            icon: r.groupmeta[0][0].captain==e.id ? "res://icon_league_captain" : "res://icon_league_player"
+                            icon: r.groupmeta[0][0].captain==e.id ? "res://icon_league_captain" : "res://icon_league_player",
+                            selectionName: tN ? tN : false,
+                            selectionId: tId ? tId : false
                         };
                         groupArray.push(item);
+                    });
+                }
+
+                var clubArray = [];
+                if(r.matches){
+                    r.matches.forEach(function(e){
+                        clubArray.push({name: e.home, id: e.homeid, opp: e.away });
+                        clubArray.push({name: e.away, id: e.awayid, opp: e.home });
+                        //console.log(e.home+" v "+e.away+" ko "+e.ko);
+                    });
+
+                    clubArray.sort(function(a,b){
+                        var x = a.name.toLowerCase();
+                        var y = b.name.toLowerCase();
+                        return x < y ? -1 : x > y ? 1 : 0;
                     });
                 }
 
@@ -68,6 +96,9 @@ exports.loaded = function(args){
                     gw: r.groupmeta.gw,
                     selectionName: r.groupmeta.selectionName,
                     selectionId: r.groupmeta.selectionId,
+                    clubArray : new observableArray(clubArray),
+                    clubHeight: (clubArray.length) * 25,
+                    clubSelect : 'collapsed',
 
                     profilePic: appSettings.getString("img"),
                     username: appSettings.getString("username"),
@@ -120,4 +151,8 @@ exports.navDashboard = function(){
 exports.toggleDrawer = toggleDrawer;
 function toggleDrawer(args){
     drawer.toggleDrawerState();
+}
+
+exports.teamSelect = function(args){
+    pageData.clubSelect = pageData.clubSelect == "collapsed" ? "visible" : "collapsed";
 }

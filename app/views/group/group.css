@@ -23,7 +23,7 @@ Page {
     font-style: italic;
 }
 
-.group-meta {
+.group-meta-active {
     margin: 10 10 0 10;
     padding: 10;
     background-color: #300a3c;
@@ -34,13 +34,7 @@ Page {
     border-color: white;
 }
 
-.group-meta:active {
-    border-color: #300a3c;
-    background-color: white;
-    color: #108858;
-}
-
-.group-meta-gw-label {
+.group-meta-active-gw-label {
     text-transform: uppercase;
     font-size: 10;
     text-align: center;
@@ -51,7 +45,7 @@ Page {
     color: rgba(255,255,255,0.6);
 }
 
-.group-meta-gw-number {
+.group-meta-active-gw-number {
     font-size: 24;
     text-align: center;
     font-family: 'Roboto-Black';
@@ -62,20 +56,78 @@ Page {
     vertical-align: center;
 }
 
-.group-meta-team-label {
+.group-meta-active-team-label {
     text-transform: uppercase;
     font-size: 10;
     text-align: right;
     color: rgba(255,255,255,0.6);
 }
 
-.group-meta-team-name {
+.group-meta-active-team-name {
     text-align: right;
     text-transform: uppercase;
     vertical-align: center;
     font-size: 18;
     font-family: 'Roboto-Black';
 }
+
+.group-meta-active-team-decide {
+    text-align: right;
+    vertical-align: center;
+    font-size: 18;
+}
+
+/* Group Meta Inactive */
+
+.group-meta-inactive {
+    margin: 10 10 0 10;
+    padding: 10;
+    background-color: #333;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 2;
+    border-width: 2 0 0 0;
+    border-color: white;
+}
+
+.group-meta-inactive-gw-label {
+    text-transform: uppercase;
+    font-size: 10;
+    text-align: center;
+    padding: 0 10 0 0;
+    margin: 0 10 0 0;
+    border-width: 0 1 0 0;
+    border-color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+}
+
+.group-meta-inactive-gw-number {
+    font-size: 24;
+    text-align: center;
+    font-family: 'Roboto-Black';
+    padding: 0 10 0 0;
+    margin: 0 10 0 0;
+    border-width: 0 1 0 0;
+    border-color: rgba(255,255,255,0.2);
+    vertical-align: center;
+}
+
+.group-meta-inactive-team-label {
+    text-transform: uppercase;
+    font-size: 10;
+    text-align: right;
+    color: rgba(255,255,255,0.6);
+}
+
+.group-meta-inactive-team-name {
+    text-align: right;
+    text-transform: uppercase;
+    vertical-align: center;
+    font-size: 18;
+    font-family: 'Roboto-Black';
+}
+
+/* End Group Meta */
 
 .main-container {
     background-color: white;
@@ -97,7 +149,37 @@ Page {
 }
 
 .list-groups-label {
-    padding: 10 0 10 10;
+    /*padding: 12 0 10 10;*/
+    vertical-align: middle;
+}
+
+.list-clubs {
+    margin: 10;
+    background-color: white;
+    border-radius: 2;
+    border-width: 2 0 0 0;
+    border-color: #108858;
+}
+
+.list-clubs-label {
+    color: #333;
+    padding: 5 7;
+    font-size: 10;
+}
+
+.list-clubs-vs {
+    color: #777;
+    font-size: 4;
+    padding: 0 3 0 0;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.list-clubs-opp {
+    color: #777;
+    font-size: 8;
+    text-transform: uppercase;
+    vertical-align: middle;
 }
 
 .group-msg {
@@ -125,50 +207,8 @@ Page {
     margin: 0 -5 0 5;
 }
 
-.list-groups-icon-member {
-    margin: 13 3 13 3;
-    border-radius: 2;
-    border-width: 1;
-    border-color: rgba(0,0,0,0.2);
-    padding: 2 4;
-    opacity:0.8;
-    font-family: "Roboto-Black";
-    font-size: 8;
-    background-color: #108858;
-    color: white;
-    text-transform: uppercase;
-}
-
-.list-groups-icon-active {
-    margin: 13 3 13 3;
-    border-radius: 2;
-    border-width: 1;
-    border-color: rgba(0,0,0,0.2);
-    padding: 2 4;
-    opacity:0.8;
-    font-family: "Roboto-Black";
-    font-size: 8;
-    background-color: #fff;
-    color: #108858;
-    text-transform: uppercase;
-}
-
-.list-groups-icon-inactive {
-    margin: 13 3 13 3;
-    border-radius: 2;
-    border-width: 1;
-    border-color: rgba(0,0,0,0.2);
-    padding: 2 4;
-    opacity:0.8;
-    font-family: "Roboto-Black";
-    font-size: 8;
-    background-color: #ccc;
-    color: #000;
-    text-transform: uppercase;
-}
-
-.list-groups-icon-paid {
-    margin: 13 3 13 3;
+.list-groups-selection-name {
+    margin: 12 5 12 3;
     border-radius: 2;
     border-width: 1;
     border-color: rgba(0,0,0,0.2);
@@ -177,6 +217,20 @@ Page {
     font-family: "Roboto-Black";
     font-size: 8;
     background-color: #300a3c;
+    color: white;
+    text-transform: uppercase;
+}
+
+.list-groups-selection-unchosen {
+    margin: 12 5 12 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: rgba(0,0,0,0.6);
     color: white;
     text-transform: uppercase;
 }

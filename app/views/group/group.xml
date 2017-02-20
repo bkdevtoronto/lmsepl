@@ -21,20 +21,39 @@
                     <StackLayout>
                         <Label class="group-msg msg-active" visibility="{{ active ? 'visible' : 'collapsed' }}" text="This group is currently active" />
                         <Label class="group-msg msg-inactive" visibility="{{ active ? 'collapsed' : 'visible' }}" text="This group is currently inactive" />
-                        <GridLayout class="group-meta" columns="auto,*" rows="auto,auto">
-                            <Label row="0" col="0" text="Gameweek" class="group-meta-gw-label" />
-                            <Label row="1" col="0" text="{{ gw }}" class="group-meta-gw-number" />
-                            <Label row="0" col="1" text="Selection" class="group-meta-team-label" />
-                            <Label row="1" col="1" text="{{ selectionName }}" id="{{ selectionId }}" class="group-meta-team-name" />
+                        <GridLayout class="group-meta-active" columns="auto,*" rows="auto,auto,auto" visibility="{{ active ? 'visible' : 'collapsed' }}" ontap="teamSelect">
+                            <Label row="0" col="0" text="Gameweek" class="group-meta-active-gw-label" />
+                            <Label row="1" col="0" text="{{ gw }}" class="group-meta-active-gw-number" />
+                            <Label row="0" col="1" colspan="2" text="Selection" class="group-meta-active-team-label" />
+                            <Label row="1" col="1" text="{{ selectionName || '' }}" id="{{ selectionId || 0 }}" visibility="{{ selectionId ? 'visible' : 'collapsed'}}" class="group-meta-active-team-name" />
+                            <Label row="1" col="2" text="Tap To Decide" visibility="{{ selectionId ? 'collapsed' : 'visible'}}" class="group-meta-active-team-decide" />
+                        </GridLayout>
+
+                        <ListView items="{{ clubArray }}" height="{{ clubHeight }}" class="list-clubs" itemTap="clubTap" visibility="{{ clubSelect }}">
+                            <ListView.itemTemplate>
+                                <StackLayout orientation="horizontal" verticalAlignment="center" horizontalAlignment="left">
+                                    <Label text="{{ name || 'Loading...' }}" textWrap="false" class="list-clubs-label" />
+                                    <Label text="vs" textWrap="false" class="list-clubs-vs" />
+                                    <Label text="{{ opp || 'Loading...' }}" textWrap="false" class="list-clubs-opp" />
+                                </StackLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+
+                        <GridLayout class="group-meta-inactive" columns="auto,*" rows="auto,auto" visibility="{{ active ? 'collapsed' : 'visible' }}">
+                            <Label row="0" col="0" text="Gameweek" class="group-meta-inactive-gw-label" />
+                            <Label row="1" col="0" text="{{ gw }}" class="group-meta-inactive-gw-number" />
+                            <Label row="0" col="1" rowspan="2" text="League Inactive" class="group-meta-inactive-team-name" />
                         </GridLayout>
 
                         <StackLayout class="list-groups">
                             <Label class="list-groups-title" text="Members" />
                             <ListView items="{{ groupArray }}" height="{{ groupsHeight }}" itemTap="groupTap">
                                 <ListView.itemTemplate>
-                                    <GridLayout class="list-groups-item" columns="25,*,25" rows="auto">
+                                    <GridLayout class="list-groups-item" columns="25,*,auto,auto" rows="auto">
                                         <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
                                         <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
+                                        <Label row="0" col="2" text="{{ selectionName }}" visibility="{{ selectionName ? 'visible' : 'collapsed' }}" class="list-groups-selection-name" />
+                                        <Label row="0" col="3" text="UNDECIDED" visibility="{{ selectionName ? 'collapsed' : 'visible' }}" class="list-groups-selection-unchosen" />
                                     </GridLayout>
                                 </ListView.itemTemplate>
                             </ListView>
