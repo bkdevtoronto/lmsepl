@@ -12,13 +12,15 @@
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent class="main-content-sd">
             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                <GridLayout class="action-bar" columns="50,*,50" rows="auto,auto" marginBottom="-50" tap="toggleDrawer" >
+                <GridLayout class="action-bar" columns="50,*,50" rows="auto,auto" tap="toggleDrawer" >
                     <Image row="0" col="0" class="action-icon-left" src="res://icon_menu_g" />
                     <Label row="0" col="1" class="action-label" text="{{ teamName }}" />
-                    <Label row="1" col="0" colspan="2" text="{{ teamDate }}" />
+                    <Label row="1" colspan="3" class="action-meta" text="{{ teamDate }}" />
                 </GridLayout>
                 <ScrollView>
-                    <StackLayout style="margin-top:50">
+                    <StackLayout>
+                        <Label class="group-msg msg-active" visibility="{{ active ? 'visible' : 'collapsed' }}" text="This group is currently active" />
+                        <Label class="group-msg msg-inactive" visibility="{{ active ? 'collapsed' : 'visible' }}" text="This group is currently inactive" />
                         <StackLayout class="list-groups">
                             <Label class="list-groups-title" text="Members" />
                             <ListView items="{{ groupArray }}" height="{{ groupsHeight }}" itemTap="groupTap">

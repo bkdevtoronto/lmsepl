@@ -8,6 +8,21 @@ Page {
     background-repeat: no-repeat;
 }
 
+.action-bar {
+    height: auto;
+}
+
+.action-meta {
+    text-align: center;
+    font-size: 10;
+    text-transform: uppercase;
+    color: #999;
+    padding: 5 0;
+    border-width: 1 0 0 0;
+    border-color: #eee;
+    font-style: italic;
+}
+
 .main-container {
     background-color: white;
     border-radius: 2;
@@ -31,8 +46,23 @@ Page {
     padding: 10 0 10 10;
 }
 
-.searchbar {}
+.group-msg {
+    text-align: center;
+    border-width: 0 0 1 0;
+    border-color: white;
+    font-size: 10;
+    padding: 7 5;
+}
 
+.msg-active {
+    color: white;
+    background-color: #108858;
+}
+
+.msg-inactive {
+    color: #ccc;
+    background-color: #555;
+}
 
 .list-groups-item-icon {
     width: 20;

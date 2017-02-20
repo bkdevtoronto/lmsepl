@@ -46,22 +46,31 @@ exports.loaded = function(args){
             method: "get"
         }).then(function(response){
             var r = JSON.parse(response._bodyText);
+            console.log(JSON.stringify(r));
             if(r.response=="success"){
                 if(r.members){
                     r.members[0].forEach(function(e){
                         var item = {
                             name: e.username,
                             id: e.id,
-                            icon: r.groupmeta[0][0].captain==e.id ? "res://icon_league_captain" : "res://icon_league_player",
-                            teamDate: "Est. 1989"
+                            icon: r.groupmeta[0][0].captain==e.id ? "res://icon_league_captain" : "res://icon_league_player"
                         };
                         groupArray.push(item);
                     });
                 }
+
+                var d = "Est. " + formatDate(new Date(r.groupmeta[0][0].date));
+
                 pageData = new observableModule.fromObject({
                     groupArray : new observableArray(groupArray),
                     groupsHeight: (groupArray.length * 40)+5,
-                    teamName: r.groupmeta[0][0].name
+                    teamName: r.groupmeta[0][0].name,
+                    active : r.groupmeta[0][0].active==1 ? true : false,
+                    teamDate: d,
+
+                    profilePic: appSettings.getString("img"),
+                    username: appSettings.getString("username"),
+                    scorevalue: "-"
                 });
 
                 page.bindingContext = pageData;
@@ -72,9 +81,23 @@ exports.loaded = function(args){
         });
 }
 
-exports.toggleDrawer = function(args){
-    drawer.toggleDrawerState();
+function formatDate(date) {
+  var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
+  var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return monthNames[monthIndex] + ' ' + day + ' ' + year;
 }
+
 
 function navigate(view){
     toggleDrawer();
@@ -87,4 +110,13 @@ function navigate(view){
             curve: "easeIn"
         }
     });
+}
+
+exports.navDashboard = function(){
+    navigate("dashboard");
+}
+
+exports.toggleDrawer = toggleDrawer;
+function toggleDrawer(args){
+    drawer.toggleDrawerState();
 }

@@ -9,6 +9,5 @@
     <StackLayout class="sd-content">
         <Button text="Dashboard" class="sd-list-item-text" tap="navDashboard" />
         <Button text="Settings" class="sd-list-item-text" tap="navSettings" />
-        <Button text="Top-Up" class="sd-list-item-text" tap="navTopUp" />
     </StackLayout>
 </StackLayout>
