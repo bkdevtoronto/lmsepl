@@ -182,6 +182,78 @@ Page {
     vertical-align: middle;
 }
 
+.list-matches {
+    background-color: white;
+    border-radius: 2;
+    margin: 10;
+
+    border-width: 2 0 0 0;
+    border-color:white;
+}
+
+.list-matches-ko {
+    /*font-size: 14;
+    padding: 5 7;
+    text-transform: uppercase;
+    text-align: left;
+    font-family: "Roboto-Bold";
+    background-color: #108858;
+    color: white;
+    width: 100%;*/
+    background-color: #108858;
+    color: white;
+    text-align: left;
+}
+
+.list-matches-ko-date {
+    font-size: 10;
+    vertical-align: center;
+    padding: 0 5;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.list-matches-ko-time {
+    font-size: 14;
+    vertical-align: center;
+    font-family: 'Roboto-Black';
+    padding: 0 5;
+    text-align: right;
+}
+
+.list-matches-item {
+}
+
+.list-matches-item-label-home {
+    padding: 5 7;
+    font-size: 10;
+}
+
+.list-matches-item-label-homes {
+    padding: 5 7;
+    text-align: right;
+    font-size: 10;
+}
+
+.list-matches-item-label-vs {
+    padding: 5 7;
+    text-align: center;
+    font-size: 10;
+}
+
+.list-matches-item-label-aways {
+    padding: 5 7;
+    text-align: left;
+    font-size: 10;
+}
+
+.list-matches-item-label-away {
+    padding: 5 7;
+    text-align: right;
+    font-size: 10;
+}
+
+
 .group-msg {
     text-align: center;
     border-width: 0 0 1 0;
@@ -233,4 +305,8 @@ Page {
     background-color: rgba(0,0,0,0.6);
     color: white;
     text-transform: uppercase;
+}
+
+.admob-spacer {
+    height: 50;
 }

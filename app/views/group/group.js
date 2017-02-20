@@ -8,6 +8,7 @@ var loadingIndicator = require("nativescript-loading-indicator").LoadingIndicato
 var fetchModule = require("fetch");
 var view = require("ui/core/view");
 var pages = require("ui/page");
+var pullRefresh = require("nativescript-pulltorefresh");
 
 /* Ads */
 var admob = require("nativescript-admob");
@@ -23,13 +24,17 @@ var page;
 var apiURL = appSettings.getString("apiURL");
 var pageData;
 
-exports.loaded = function(args){
+exports.loaded = loaded;
+function loaded(args, pullRefresh){
+    var pullRefresh = pullRefresh || false;
     var gotData;
     var groupArray = [];
     page = args.object;
     gotData = page.navigationContext;
     drawer = view.getViewById(page,"sideDrawer");
-    var groupId = gotData.gid;
+    var groupId = gotData ? gotData.gid : appSettings.getString("gid");
+
+    appSettings.setString("gid",groupId);
 
     /* Ads */
     admob.createBanner({
@@ -73,11 +78,21 @@ exports.loaded = function(args){
                 }
 
                 var clubArray = [];
+                var matchArray = [];
+                var matchHeight = 0;
                 if(r.matches){
+                    var ko = null;
                     r.matches.forEach(function(e){
+                        if(e.ko!=ko){
+                            ko = e.ko;
+                            matchHeight += 30;
+                            matchArray.push({home: false, away: false, homes: false, aways: false, ko: e.ko, koLabelDate: formatDate(new Date(e.ko), 1)[0], koLabelTime: formatDate(new Date(e.ko), 1)[1] });
+                        }
+                        matchHeight +=24.5;
+                        console.log(JSON.stringify(e));
+                        matchArray.push({home: e.home, away: e.away, homes: e.homes || "", aways: e.aways || "", ko: false, koLabel: false });
                         clubArray.push({name: e.home, id: e.homeid, opp: e.away });
                         clubArray.push({name: e.away, id: e.awayid, opp: e.home });
-                        //console.log(e.home+" v "+e.away+" ko "+e.ko);
                     });
 
                     clubArray.sort(function(a,b){
@@ -99,6 +114,8 @@ exports.loaded = function(args){
                     clubArray : new observableArray(clubArray),
                     clubHeight: (clubArray.length) * 25,
                     clubSelect : 'collapsed',
+                    matchArray: new observableArray(matchArray),
+                    matchHeight: matchHeight,
 
                     profilePic: appSettings.getString("img"),
                     username: appSettings.getString("username"),
@@ -108,26 +125,43 @@ exports.loaded = function(args){
                 page.bindingContext = pageData;
                 loader.hide();
                 console.log("Group page successfully loaded");
+                if(pullRefresh) pullRefresh.refreshing = false;
             } else {
             }
         });
 }
 
-function formatDate(date) {
-  var monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
-  ];
+function formatDate(date, type) {
+    var type = type || 0;
 
-  var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    if(type==0){
+        var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
 
-  return monthNames[monthIndex] + ' ' + day + ' ' + year;
+        return monthNames[monthIndex] + ' ' + day + ' ' + year;
+    } else if(type==1){
+        var monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+
+        return [
+            day + ' ' + monthNames[monthIndex] + ' ' + year + ' ',
+            (hour < 10 ? '0'+hour : hour) + ':' + (minute < 10 ? '0'+minute : minute)
+        ];
+    }
+
 }
 
 
@@ -155,4 +189,13 @@ function toggleDrawer(args){
 
 exports.teamSelect = function(args){
     pageData.clubSelect = pageData.clubSelect == "collapsed" ? "visible" : "collapsed";
+}
+
+exports.refreshPage = refreshPage;
+function refreshPage(args) {
+    // Get reference to the PullToRefresh;
+    var pullRefresh = args.object;
+
+    // Do work here... and when done call set refreshing property to false to stop the refreshing
+    loaded(args, pullRefresh);
 }
