@@ -15,14 +15,18 @@ var admob = require("nativescript-admob");
 
 var loader = new loadingIndicator;
 var drawer;
-loader.show({
+var loaderData = {
     message: 'Loading...', progress: 0,
     android: { indeterminate: true, cancelable: false, max: 100, progressNumberFormat: "%1d/%2d", progressPercentFormat: 0.53, progressStyle: 1, secondaryProgress: 1 },
     ios: { details: "Please wait", square: false, margin: 10, dimBackground:true, color: "#4b9ed6" }
-});
+};
+loader.show(loaderData);
 var page;
 var apiURL = appSettings.getString("apiURL");
 var pageData;
+var gw;
+var groupId;
+var pageArgs;
 
 exports.loaded = loaded;
 function loaded(args, pullRefresh){
@@ -30,25 +34,26 @@ function loaded(args, pullRefresh){
     var gotData;
     var groupArray = [];
     page = args.object;
+    pageArgs = args;
     gotData = page.navigationContext;
     drawer = view.getViewById(page,"sideDrawer");
-    var groupId = gotData ? gotData.gid : appSettings.getString("gid");
+    groupId = gotData ? gotData.gid : appSettings.getString("gid");
 
     appSettings.setString("gid",groupId);
 
     /* Ads */
-    admob.createBanner({
+    /*admob.createBanner({
         testing: true,
         size: admob.AD_SIZE.SMART_BANNER,
         androidBannerId: "ca-app-pub-6311725785805657/1855866252",
         //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY", iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
         margins: { bottom: 0 }
     }).then(
-        function() { /* console.log("admob createBanner done"); */ },
+        function() {
+            //console.log("admob createBanner done");
+        },
         function(error) { console.log("admob createBanner error: " + error); }
-    );
-
-    console.log(apiURL+"groups/id/"+groupId);
+    );*/
 
     fetchModule.fetch(apiURL+"groups/id/"+groupId,{
             method: "get",
@@ -89,8 +94,7 @@ function loaded(args, pullRefresh){
                             matchArray.push({home: false, away: false, homes: false, aways: false, ko: e.ko, koLabelDate: formatDate(new Date(e.ko), 1)[0], koLabelTime: formatDate(new Date(e.ko), 1)[1] });
                         }
                         matchHeight +=24.5;
-                        console.log(JSON.stringify(e));
-                        matchArray.push({home: e.home, away: e.away, homes: e.homes || "", aways: e.aways || "", ko: false, koLabel: false });
+                        matchArray.push({home: e.home, away: e.away, homes: e.homes || "", aways: e.aways || "", ko: false, koLabel: false, allowed: true });
                         clubArray.push({name: e.home, id: e.homeid, opp: e.away });
                         clubArray.push({name: e.away, id: e.awayid, opp: e.home });
                     });
@@ -114,6 +118,7 @@ function loaded(args, pullRefresh){
                     clubArray : new observableArray(clubArray),
                     clubHeight: (clubArray.length) * 25,
                     clubSelect : 'collapsed',
+                    fixturesToggle : 'collapsed',
                     matchArray: new observableArray(matchArray),
                     matchHeight: matchHeight,
 
@@ -122,6 +127,8 @@ function loaded(args, pullRefresh){
                     scorevalue: "-"
                 });
 
+                gw = r.groupmeta.gw;
+
                 page.bindingContext = pageData;
                 loader.hide();
                 console.log("Group page successfully loaded");
@@ -129,6 +136,58 @@ function loaded(args, pullRefresh){
             } else {
             }
         });
+}
+
+exports.selectTeam = selectTeam;
+function selectTeam(args) {
+    var tappedIndex = args.index;
+    var tappedView = args.view;
+    tappedItem = tappedView.bindingContext;
+
+    //if(!tappedItem.allowed) return false;
+    dialogs.confirm({
+        title: "Select Team",
+        message: "Are you sure you want to select "+tappedItem.name+" for gameweek "+gw+"?",
+        okButtonText: "Yes",
+        cancelButtonText: "No"
+    }).then(function(e){
+        loader.show(loaderData);
+        if(e){
+            fetchModule.fetch(apiURL+'selections', {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    gid: groupId,
+                    gw: gw,
+                    uid: appSettings.getString("id"),
+                    cid: tappedItem.id
+                })
+            }).then(function(response){
+                var r = JSON.parse(response._bodyText);
+                if(r.response=="success"){
+                    loader.hide();
+
+                    dialogs.alert({
+                        title: "Select Team",
+                        message: "Your chosen team for GW "+gw+" is now "+tappedItem.name+".",
+                        okButtonText: "Sweet"
+                    }).then(function(){
+                        frameModule.topmost().navigate({
+                            moduleName: "views/group/group",
+                            animated: false,
+                            clearHistory: false
+                        });
+                    });
+                } else {
+                    console.log("Failed to select team");
+                }
+            }, function(error){
+                console.log(JSON.stringify(error))
+            });
+        } else {
+            loader.hide();
+        }
+    });
 }
 
 function formatDate(date, type) {
@@ -187,6 +246,10 @@ function toggleDrawer(args){
     drawer.toggleDrawerState();
 }
 
+exports.toggleFixtures = function(args){
+    pageData.fixturesToggle = pageData.fixturesToggle == "collapsed" ? "visible" : "collapsed";
+}
+
 exports.teamSelect = function(args){
     pageData.clubSelect = pageData.clubSelect == "collapsed" ? "visible" : "collapsed";
 }
@@ -197,5 +260,10 @@ function refreshPage(args) {
     var pullRefresh = args.object;
 
     // Do work here... and when done call set refreshing property to false to stop the refreshing
-    loaded(args, pullRefresh);
+    frameModule.topmost().navigate({
+        moduleName: "views/group/group",
+        animated: false,
+        clearHistory: false
+    });
+    //loaded(pageArgs, pullRefresh);
 }

@@ -25,28 +25,35 @@
                             <StackLayout>
                                 <Label class="group-msg msg-active" visibility="{{ active ? 'visible' : 'collapsed' }}" text="This group is currently active" />
                                 <Label class="group-msg msg-inactive" visibility="{{ active ? 'collapsed' : 'visible' }}" text="This group is currently inactive" />
+
                                 <GridLayout class="group-meta-active" columns="auto,*" rows="auto,auto,auto" visibility="{{ active ? 'visible' : 'collapsed' }}" ontap="teamSelect">
                                     <Label row="0" col="0" text="Gameweek" class="group-meta-active-gw-label" />
                                     <Label row="1" col="0" text="{{ gw }}" class="group-meta-active-gw-number" />
                                     <Label row="0" col="1" colspan="2" text="Selection" class="group-meta-active-team-label" />
                                     <Label row="1" col="1" text="{{ selectionName || '' }}" id="{{ selectionId || 0 }}" visibility="{{ selectionId ? 'visible' : 'collapsed'}}" class="group-meta-active-team-name" />
                                     <Label row="1" col="2" text="Tap To Decide" visibility="{{ selectionId ? 'collapsed' : 'visible'}}" class="group-meta-active-team-decide" />
+                                    <ListView items="{{ clubArray }}" row="2" col="0" colspan="2" height="{{ clubHeight }}" class="list-clubs" itemTap="selectTeam" visibility="{{ clubSelect }}">
+                                        <ListView.itemTemplate>
+                                            <StackLayout orientation="horizontal" class="list-clubs-cont">
+                                                <Label text="{{ name || 'Loading...' }}" textWrap="false" class="list-clubs-label" />
+                                                <Label text="vs" textWrap="false" class="list-clubs-vs" />
+                                                <Label text="{{ opp || 'Loading...' }}" textWrap="false" class="list-clubs-opp" />
+                                            </StackLayout>
+                                        </ListView.itemTemplate>
+                                    </ListView>
                                 </GridLayout>
 
-                                <ListView items="{{ clubArray }}" height="{{ clubHeight }}" class="list-clubs" itemTap="clubTap" visibility="{{ clubSelect }}">
-                                    <ListView.itemTemplate>
-                                        <StackLayout orientation="horizontal" verticalAlignment="center" horizontalAlignment="left">
-                                            <Label text="{{ name || 'Loading...' }}" textWrap="false" class="list-clubs-label" />
-                                            <Label text="vs" textWrap="false" class="list-clubs-vs" />
-                                            <Label text="{{ opp || 'Loading...' }}" textWrap="false" class="list-clubs-opp" />
-                                        </StackLayout>
-                                    </ListView.itemTemplate>
-                                </ListView>
+                                <GridLayout class="group-meta-inactive" columns="auto,*" rows="auto,auto" visibility="{{ active ? 'collapsed' : 'visible' }}">
+                                    <Label row="0" col="0" text="Gameweek" class="group-meta-inactive-gw-label" />
+                                    <Label row="1" col="0" text="{{ gw }}" class="group-meta-inactive-gw-number" />
+                                    <Label row="0" col="1" rowspan="2" text="League Inactive" class="group-meta-inactive-team-name" />
+                                </GridLayout>
 
-                                <ListView items="{{ matchArray }}" height="{{ matchHeight }}" class="list-matches" itemTemplateSelector="ko ? 'ko' : 'match'">
+                                <Label class="list-matches-toggle" text="Toggle Fixtures" ontap="toggleFixtures" />
+                                <ListView items="{{ matchArray }}" height="{{ matchHeight }}" visibility="{{ fixturesToggle }}" class="list-matches" itemTemplateSelector="ko ? 'ko' : 'match'">
                                     <ListView.itemTemplates>
                                         <template key="match">
-                                            <GridLayout columns="*,auto,auto,auto,*" rows="auto" class="list-matches-item" >
+                                            <GridLayout columns="*,auto,auto,auto,*" rows="auto" class="list-matches-item">
                                                 <Label row="0" col="0" class="list-matches-item-label-home" text="{{ home || 'Loading...' }}" />
                                                 <Label row="0" col="1" class="list-matches-item-label-homes" text="{{ homes }}" />
                                                 <Label row="0" col="2" class="list-matches-item-label-vs" text="{{ homes && aways ? '-' : 'vs' }}" />
@@ -62,12 +69,7 @@
                                         </template>
                                     </ListView.itemTemplates>
                                 </ListView>
-
-                                <GridLayout class="group-meta-inactive" columns="auto,*" rows="auto,auto" visibility="{{ active ? 'collapsed' : 'visible' }}">
-                                    <Label row="0" col="0" text="Gameweek" class="group-meta-inactive-gw-label" />
-                                    <Label row="1" col="0" text="{{ gw }}" class="group-meta-inactive-gw-number" />
-                                    <Label row="0" col="1" rowspan="2" text="League Inactive" class="group-meta-inactive-team-name" />
-                                </GridLayout>
+                                <Label class="list-matches-toggle-baseline" text="" />
 
                                 <StackLayout class="list-groups">
                                     <Label class="list-groups-title" text="Members" />
@@ -81,6 +83,7 @@
                                             </GridLayout>
                                         </ListView.itemTemplate>
                                     </ListView>
+
                                     <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
                                         <Button class="list-groups-button-start" text="Button 1" tap="" />
                                         <Button class="list-groups-button-join" text="Button 2" tap="" />

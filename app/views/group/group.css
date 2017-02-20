@@ -25,7 +25,7 @@ Page {
 
 .group-meta-active {
     margin: 10 10 0 10;
-    padding: 10;
+    padding: 0;
     background-color: #300a3c;
     color: white;
     text-transform: uppercase;
@@ -38,22 +38,20 @@ Page {
     text-transform: uppercase;
     font-size: 10;
     text-align: center;
-    padding: 0 10 0 0;
-    margin: 0 10 0 0;
+    padding: 10 10 0 10;
     border-width: 0 1 0 0;
     border-color: rgba(255,255,255,0.2);
     color: rgba(255,255,255,0.6);
+
 }
 
 .group-meta-active-gw-number {
     font-size: 24;
     text-align: center;
+    padding: 0 0 10 0;
     font-family: 'Roboto-Black';
-    padding: 0 10 0 0;
-    margin: 0 10 0 0;
     border-width: 0 1 0 0;
     border-color: rgba(255,255,255,0.2);
-    vertical-align: center;
 }
 
 .group-meta-active-team-label {
@@ -61,14 +59,15 @@ Page {
     font-size: 10;
     text-align: right;
     color: rgba(255,255,255,0.6);
+    padding: 10 10 0 10;
 }
 
 .group-meta-active-team-name {
     text-align: right;
+    padding: 4 10 0 10;
     text-transform: uppercase;
-    vertical-align: center;
-    font-size: 18;
-    font-family: 'Roboto-Black';
+    font-size: 16;
+    font-family: 'Roboto-Bold';
 }
 
 .group-meta-active-team-decide {
@@ -154,11 +153,11 @@ Page {
 }
 
 .list-clubs {
-    margin: 10;
+    margin: 0;
     background-color: white;
-    border-radius: 2;
+    /*border-radius: 2;
     border-width: 2 0 0 0;
-    border-color: #108858;
+    border-color: #108858;*/
 }
 
 .list-clubs-label {
@@ -182,13 +181,33 @@ Page {
     vertical-align: middle;
 }
 
+.list-matches-toggle {
+    color: #108858;
+    margin: 10 10 0 10;
+    background-color: white;
+    border-radius: 2 2 0 0;
+    border-width: 2 0 0 0;
+    border-color: #108858;
+
+    font-size: 16;
+    padding: 10;
+    text-transform: uppercase;
+    text-align: right;
+    font-family: "Roboto-Bold";
+}
+
+.list-matches-toggle-baseline{
+    border-radius: 0 0 2 2;
+    height: 2;
+    background-color: white;
+    border-color: #108858;
+    border-width: 0 0 2 0;
+    margin: 0 10;
+}
+
 .list-matches {
     background-color: white;
-    border-radius: 2;
-    margin: 10;
-
-    border-width: 2 0 0 0;
-    border-color:white;
+    margin: 0 10 0 10;
 }
 
 .list-matches-ko {
