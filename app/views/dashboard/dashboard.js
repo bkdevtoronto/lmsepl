@@ -10,6 +10,7 @@ var observableModule = require("data/observable");
 var observableArray = require("data/observable-array").ObservableArray;
 var googleAnalytics = require("nativescript-google-analytics");
 var connectivity = require("connectivity");
+var pullRefresh = require("nativescript-pulltorefresh");
 
 /* Ads */
 var admob = require("nativescript-admob");
@@ -34,6 +35,7 @@ var apiURL = appSettings.getString("apiURL");
  */
 
 exports.loaded = function(args){
+
     /* Load Data - Leagues */
     var userId = appSettings.getString("id");
     var groupArray = [];
@@ -91,7 +93,9 @@ exports.loaded = function(args){
                             name: e.name,
                             date: e.date,
                             active: e.active==1 ? true : false,
-                            id: e.gid
+                            id: e.gid,
+                            paid: e.paid==1 ? true : false,
+                            cost: displayCost(e.cost,e.paid)
                         };
                         groupArray.push(item);
                     });
@@ -100,7 +104,7 @@ exports.loaded = function(args){
                 appSettings.setString("groups",JSON.stringify(groupArray));
 
                 //Finish loading page
-                var height = groupArray.length * 40;
+                var height = groupArray.length * 43;
                 var groupsHeight = height;
 
                 /* Page Data */
@@ -222,4 +226,34 @@ function navigate(view){
             curve: "easeIn"
         }
     });
+}
+
+exports.refreshPage = refreshPage;
+function refreshPage(args) {
+    // Do work here... and when done call set refreshing property to false to stop the refreshing
+    frameModule.topmost().navigate({
+        moduleName: "views/dashboard/dashboard",
+        animated: false,
+        clearHistory: false
+    });
+}
+
+function displayCost(c,p){
+    var cost = "";
+    var c = c || null;
+    if(c!=""&&c!=0&&c!=null){
+        if(p==1){
+            cost = "£";
+            if(c!=parseInt(c)){
+                cost += parseFloat(c).toFixed(2);
+            } else {
+                cost += c;
+            }
+        } else {
+            cost += c.toLocaleString();
+        }
+    } else {
+        cost += "F2P";
+    }
+    return cost;
 }

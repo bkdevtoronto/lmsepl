@@ -134,3 +134,63 @@ Page {
 .list-groups-item-label.inactive {
     opacity: 0.25;
 }
+
+.list-groups-label {
+    padding-top:13;
+}
+
+.list-groups-icon-active {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #fff;
+    color: #108858;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-inactive {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #ccc;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-cost {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #D4980E;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.list-groups-icon-paid {
+    margin: 13 3 13 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #300a3c;
+    color: white;
+    text-transform: uppercase;
+}
