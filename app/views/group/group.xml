@@ -74,7 +74,7 @@
                                 <Label class="list-groups-title" text="Members" />
                                 <ListView items="{{ groupArray }}" height="{{ groupsHeight }}" itemTap="groupTap">
                                     <ListView.itemTemplate>
-                                        <GridLayout class="list-groups-item" columns="25,*,auto,auto" rows="auto">
+                                        <GridLayout class="list-groups-item" columns="25,*,auto,auto" rows="41">
                                             <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
                                             <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
                                             <Label row="0" col="2" text="{{ selectionName }}" visibility="{{ selectionName ? 'visible' : 'collapsed' }}" class="list-groups-selection-name" />
@@ -82,11 +82,6 @@
                                         </GridLayout>
                                     </ListView.itemTemplate>
                                 </ListView>
-
-                                <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
-                                    <Button class="list-groups-button-start" text="Button 1" tap="" />
-                                    <Button class="list-groups-button-join" text="Button 2" tap="" />
-                                </StackLayout>
                             </StackLayout>
                             <Label class="admob-spacer" text="" />
                         </StackLayout>

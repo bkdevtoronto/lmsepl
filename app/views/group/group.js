@@ -108,7 +108,7 @@ function loaded(args, pullRefresh){
 
                 pageData = new observableModule.fromObject({
                     groupArray : new observableArray(groupArray),
-                    groupsHeight: (groupArray.length * 40)+5,
+                    groupsHeight: groupArray.length * 42,
                     teamName: r.groupmeta[0][0].name,
                     active : r.groupmeta[0][0].active==1 ? true : false,
                     teamDate: "Est. " + formatDate(new Date(r.groupmeta[0][0].date)),
