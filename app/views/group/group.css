@@ -72,8 +72,8 @@ Page {
 
 .group-meta-active-team-decide {
     text-align: right;
-    vertical-align: center;
-    font-size: 18;
+    font-size: 16;
+    padding: 4 10 0 10;
 }
 
 /* Group Meta Inactive */

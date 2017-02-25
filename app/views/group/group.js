@@ -42,7 +42,7 @@ function loaded(args, pullRefresh){
     appSettings.setString("gid",groupId);
 
     /* Ads */
-    /*admob.createBanner({
+    admob.createBanner({
         testing: true,
         size: admob.AD_SIZE.SMART_BANNER,
         androidBannerId: "ca-app-pub-6311725785805657/1855866252",
@@ -53,7 +53,7 @@ function loaded(args, pullRefresh){
             //console.log("admob createBanner done");
         },
         function(error) { console.log("admob createBanner error: " + error); }
-    );*/
+    );
 
     fetchModule.fetch(apiURL+"groups/id/"+groupId,{
             method: "get",
