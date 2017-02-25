@@ -39,7 +39,11 @@ exports.loaded = function(args){
     /* Load Data - Leagues */
     var userId = appSettings.getString("id");
     var groupArray = [];
-    var pageData;
+    var pageData = new observableModule.fromObject({
+        profilePic: appSettings.getString("img"),
+        username: appSettings.getString("username"),
+        scorevalue: "420"
+    });
     page = args.object;
     drawer = view.getViewById(page,"sideDrawer");
 
@@ -49,13 +53,8 @@ exports.loaded = function(args){
     if(connectivity.connectionType.none){
 
         /* Page Data */
-        pageData = new observableModule.fromObject({
-            groups: new observableArray(groupArray),
-            profilePic: appSettings.getString("img"),
-            username: appSettings.getString("username"),
-            scorevalue: "-",
-            groupsHeight: 0
-        });
+        pageData.groups = new observableArray(groupArray);
+        pageData.groupsHeight = 0;
 
         page.bindingContext = pageData;
         dialogs.alert({
@@ -104,30 +103,20 @@ exports.loaded = function(args){
                 appSettings.setString("groups",JSON.stringify(groupArray));
 
                 //Finish loading page
-                var height = groupArray.length * 43;
+                var height = groupArray.length * 44;
                 var groupsHeight = height;
 
                 /* Page Data */
-                pageData = new observableModule.fromObject({
-                    groups: new observableArray(groupArray),
-                    profilePic: appSettings.getString("img"),
-                    username: appSettings.getString("username"),
-                    scorevalue: "420",
-                    groupsHeight: groupsHeight
-                });
+                pageData.groups = new observableArray(groupArray);
+                pageData.groupsHeight = groupsHeight;
 
                 page.bindingContext = pageData;
                 console.log("Dashboard loaded successfully");
                 loader.hide();
             } else if(r.response=="failure"){
                 /* Page Data */
-                pageData = new observableModule.fromObject({
-                    groups: new observableArray(groupArray),
-                    profilePic: appSettings.getString("img"),
-                    username: appSettings.getString("username"),
-                    scorevalue: "420",
-                    groupsHeight: 0
-                });
+                pageData.groups = new observableArray(groupArray);
+                pageData.groupsHeight = 0;
 
                 page.bindingContext = pageData;
                 if(r.errors){
@@ -144,13 +133,8 @@ exports.loaded = function(args){
             } else {
 
                 /* Page Data */
-                pageData = new observableModule.fromObject({
-                    groups: new observableArray(groupArray),
-                    profilePic: appSettings.getString("img"),
-                    username: appSettings.getString("username"),
-                    scorevalue: "420",
-                    groupsHeight: 0
-                });
+                pageData.groups = new observableArray({});
+                pageData.groupsHeight = 0;
 
                 page.bindingContext = pageData;
                 dialogs.alert({
