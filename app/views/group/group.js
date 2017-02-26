@@ -90,10 +90,10 @@ function loaded(args, pullRefresh){
                     r.matches.forEach(function(e){
                         if(e.ko!=ko){
                             ko = e.ko;
-                            matchHeight += 30;
+                            matchHeight += 32;
                             matchArray.push({home: false, away: false, homes: false, aways: false, ko: e.ko, koLabelDate: formatDate(new Date(e.ko), 1)[0], koLabelTime: formatDate(new Date(e.ko), 1)[1] });
                         }
-                        matchHeight +=24.5;
+                        matchHeight +=25;
                         matchArray.push({home: e.home, away: e.away, homes: e.homes || "", aways: e.aways || "", ko: false, koLabel: false, allowed: true });
                         clubArray.push({name: e.home, id: e.homeid, opp: e.away });
                         clubArray.push({name: e.away, id: e.awayid, opp: e.home });

@@ -14,6 +14,7 @@ var pullRefresh = require("nativescript-pulltorefresh");
 
 /* Ads */
 var admob = require("nativescript-admob");
+var displayAds = false;
 
 var page;
 var drawer;
@@ -39,10 +40,11 @@ exports.loaded = function(args){
     /* Load Data - Leagues */
     var userId = appSettings.getString("id");
     var groupArray = [];
+    var groupHeaders = 0;
     var pageData = new observableModule.fromObject({
         profilePic: appSettings.getString("img"),
         username: appSettings.getString("username"),
-        scorevalue: "420"
+        points: "-"
     });
     page = args.object;
     drawer = view.getViewById(page,"sideDrawer");
@@ -69,17 +71,33 @@ exports.loaded = function(args){
     }
 
     /* Ads */
-    admob.createBanner({
-        testing: true,
-        size: admob.AD_SIZE.SMART_BANNER,
-        androidBannerId: "ca-app-pub-6311725785805657/1855866252",
-        //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY", iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
-        margins: { bottom: 0 }
-    }).then(
-        function() { /* console.log("admob createBanner done"); */ },
-        function(error) { console.log("admob createBanner error: " + error); }
-    );
+    if(displayAds){
+        admob.createBanner({
+            testing: true,
+            size: admob.AD_SIZE.SMART_BANNER,
+            androidBannerId: "ca-app-pub-6311725785805657/1855866252",
+            //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY", iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
+            margins: { bottom: 0 }
+        }).then(
+            function() { /* console.log("admob createBanner done"); */ },
+            function(error) { console.log("admob createBanner error: " + error); }
+        );
+    }
 
+    //Refresh User Points
+    fetchModule.fetch(apiURL+"users/fbid/"+appSettings.getString("fbid"),{
+            method: "get"
+        }).then(function(response){
+            var r = JSON.parse(response._bodyText);
+            if(r.response=="success"){
+                var points = r.data[0].points;
+                var username = r.data[0].username;
+                pageData.points = points;
+                pageData.username = username;
+            }
+        });
+
+    //Get Group Data
     fetchModule.fetch(apiURL+"groups/user/"+userId,{
             method: "get"
         }).then(function(response){
@@ -105,7 +123,19 @@ exports.loaded = function(args){
                         }
                     });
 
+                    var isCaptain = false;
                     r.data[0].forEach(function(e){
+                        curCaptain = e.captain==appSettings.getString("id");
+                        if(curCaptain!=isCaptain){
+                            isCaptain=curCaptain;
+                            groupHeaders++;
+                            if(curCaptain){
+                                groupArray.push({header:true, text: "Captainships"});
+                            } else {
+                                groupArray.push({header:true, text: "Memberships"});
+                            }
+                        }
+
                         var item = {
                             icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
                             name: e.name,
@@ -122,7 +152,7 @@ exports.loaded = function(args){
                 appSettings.setString("groups",JSON.stringify(groupArray));
 
                 //Finish loading page
-                var height = groupArray.length * 44;
+                var height = ((groupArray.length - groupHeaders) * 44) + (groupHeaders * 24);
                 var groupsHeight = height;
 
                 /* Page Data */

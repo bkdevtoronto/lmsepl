@@ -17,7 +17,7 @@
                 </GridLayout>
                 <!--<PullRefresh:PullToRefresh refresh="refreshPage">-->
                     <ScrollView>
-                        <StackLayout>
+                        <StackLayout class="mainContainer">
                             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center" class="mainContainer">
                                 <AbsoluteLayout>
                                     <Image left="0" top="0" width="200" height="200" src="res://shadow_profilepic200" class="profilePic-shadow" />
@@ -25,25 +25,33 @@
                                     <StackLayout top="160" orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
                                         <Label width="200" class="dashboard-username" text="{{ username }}" />
                                         <StackLayout width="200" class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
-                                            <Label class="dashboard-scoremeta" text="Score" />
-                                            <Label class="dashboard-scorevalue" text="{{ scorevalue }}" />
+                                            <Label class="dashboard-scoremeta" text="Points" />
+                                            <Label class="dashboard-scorevalue" text="{{ points }}" />
                                         </StackLayout>
                                     </StackLayout>
                                 </AbsoluteLayout>
                             </StackLayout>
-
                             <StackLayout class="list-groups">
                                 <Label class="list-groups-title" text="Leagues" />
-                                <ListView items="{{ groups }}" height="{{ groupsHeight }}" itemTap="groupTap">
-                                    <ListView.itemTemplate>
-                                        <GridLayout class="list-groups-item" columns="25,*,auto,auto,auto" rows="43" opacity="{{ active ? 1 : 0.6 }}">
-                                            <Image row="0" col="0" class="list-groups-item-icon" src="{{ icon }}" />
-                                            <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
-                                            <Label row="0" col="2" class="list-groups-icon-cost" text="{{ cost }}" visibility="{{ active ? 'visible' : 'collapse' }}" />
-                                            <Label row="0" col="3" class="list-groups-icon-inactive" text="Inactive" visibility="{{ active ? 'collapse' : 'visible' }}" />
-                                            <Label row="0" col="4" class="list-groups-icon-paid" text="Premium" visibility="{{ active ? (paid ? 'visible' : 'collapse') : 'collapse' }}" />
-                                        </GridLayout>
-                                    </ListView.itemTemplate>
+                                <ListView items="{{ groups }}" height="{{ groupsHeight }}" itemTap="groupTap" itemTemplateSelector="header ? 'header' : 'league'">
+                                    <ListView.itemTemplates>
+                                        <template key="header">
+                                            <GridLayout class="list-groups-header" columns="*" rows="21">
+                                                <Label class="list-groups-header-text" text="{{ text }}" />
+                                            </GridLayout>
+                                        </template>
+                                        <template key="league">
+                                            <GridLayout class="list-groups-item" columns="auto,25,*,auto,auto,auto" rows="43">
+                                                <Label row="0" col="0" class="list-groups-item-indicator-inactive" visibility="{{ active ? 'collapsed' : 'visible' }}" />
+                                                <Label row="0" col="0" class="list-groups-item-indicator-active" visibility="{{ active ? 'visible' : 'collapsed' }}" />
+                                                <Image row="0" col="1" class="list-groups-item-icon" src="{{ icon }}" />
+                                                <Label row="0" col="2" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
+                                                <Label row="0" col="3" class="list-groups-icon-cost" text="{{ cost }}" visibility="{{ active ? 'visible' : 'collapse' }}" />
+                                                <Label row="0" col="4" class="list-groups-icon-inactive" text="Inactive" visibility="{{ active ? 'collapse' : 'visible' }}" />
+                                                <Label row="0" col="5" class="list-groups-icon-paid" text="Premium" visibility="{{ active ? (paid ? 'visible' : 'collapse') : 'collapse' }}" />
+                                            </GridLayout>
+                                        </template>
+                                    </ListView.itemTemplates>
                                 </ListView>
                                 <StackLayout orientation="horizontal" class="list-groups-buttons" verticalAlignment="top" horizontalAlignment="center">
                                     <Button class="list-groups-button-start" text="Start League" tap="navGroupStart" />

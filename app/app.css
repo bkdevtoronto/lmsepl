@@ -74,6 +74,23 @@ Page {
     100% { opacity: 1; margin-top: 10; transform: scale(1); transform:translate(0,0); }
 }
 
+.list-groups-header {
+    border-width: 0 0 2 0;
+    border-color: #108858;
+    font-family: "Roboto-Medium";
+    background-color: #08482F;
+    color: white;
+    vertical-align: middle;
+    padding: 0 10;
+}
+
+.list-groups-header-text {
+    text-align: center;
+    font-size: 10;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
 .list-groups-title {
     font-size: 16;
     padding: 10;
@@ -91,6 +108,7 @@ Page {
 .list-groups-label {
     padding: 10;
     margin: 0;
+    color: #333;
 }
 
 .list-groups-buttons {

@@ -56,7 +56,7 @@
                             <ListView items="{{ matchArray }}" height="{{ matchHeight }}" visibility="{{ fixturesToggle }}" class="list-matches" itemTemplateSelector="ko ? 'ko' : 'match'">
                                 <ListView.itemTemplates>
                                     <template key="match">
-                                        <GridLayout columns="*,auto,auto,auto,*" rows="auto" class="list-matches-item">
+                                        <GridLayout columns="*,auto,auto,auto,*" rows="24" class="list-matches-item">
                                             <Label row="0" col="0" class="list-matches-item-label-home" text="{{ home || 'Loading...' }}" />
                                             <Label row="0" col="1" class="list-matches-item-label-homes" text="{{ homes }}" />
                                             <Label row="0" col="2" class="list-matches-item-label-vs" text="{{ homes && aways ? '-' : 'vs' }}" />
@@ -65,7 +65,7 @@
                                         </GridLayout>
                                     </template>
                                     <template key="ko">
-                                        <GridLayout class="list-matches-ko" rows="28" columns="auto,*">
+                                        <GridLayout class="list-matches-ko" rows="30" columns="auto,*">
                                             <Label row="0" col="0" class="list-matches-ko-date" text="{{ koLabelDate }}" />
                                             <Label row="0" col="1" class="list-matches-ko-time" text="{{ koLabelTime }}" />
                                         </GridLayout>
