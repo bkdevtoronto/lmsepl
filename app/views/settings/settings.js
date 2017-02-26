@@ -75,6 +75,11 @@ function navDashboard(){
     navigate("dashboard");
 }
 
+exports.navProfile = navProfile;
+function navProfile(){
+    navigate("profile");
+}
+
 function navigate(view){
     toggleDrawer();
     frameModule.topmost().navigate({

@@ -112,6 +112,7 @@ function loaded(args, pullRefresh){
                     teamName: r.groupmeta[0][0].name,
                     active : r.groupmeta[0][0].active==1 ? true : false,
                     teamDate: "Est. " + formatDate(new Date(r.groupmeta[0][0].date)),
+                    isCaptain: r.groupmeta[0][0].captain==appSettings.getString("id") ? true : false,
                     gw: r.groupmeta.gw,
                     selectionName: r.groupmeta.selectionName,
                     selectionId: r.groupmeta.selectionId,
@@ -134,6 +135,8 @@ function loaded(args, pullRefresh){
                 console.log("Group page successfully loaded");
                 if(pullRefresh) pullRefresh.refreshing = false;
             } else {
+                console.log(JSON.stringify(r));
+                loader.hide();
             }
         });
 }
@@ -239,6 +242,16 @@ function navigate(view){
 
 exports.navDashboard = function(){
     navigate("dashboard");
+}
+
+exports.navSettings = navSettings;
+function navSettings(){
+    navigate("settings");
+}
+
+exports.navProfile = navProfile;
+function navProfile(){
+    navigate("profile");
 }
 
 exports.toggleDrawer = toggleDrawer;

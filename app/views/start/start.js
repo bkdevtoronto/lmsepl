@@ -70,12 +70,12 @@ exports.fbConnect = function(args){
 
             tnsOAuthModule.ensureValidToken()
                 .then((token) => {
-                    fetchModule.fetch('https://graph.facebook.com/me?fields=id,name,email,picture&access_token='+token, {
+                    fetchModule.fetch('https://graph.facebook.com/me?fields=id,name,email,picture,first_name&access_token='+token, {
                             method: "get"
                         })
                         .then(function(response){
                             var user = JSON.parse(response._bodyText);
-                            appSettings.setString("username",user.name);
+                            appSettings.setString("username",user.first_name);
                             appSettings.setString("email",user.email);
                             appSettings.setString("fbid",user.id);
                             appSettings.setString("fbimg","http://graph.facebook.com/"+user.id+"/picture?type=large");

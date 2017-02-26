@@ -219,6 +219,11 @@ function navSettings(){
     navigate("settings");
 }
 
+exports.navProfile = navProfile;
+function navProfile(){
+    navigate("profile");
+}
+
 exports.navTopUp = navTopUp;
 function navTopUp(){
     navigate("top-up");

@@ -1,0 +1,18 @@
+<Page xmlns:sd="nativescript-telerik-ui/sidedrawer"
+    xmlns:shared="shared"
+    loaded="loaded"
+    actionBarHidden="true">
+
+    <!-- side drawer content -->
+    <sd:RadSideDrawer id="sideDrawer">
+        <sd:RadSideDrawer.drawerContent>
+            <shared:drawer />
+        </sd:RadSideDrawer.drawerContent>
+
+        <!-- The main content -->
+        <sd.RadSideDrawer.mainContent>
+            <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
+            </StackLayout>
+        </sd.RadSideDrawer.mainContent>
+    </sd:RadSideDrawer>
+</Page>

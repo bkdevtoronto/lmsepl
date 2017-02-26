@@ -13,9 +13,10 @@
         <!-- The main content -->
         <sd.RadSideDrawer.mainContent class="main-content-sd">
             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
-                <GridLayout class="action-bar" columns="50,*,50" rows="auto,auto" tap="toggleDrawer" >
-                    <Image row="0" col="0" class="action-icon-left" src="res://icon_menu_g" />
+                <GridLayout class="action-bar" columns="50,*,50" rows="auto,auto">
+                    <Label row="0" col="0" class="action-icon-left fa" text="&#xf0c9;" tap="toggleDrawer"  />
                     <Label row="0" col="1" class="action-label" text="{{ teamName }}" />
+                    <Label row="0" col="2" class="action-icon-right fa" text="&#xf013;" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" />
                     <Label row="1" colspan="3" class="action-meta" text="{{ teamDate }}" />
                 </GridLayout>
 
@@ -48,10 +49,10 @@
                                 <Label row="0" col="1" rowspan="2" text="League Inactive" class="group-meta-inactive-team-name" />
                             </GridLayout>
 
-                            <GridLayout class="list-matches-toggle" columns="*,auto" rows="auto">
+                            <GridLayout class="list-matches-toggle" columns="*,auto" rows="auto" ontap="toggleFixtures">
                                 <Label class="list-matches-toggle-icon" col="0" row="0" text="&#xf078;" visibility="{{ fixturesToggle=='collapsed' ? 'visible' : 'collapsed' }}" />
                                 <Label class="list-matches-toggle-icon" col="0" row="0" text="&#xf077;" visibility="{{ fixturesToggle=='collapsed' ? 'collapsed' : 'visible' }}" />
-                                <Label class="list-matches-toggle-label" col="1" row="0" text="Toggle Fixtures" ontap="toggleFixtures" />
+                                <Label class="list-matches-toggle-label" col="1" row="0" text="Toggle Fixtures" />
                             </GridLayout>
                             <ListView items="{{ matchArray }}" height="{{ matchHeight }}" visibility="{{ fixturesToggle }}" class="list-matches" itemTemplateSelector="ko ? 'ko' : 'match'">
                                 <ListView.itemTemplates>
@@ -81,8 +82,8 @@
                                         <GridLayout class="list-groups-item" columns="25,*,auto,auto" rows="41">
                                             <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
                                             <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
-                                            <Label row="0" col="2" text="{{ selectionName }}" visibility="{{ selectionName ? 'visible' : 'collapsed' }}" class="list-groups-selection-name" />
-                                            <Label row="0" col="3" text="UNDECIDED" visibility="{{ selectionName ? 'collapsed' : 'visible' }}" class="list-groups-selection-unchosen" />
+                                            <Label row="0" col="2" text="{{ selectionName }}" visibility="{{ (selectionName && active) ? 'visible' : 'collapsed' }}" class="list-groups-selection-name" />
+                                            <Label row="0" col="3" text="Undecided" visibility="{{ active ? (selectionName ? 'collapsed' : 'visible') : 'collapsed' }}" class="list-groups-selection-unchosen" />
                                         </GridLayout>
                                     </ListView.itemTemplate>
                                 </ListView>

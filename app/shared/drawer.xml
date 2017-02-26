@@ -8,6 +8,7 @@
     </GridLayout>
     <StackLayout class="sd-content">
         <Button text="Dashboard" class="sd-list-item-text" tap="navDashboard" />
+        <Button text="Profile" class="sd-list-item-text" tap="navProfile" />
         <Button text="Settings" class="sd-list-item-text" tap="navSettings" />
     </StackLayout>
 </StackLayout>
