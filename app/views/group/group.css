@@ -188,13 +188,23 @@ Page {
     border-radius: 2 2 0 0;
     border-width: 2 0 0 0;
     border-color: #108858;
-
-    font-size: 16;
     padding: 10;
+}
+
+.list-matches-toggle-icon{
+    font-family: FontAwesome, fontawesome-webfont;
+    text-align: right;
+    padding: 0 10;
+    vertical-align: middle;
+}
+
+.list-matches-toggle-label{
+    font-size: 16;
     text-transform: uppercase;
     text-align: right;
     font-family: "Roboto-Bold";
 }
+
 
 .list-matches-toggle-baseline{
     border-radius: 0 0 2 2;
