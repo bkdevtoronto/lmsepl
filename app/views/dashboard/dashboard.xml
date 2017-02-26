@@ -15,7 +15,7 @@
                     <Image row="0" col="0" class="action-icon-left" src="res://icon_menu_g" />
                     <Label row="0" col="1" class="action-label" text="Dashboard" />
                 </GridLayout>
-                <PullRefresh:PullToRefresh refresh="refreshPage">
+                <!--<PullRefresh:PullToRefresh refresh="refreshPage">-->
                     <ScrollView>
                         <StackLayout>
                             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center" class="mainContainer">
@@ -53,7 +53,7 @@
                             <Label class="admob-spacer" text="" />
                         </StackLayout>
                     </ScrollView>
-                </PullRefresh:PullToRefresh>
+                <!--</PullRefresh:PullToRefresh>-->
             </StackLayout>
         </sd.RadSideDrawer.mainContent>
     </sd:RadSideDrawer>

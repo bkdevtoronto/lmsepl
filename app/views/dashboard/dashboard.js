@@ -86,6 +86,25 @@ exports.loaded = function(args){
             var r = JSON.parse(response._bodyText);
             if(r.response=="success"){
                 if(r.data){
+                    //sort by membership, activity, name
+                    r.data[0].sort(function(a,b){
+                        var x = a.captain==appSettings.getString("id");
+                        var y = b.captain==appSettings.getString("id");
+                        if(x==y){
+                            var d = a.active==1 ? true : false;
+                            var e = b.active==1 ? true : false;
+                            if(d==e){
+                                var f = a.name.toLowerCase();
+                                var g = b.name.toLowerCase();
+                                return f < g ? -1 : f > g ? 1 : 0;
+                            } else {
+                                return d ? -1 : e ? 1 : 0
+                            }
+                        } else {
+                            return x ? -1 : y ? 1 : 0;
+                        }
+                    });
+
                     r.data[0].forEach(function(e){
                         var item = {
                             icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
