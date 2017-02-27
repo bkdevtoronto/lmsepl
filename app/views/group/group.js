@@ -12,6 +12,7 @@ var pullRefresh = require("nativescript-pulltorefresh");
 
 /* Ads */
 var admob = require("nativescript-admob");
+var ads = false;
 
 var loader = new loadingIndicator;
 var drawer;
@@ -42,18 +43,20 @@ function loaded(args, pullRefresh){
     appSettings.setString("gid",groupId);
 
     /* Ads */
-    admob.createBanner({
-        testing: true,
-        size: admob.AD_SIZE.SMART_BANNER,
-        androidBannerId: "ca-app-pub-6311725785805657/1855866252",
-        //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY", iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
-        margins: { bottom: 0 }
-    }).then(
-        function() {
-            //console.log("admob createBanner done");
-        },
-        function(error) { console.log("admob createBanner error: " + error); }
-    );
+    if(ads){
+        admob.createBanner({
+            testing: true,
+            size: admob.AD_SIZE.SMART_BANNER,
+            androidBannerId: "ca-app-pub-6311725785805657/1855866252",
+            //iosBannerId: "ca-app-pub-XXXXXX/YYYYYY", iosTestDeviceIds: ["yourTestDeviceUDIDs", "canBeAddedHere"],
+            margins: { bottom: 0 }
+        }).then(
+            function() {
+                //console.log("admob createBanner done");
+            },
+            function(error) { console.log("admob createBanner error: " + error); }
+        );
+    }
 
     fetchModule.fetch(apiURL+"groups/id/"+groupId,{
             method: "get",
@@ -122,6 +125,10 @@ function loaded(args, pullRefresh){
                     fixturesToggle : 'collapsed',
                     matchArray: new observableArray(matchArray),
                     matchHeight: matchHeight,
+
+                    activateForm: false,
+                    activateFormName: "The " + r.groupmeta[0][0].name + " Cup",
+                    activateFormPremium: false,
 
                     profilePic: appSettings.getString("img"),
                     username: appSettings.getString("username"),
@@ -292,4 +299,13 @@ function refreshPage(args) {
         clearHistory: false
     });
     //loaded(pageArgs, pullRefresh);
+}
+
+exports.showActivateForm = showActivateForm;
+function showActivateForm(args){
+    pageData.activateForm = true;
+
+    var css = "group-activate";
+    var view = page.getViewById("group-activate");
+    view.className = css;
 }

@@ -20,7 +20,7 @@
                     <Label row="1" colspan="3" class="action-meta" text="{{ teamDate }}" />
                 </GridLayout>
 
-                <PullRefresh:PullToRefresh refresh="refreshPage">
+                <!--<PullRefresh:PullToRefresh refresh="refreshPage">-->
                     <ScrollView>
                         <StackLayout>
                             <Label class="group-msg msg-active" visibility="{{ active ? 'visible' : 'collapsed' }}" text="This group is currently active" />
@@ -43,13 +43,24 @@
                                 </ListView>
                             </GridLayout>
 
-                            <GridLayout class="group-meta-inactive" columns="auto,*" rows="auto,auto" visibility="{{ active ? 'collapsed' : 'visible' }}">
+                            <GridLayout class="group-meta-inactive" columns="auto,*" rows="auto,auto,auto,auto" visibility="{{ active ? 'collapsed' : 'visible' }}">
                                 <Label row="0" col="0" text="Gameweek" class="group-meta-inactive-gw-label" />
                                 <Label row="1" col="0" text="{{ gw }}" class="group-meta-inactive-gw-number" />
                                 <Label row="0" col="1" rowspan="2" text="League Inactive" class="group-meta-inactive-team-name" />
+                                <GridLayout id="group-activate" row="2" col="0" colspan="3" columns="*,*,auto,*" rows="auto,auto,auto,auto,auto" visibility="{{ activateForm ? 'visible' : 'collapsed' }}">
+                                    <Label class="group-activate-field" row="0" col="0" text="{{ activateFormPremium ? 'Premium' : 'Points' }}" />
+                                    <Switch class="group-activate-field-switch" row="0" col="1" checked="{{ activateFormPremium }}" />
+                                    <Label class="group-activate-field bold" row="0" col="2" text="£" opacity="{{ activateFormPremium ? 1 : 0 }}" />
+                                    <TextField keyboardType="number" class="group-activate-field-text centered" row="0" col="3" />
+
+                                    <Label class="group-activate-field" row="1" col="0" text="Trophy Name" />
+                                    <TextField class="group-activate-field-text" row="1" col="1" colspan="3" text="{{ activateFormName }}" />
+                                    <!--<TextField class="group-activate-field-text" row="1" col="1" text="Text Field" />-->
+                                </GridLayout>
+                                <Label row="3" col="0" colspan="2" text="Activate" class="group-meta-inactive-activate" ontap="showActivateForm" onTap="activateForm" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" />
                             </GridLayout>
 
-                            <GridLayout class="list-matches-toggle" columns="*,auto" rows="auto" ontap="toggleFixtures">
+                            <GridLayout class="list-matches-toggle" columns="*,auto" rows="auto" ontap="toggleFixtures" visibility="{{ active ? 'visible' : 'collapsed' }}" >
                                 <Label class="list-matches-toggle-icon" col="0" row="0" text="&#xf078;" visibility="{{ fixturesToggle=='collapsed' ? 'visible' : 'collapsed' }}" />
                                 <Label class="list-matches-toggle-icon" col="0" row="0" text="&#xf077;" visibility="{{ fixturesToggle=='collapsed' ? 'collapsed' : 'visible' }}" />
                                 <Label class="list-matches-toggle-label" col="1" row="0" text="Toggle Fixtures" />
@@ -73,7 +84,7 @@
                                     </template>
                                 </ListView.itemTemplates>
                             </ListView>
-                            <Label class="list-matches-toggle-baseline" text="" />
+                            <Label class="list-matches-toggle-baseline" text=""  visibility="{{ active ? 'visible' : 'collapsed' }}" />
 
                             <StackLayout class="list-groups-animated">
                                 <Label class="list-groups-title" text="Members" />
@@ -91,7 +102,7 @@
                             <Label class="admob-spacer" text="" />
                         </StackLayout>
                     </ScrollView>
-                </PullRefresh:PullToRefresh>
+                <!--</PullRefresh:PullToRefresh>-->
             </StackLayout>
         </sd.RadSideDrawer.mainContent>
     </sd:RadSideDrawer>

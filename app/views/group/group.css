@@ -88,11 +88,62 @@ Page {
     padding: 4 10 0 10;
 }
 
+/* Group Activate */
+
+.group-activate {
+    padding: 10 0 10 0;
+    font-size: 12;
+
+    opacity:0;
+    background-color: #333;
+    animation-name: group-activate-anim;
+    animation-duration:0.4;
+    animation-fill-mode: forwards;
+}
+
+@keyframes group-activate-anim {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+.group-activate-field {
+    padding: 15 10;
+    text-align: right;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    font-size: 10;
+}
+
+.group-activate-field-text {
+    margin: 5 10;
+    padding: 5 0 5 5;
+}
+
+.group-activate-field-switch {
+    horizontal-align: center;
+    background-color: #fff;
+    color: #108858;
+}
+
+.centered {
+    text-align: center;
+}
+
+.bold {
+    font-family: "Roboto-Black";
+}
+
+
+
 /* Group Meta Inactive */
 
 .group-meta-inactive {
     margin: 10 10 0 10;
-    padding: 10;
+    padding: 10 0 0 0;
     background-color: #333;
     color: white;
     text-transform: uppercase;
@@ -108,11 +159,23 @@ Page {
     animation-fill-mode: forwards;
 }
 
+.group-meta-inactive-activate {
+    padding: 10;
+    border-radius: 2;
+    font-size: 18;
+    font-family: 'Roboto-Black';
+    text-align: center;
+    background-color: #300a3c;
+    text-transform: uppercase;
+    border-width: 2 0 0 0;
+    border-color: white;
+}
+
 .group-meta-inactive-gw-label {
     text-transform: uppercase;
     font-size: 10;
     text-align: center;
-    padding: 0 10 0 0;
+    padding: 0 10 0 10;
     margin: 0 10 0 0;
     border-width: 0 1 0 0;
     border-color: rgba(255,255,255,0.2);
@@ -124,7 +187,7 @@ Page {
     text-align: center;
     font-family: 'Roboto-Black';
     padding: 0 10 0 0;
-    margin: 0 10 0 0;
+    margin: 0 10 10 10;
     border-width: 0 1 0 0;
     border-color: rgba(255,255,255,0.2);
     vertical-align: center;
@@ -134,11 +197,13 @@ Page {
     text-transform: uppercase;
     font-size: 10;
     text-align: right;
+    padding: 0 10 10 0;
     color: rgba(255,255,255,0.6);
 }
 
 .group-meta-inactive-team-name {
     text-align: right;
+    padding: 0 10 10 0;
     text-transform: uppercase;
     vertical-align: center;
     font-size: 18;
