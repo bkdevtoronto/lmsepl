@@ -267,6 +267,19 @@ exports.teamSelect = function(args){
     pageData.clubSelect = pageData.clubSelect == "collapsed" ? "visible" : "collapsed";
 }
 
+exports.groupSettings = groupSettings;
+function groupSettings(){
+    frameModule.topmost().navigate({
+        moduleName: "views/group-settings/group-settings",
+        animated: true,
+        context: { gid: groupId },
+        transition: {
+            name: "flip",
+            curve: "easeIn"
+        }
+    });
+}
+
 exports.refreshPage = refreshPage;
 function refreshPage(args) {
     // Get reference to the PullToRefresh;

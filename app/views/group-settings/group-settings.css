@@ -1,0 +1,17 @@
+@import url('~/shared/sidedrawer.css');
+
+Page {
+    background-color: #108858;
+    background-image:url("res://bg_photo_2");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.action-bar {
+    height: auto;
+}
+
+.admob-spacer {
+    height: 50;
+}

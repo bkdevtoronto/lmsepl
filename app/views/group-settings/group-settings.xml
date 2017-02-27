@@ -1,0 +1,11 @@
+<Page xmlns:shared="shared"
+    loaded="loaded"
+    actionBarHidden="true">
+
+    <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
+        <GridLayout class="action-bar" columns="50,*,50" rows="auto">
+            <Label row="0" col="0" class="action-icon-left fa" text="&#xf053;" tap="goBack"  />
+            <Label row="0" col="1" class="action-label" text="{{ teamName }}" />
+        </GridLayout>
+    </StackLayout>
+</Page>

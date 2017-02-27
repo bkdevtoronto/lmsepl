@@ -16,7 +16,7 @@
                 <GridLayout class="action-bar" columns="50,*,50" rows="auto,auto">
                     <Label row="0" col="0" class="action-icon-left fa" text="&#xf0c9;" tap="toggleDrawer"  />
                     <Label row="0" col="1" class="action-label" text="{{ teamName }}" />
-                    <Label row="0" col="2" class="action-icon-right fa" text="&#xf013;" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" />
+                    <Label row="0" col="2" class="action-icon-right fa" text="&#xf013;" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" onTap="groupSettings" />
                     <Label row="1" colspan="3" class="action-meta" text="{{ teamDate }}" />
                 </GridLayout>
 
@@ -75,7 +75,7 @@
                             </ListView>
                             <Label class="list-matches-toggle-baseline" text="" />
 
-                            <StackLayout class="list-groups">
+                            <StackLayout class="list-groups-animated">
                                 <Label class="list-groups-title" text="Members" />
                                 <ListView items="{{ groupArray }}" height="{{ groupsHeight }}" itemTap="groupTap">
                                     <ListView.itemTemplate>

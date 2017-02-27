@@ -32,6 +32,18 @@ Page {
     border-radius: 2;
     border-width: 2 0 0 0;
     border-color: white;
+
+    opacity: 0;
+    transform: scale(0);
+    animation-name: group-meta-anim;
+    animation-duration: 0.3;
+    animation-fill-mode: forwards;
+}
+
+@keyframes group-meta-anim {
+    0% { opacity: 0; transform:scale(0); }
+    75% { opacity: 1; transform:scale(1.1); }
+    100% { opacity: 1; transform:scale(1); }
 }
 
 .group-meta-active-gw-label {
@@ -87,6 +99,13 @@ Page {
     border-radius: 2;
     border-width: 2 0 0 0;
     border-color: white;
+
+    opacity: 0;
+    transform: scale(0);
+    animation-name: group-meta-anim;
+    animation-duration: 0.3;
+    animation-delay: 0.2;
+    animation-fill-mode: forwards;
 }
 
 .group-meta-inactive-gw-label {
@@ -134,7 +153,27 @@ Page {
     font-size: 14;
 }
 
-.list-group {}
+.list-groups-animated {
+    background-color:white;
+    border-radius: 2px;
+    margin: 10;
+    border-width: 0 0 2 0;
+    font-size: 12;
+    border-color: #108858;
+
+    opacity: 0;
+    transform: scale(0);
+    animation-name: list-groups-animated-anim;
+    animation-duration: 0.3;
+    animation-delay: 0.7;
+    animation-fill-mode: forwards;
+}
+
+@keyframes list-groups-animated-anim {
+    0% { opacity: 0; transform: scale(0); }
+    75% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
 
 .list-groups-item {
     /*padding: 10;*/
@@ -189,6 +228,13 @@ Page {
     border-width: 2 0 0 0;
     border-color: #108858;
     padding: 10;
+
+    opacity: 0;
+    transform: scale(0);
+    animation-name: group-meta-anim;
+    animation-duration: 0.3;
+    animation-delay: 0.4;
+    animation-fill-mode: forwards;
 }
 
 .list-matches-toggle-icon{
@@ -213,6 +259,17 @@ Page {
     border-color: #108858;
     border-width: 0 0 2 0;
     margin: 0 10;
+
+    opacity: 0;
+    animation-name: list-matches-toggle-baseline-anim;
+    animation-duration: 0.3;
+    animation-delay: 0.7;
+    animation-fill-mode: forwards;
+}
+
+@keyframes list-matches-toggle-baseline-anim {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .list-matches {
@@ -289,6 +346,19 @@ Page {
     border-color: white;
     font-size: 10;
     padding: 7 5;
+
+    opacity: 0;
+    transform:translateY(0);
+    animation-name: group-msg-anim;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+
+@keyframes group-msg-anim {
+    0% { opacity: 0; transform:translateY(-40); }
+    60% { opacity: 1; transform:translateY(-20); }
+    100% { opacity: 1; transform:translateY(0); }
 }
 
 .msg-active {
