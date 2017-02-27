@@ -94,108 +94,110 @@ exports.loaded = function(args){
                 var username = r.data[0].username;
                 pageData.points = points;
                 pageData.username = username;
-            }
-        });
 
-    //Get Group Data
-    fetchModule.fetch(apiURL+"groups/user/"+userId,{
-            method: "get"
-        }).then(function(response){
-            var r = JSON.parse(response._bodyText);
-            if(r.response=="success"){
-                if(r.data){
-                    //sort by membership, activity, name
-                    r.data[0].sort(function(a,b){
-                        var x = a.captain==appSettings.getString("id");
-                        var y = b.captain==appSettings.getString("id");
-                        if(x==y){
-                            var d = a.active==1 ? true : false;
-                            var e = b.active==1 ? true : false;
-                            if(d==e){
-                                var f = a.name.toLowerCase();
-                                var g = b.name.toLowerCase();
-                                return f < g ? -1 : f > g ? 1 : 0;
-                            } else {
-                                return d ? -1 : e ? 1 : 0
+                //Get Group Data
+                fetchModule.fetch(apiURL+"groups/user/"+userId,{
+                        method: "get"
+                    }).then(function(response){
+                        var r = JSON.parse(response._bodyText);
+                        if(r.response=="success"){
+                            if(r.data){
+                                //sort by membership, activity, name
+                                r.data[0].sort(function(a,b){
+                                    var x = a.captain==appSettings.getString("id");
+                                    var y = b.captain==appSettings.getString("id");
+                                    if(x==y){
+                                        var d = a.active==1 ? true : false;
+                                        var e = b.active==1 ? true : false;
+                                        if(d==e){
+                                            var f = a.name.toLowerCase();
+                                            var g = b.name.toLowerCase();
+                                            return f < g ? -1 : f > g ? 1 : 0;
+                                        } else {
+                                            return d ? -1 : e ? 1 : 0
+                                        }
+                                    } else {
+                                        return x ? -1 : y ? 1 : 0;
+                                    }
+                                });
+
+                                var isCaptain = false;
+                                r.data[0].forEach(function(e){
+                                    curCaptain = e.captain==appSettings.getString("id");
+                                    if(curCaptain!=isCaptain){
+                                        isCaptain=curCaptain;
+                                        groupHeaders++;
+                                        if(curCaptain){
+                                            groupArray.push({header:true, text: "Captainships"});
+                                        } else {
+                                            groupArray.push({header:true, text: "Memberships"});
+                                        }
+                                    }
+
+                                    var item = {
+                                        icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
+                                        name: e.name,
+                                        date: e.date,
+                                        active: e.active==1 ? true : false,
+                                        id: e.gid,
+                                        paid: e.paid==1 ? true : false,
+                                        cost: displayCost(e.cost,e.paid)
+                                    };
+                                    groupArray.push(item);
+                                });
                             }
+                            //Save groups to app settings
+                            appSettings.setString("groups",JSON.stringify(groupArray));
+
+                            //Finish loading page
+                            var height = ((groupArray.length - groupHeaders) * 44) + (groupHeaders * 24);
+                            var groupsHeight = height;
+
+                            /* Page Data */
+                            pageData.groups = new observableArray(groupArray);
+                            pageData.groupsHeight = groupsHeight;
+
+                            page.bindingContext = pageData;
+                            console.log("Dashboard loaded successfully");
+                            loader.hide();
+                        } else if(r.response=="failure"){
+                            /* Page Data */
+                            pageData.groups = new observableArray(groupArray);
+                            pageData.groupsHeight = 0;
+
+                            page.bindingContext = pageData;
+                            if(r.errors){
+                                r.errors.forEach(function(e){
+                                    dialogs.alert({
+                                        title: "Error Info:",
+                                        message: JSON.stringify(e),
+                                        okButtonText: "Damn"
+                                    });
+                                });
+                            }
+                            loader.hide();
+
                         } else {
-                            return x ? -1 : y ? 1 : 0;
+
+                            /* Page Data */
+                            pageData.groups = new observableArray({});
+                            pageData.groupsHeight = 0;
+
+                            page.bindingContext = pageData;
+                            dialogs.alert({
+                                title: "Error",
+                                message: "Unable to load data into dashboard.",
+                                okButtonText: "OK"
+                            }).then(function(){
+                                console.log("Dashboard did not load properly");
+                            });
+                            loader.hide();
                         }
                     });
-
-                    var isCaptain = false;
-                    r.data[0].forEach(function(e){
-                        curCaptain = e.captain==appSettings.getString("id");
-                        if(curCaptain!=isCaptain){
-                            isCaptain=curCaptain;
-                            groupHeaders++;
-                            if(curCaptain){
-                                groupArray.push({header:true, text: "Captainships"});
-                            } else {
-                                groupArray.push({header:true, text: "Memberships"});
-                            }
-                        }
-
-                        var item = {
-                            icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
-                            name: e.name,
-                            date: e.date,
-                            active: e.active==1 ? true : false,
-                            id: e.gid,
-                            paid: e.paid==1 ? true : false,
-                            cost: displayCost(e.cost,e.paid)
-                        };
-                        groupArray.push(item);
-                    });
-                }
-                //Save groups to app settings
-                appSettings.setString("groups",JSON.stringify(groupArray));
-
-                //Finish loading page
-                var height = ((groupArray.length - groupHeaders) * 44) + (groupHeaders * 24);
-                var groupsHeight = height;
-
-                /* Page Data */
-                pageData.groups = new observableArray(groupArray);
-                pageData.groupsHeight = groupsHeight;
-
-                page.bindingContext = pageData;
-                console.log("Dashboard loaded successfully");
-                loader.hide();
-            } else if(r.response=="failure"){
-                /* Page Data */
-                pageData.groups = new observableArray(groupArray);
-                pageData.groupsHeight = 0;
-
-                page.bindingContext = pageData;
-                if(r.errors){
-                    r.errors.forEach(function(e){
-                        dialogs.alert({
-                            title: "Error Info:",
-                            message: JSON.stringify(e),
-                            okButtonText: "Damn"
-                        });
-                    });
-                }
-                loader.hide();
-
-            } else {
-
-                /* Page Data */
-                pageData.groups = new observableArray({});
-                pageData.groupsHeight = 0;
-
-                page.bindingContext = pageData;
-                dialogs.alert({
-                    title: "Error",
-                    message: "Unable to load data into dashboard.",
-                    okButtonText: "OK"
-                }).then(function(){
-                    console.log("Dashboard did not load properly");
-                });
-                loader.hide();
             }
         });
+
+
 }
 
 exports.groupTap = function(args){

@@ -26,7 +26,7 @@
                                     <StackLayout top="160" orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
                                         <Label width="200" class="dashboard-username" text="{{ username }}" />
                                         <StackLayout width="200" class="dashboard-meta" orientation="horizontal" horizontalAlignment="center">
-                                            <Label class="dashboard-scoremeta" text="Points" />
+                                            <!--<Label class="dashboard-scoremeta" text="Points" />-->
                                             <Label class="dashboard-scorevalue" text="{{ points }}" />
                                         </StackLayout>
                                     </StackLayout>
