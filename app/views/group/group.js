@@ -24,10 +24,8 @@ var loaderData = {
 loader.show(loaderData);
 var page;
 var apiURL = appSettings.getString("apiURL");
-var pageData;
-var gw;
-var groupId;
-var pageArgs;
+var pageData, gw, groupId, pageArgs;
+var activateReady = 0;
 
 exports.loaded = loaded;
 function loaded(args, pullRefresh){
@@ -129,6 +127,7 @@ function loaded(args, pullRefresh){
                     activateForm: false,
                     activateFormName: "The " + r.groupmeta[0][0].name + " Cup",
                     activateFormPremium: false,
+                    activateFormCost: 100,
 
                     profilePic: appSettings.getString("img"),
                     username: appSettings.getString("username"),
@@ -308,4 +307,73 @@ function showActivateForm(args){
     var css = "group-activate";
     var view = page.getViewById("group-activate");
     view.className = css;
+
+    if(activateReady==0){
+        setTimeout(function(){
+            activateReady=1;
+        }, 500);
+    } else {
+        btnActivate(args);
+    }
+}
+
+function btnActivate(args){
+    page.getViewById("activateFormCost").android.clearFocus();
+    page.getViewById("activateFormName").android.clearFocus();
+    var loadingData = {
+        message: 'Creating Trophy...',
+        progress: 0
+    };
+
+    loader.show(loadingData);
+
+    //Post to API
+    fetchModule.fetch(apiURL+"trophies", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+            gid : groupId,
+            trCost : pageData.activateFormCost,
+            trName : pageData.activateFormName,
+            uid : appSettings.getString("id"),
+            premium : pageData.activateFormPremium ? 1 : 0
+        })
+    }).then(function(response){
+        console.log(JSON.stringify(response));
+        var r = JSON.parse(response._bodyText);
+        if(r.response=="success"){
+            dialogs.alert({
+                title: "Trophy Creation",
+                message: pageData.activateFormName+" is now open for applications!",
+                okButtonText: "Back to League"
+            }).then(function(){
+                frameModule.topmost().navigate({
+                    moduleName: "views/group/group",
+                    animated: false,
+                    clearHistory: false
+                });
+                loader.hide();
+            });
+        } else {
+            loader.hide();
+            if(r.response=="failure"){
+                r.errors.forEach(function(e){
+                    dialogs.alert({
+                        title: "Trophy Creation",
+                        message: "Could not create trophy: "+e[0],
+                        okButtonText: "OK"
+                    });
+                });
+                loader.hide();
+
+            } else {
+                console.log(JSON.stringify(r));
+                loader.hide();
+            }
+        }
+    },function(error){
+        console.log(JSON.stringify(error));
+        loader.hide();
+    });
+
 }

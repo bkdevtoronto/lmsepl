@@ -84,7 +84,8 @@ exports.loaded = function(args){
         );
     }
 
-    //Refresh User Points
+    //Get User Data
+    console.log(apiURL+"users/fbid/"+appSettings.getString("fbid"));
     fetchModule.fetch(apiURL+"users/fbid/"+appSettings.getString("fbid"),{
             method: "get"
         }).then(function(response){
@@ -134,14 +135,19 @@ exports.loaded = function(args){
                                         }
                                     }
 
+                                    if(e.trophy){
+                                        console.log(JSON.stringify(e.trophy));
+                                        console.log(e.trophy.premium);
+                                    }
+
                                     var item = {
                                         icon: e.captain==appSettings.getString("id") ? "res://icon_league_captain" : "res://icon_league_player",
                                         name: e.name,
                                         date: e.date,
                                         active: e.active==1 ? true : false,
                                         id: e.gid,
-                                        paid: e.paid==1 ? true : false,
-                                        cost: displayCost(e.cost,e.paid)
+                                        paid: e.trophy && e.trophy.premium==1 ? true : false,
+                                        cost: e.trophy ? displayCost(e.trophy.cost,e.trophy.premium) : null
                                     };
                                     groupArray.push(item);
                                 });
@@ -290,7 +296,7 @@ function displayCost(c,p){
                 cost += c;
             }
         } else {
-            cost += c.toLocaleString();
+            cost += c.toLocaleString() + " PTS";
         }
     } else {
         cost += "F2P";

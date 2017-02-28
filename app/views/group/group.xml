@@ -51,13 +51,13 @@
                                     <Label class="group-activate-field" row="0" col="0" text="{{ activateFormPremium ? 'Premium' : 'Points' }}" />
                                     <Switch class="group-activate-field-switch" row="0" col="1" checked="{{ activateFormPremium }}" />
                                     <Label class="group-activate-field bold" row="0" col="2" text="£" opacity="{{ activateFormPremium ? 1 : 0 }}" />
-                                    <TextField keyboardType="number" class="group-activate-field-text centered" row="0" col="3" />
+                                    <TextField keyboardType="number" id="activateFormCost" class="group-activate-field-text centered" text="{{ activateFormCost }}" row="0" col="3" />
 
                                     <Label class="group-activate-field" row="1" col="0" text="Trophy Name" />
-                                    <TextField class="group-activate-field-text" row="1" col="1" colspan="3" text="{{ activateFormName }}" />
+                                    <TextField class="group-activate-field-text" row="1" col="1" colspan="3" id="activateFormName" text="{{ activateFormName }}" />
                                     <!--<TextField class="group-activate-field-text" row="1" col="1" text="Text Field" />-->
                                 </GridLayout>
-                                <Label row="3" col="0" colspan="2" text="Activate" class="group-meta-inactive-activate" ontap="showActivateForm" onTap="activateForm" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" />
+                                <Label row="3" col="0" colspan="2" text="Activate" class="group-meta-inactive-activate" ontap="showActivateForm" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" />
                             </GridLayout>
 
                             <GridLayout class="list-matches-toggle" columns="*,auto" rows="auto" ontap="toggleFixtures" visibility="{{ active ? 'visible' : 'collapsed' }}" >
