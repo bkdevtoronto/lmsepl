@@ -62,30 +62,97 @@ function loaded(args, pullRefresh){
         }).then(function(response){
             var r = JSON.parse(response._bodyText);
             if(r.response=="success"){
+                gw = r.groupmeta.gw;
+
+                var userInThisWk = false;
+                var userInLastWk = false;
+                var userInStartWk = false;
+                var hasTrophy = r.trophy ? true : false;
+                var isActive = r.groupmeta[0][0].active==1 ? true : false;
+                var selectionArray = r.selections[0];
+                var isStartGw = r.trophy && r.trophy.gw==gw ? true : false;
+                var startGw = r.trophy.gw;
+                var weeks = selectionArray.length-1;
+                var startGwSelections = lastGwSelections = thisGwSelections = [];
+                var clubArray = [];
+                var matchArray = [];
+                var matchHeight = 0;
+
                 if(r.members){
+                    for(var i=0; i<selectionArray.length; i++){
+                        var item = {
+                            gw : i.gw,
+                            uid: i.uid,
+                            cname: i.name
+                        };
+                        if(i.gw==gw){
+                            thisGwSelections.push(item);
+                        } else if(i.gw==(gw-1)){
+                            lastGwSelections.push(item);
+                        } else if(i.gw==selectionArray[weeks].gw){
+                            startGwSelections.push(item);
+                        } else {
+                            console.log("Error parsing gameweek of selection");
+                        }
+                    }
+
                     r.members[0].forEach(function(e){
                         var tN = null;
                         var tId = null;
-                        r.selections[0].forEach(function(a){
-                            if(a.uid==e.id){
+                        var status = null;
+                        selectionArray.forEach(function(a){
+                            if(a.uid==e.id&&a.gw==gw){
                                 tN = a.name;
                                 tId = a.cid;
                             }
                         });
+                        var inThisWk = false;
+                        thisGwSelections.forEach(function(s){
+                            if(s.uid==e.id&&isActive) inThisWk=true;
+                        });
+                        var inLastWk = false;
+                        lastGwSelections.forEach(function(s){
+                            if(s.uid==e.id&&isActive) inLastWk=true;
+                        });
+                        var inStartWk = false;
+                        startGwSelections.forEach(function(s){
+                            if(s.uid==e.id&&isActive) inStartWk=true;
+                        });
+
+                        console.log("isStartGw: "+isStartGw);
+                        console.log("inStartWk: "+inStartWk);
+                        console.log("gw: "+gw);
+                        console.log("inLastWk: "+inLastWk);
+
+                        if (!isStartGw&&inStartWk){
+                            //check if selected
+                            status=1;
+                        } else if (isStartGw&&!inStartWk){
+                            // check if not entered
+                            status=2;
+                        } else if (!isStartGw&&inLastWk){
+                            // check if entered and no selection made
+                            status=3;
+                        } else {
+                            //if no selections at all
+                            status=4;
+                        }
+
+                        if(e.id==appSettings.getString("id")) userStatus = status;
+
                         var item = {
                             name: e.username,
                             id: e.id,
                             icon: r.groupmeta[0][0].captain==e.id ? "res://icon_league_captain" : "res://icon_league_player",
                             selectionName: tN ? tN : false,
-                            selectionId: tId ? tId : false
+                            selectionId: tId ? tId : false,
+                            status: status
                         };
+
                         groupArray.push(item);
                     });
                 }
 
-                var clubArray = [];
-                var matchArray = [];
-                var matchHeight = 0;
                 if(r.matches){
                     var ko = null;
                     r.matches.forEach(function(e){
@@ -107,14 +174,24 @@ function loaded(args, pullRefresh){
                     });
                 }
 
+                if(hasTrophy){
+                    trophyId = r.trophy.id;
+                    trophyName = r.trophy.name;
+                    trophyCost = r.trophy.cost;
+                    trophyPremium = r.trophy.premium;
+                }
+
+                console.log(userStatus);
+
                 pageData = new observableModule.fromObject({
                     groupArray : new observableArray(groupArray),
                     groupsHeight: groupArray.length * 42,
                     teamName: r.groupmeta[0][0].name,
-                    active : r.groupmeta[0][0].active==1 ? true : false,
+                    active : isActive,
+                    inactive : !isActive,
                     teamDate: "Est. " + formatDate(new Date(r.groupmeta[0][0].date)),
                     isCaptain: r.groupmeta[0][0].captain==appSettings.getString("id") ? true : false,
-                    gw: r.groupmeta.gw,
+                    gw: gw,
                     selectionName: r.groupmeta.selectionName,
                     selectionId: r.groupmeta.selectionId,
                     clubArray : new observableArray(clubArray),
@@ -123,6 +200,16 @@ function loaded(args, pullRefresh){
                     fixturesToggle : 'collapsed',
                     matchArray: new observableArray(matchArray),
                     matchHeight: matchHeight,
+
+                    hasTrophy: hasTrophy,
+                    trophyId: hasTrophy ? trophyId : false,
+                    trophyName: hasTrophy ? trophyName : false,
+                    trophyCost: hasTrophy ? trophyCost : false,
+                    trophyPremium: hasTrophy ? trophyPremium : false,
+                    round: parseInt(gw) + 1 - parseInt(startGw),
+                    trophyDeadline: hasTrophy ? (r.trophy.deadline <= 0 ? false : r.trophy.deadline) : false,
+
+                    userStatus: userStatus,
 
                     activateForm: false,
                     activateFormName: "The " + r.groupmeta[0][0].name + " Cup",

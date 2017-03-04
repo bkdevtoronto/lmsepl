@@ -24,9 +24,17 @@
                     <ScrollView>
                         <StackLayout>
                             <Label class="group-msg msg-active" visibility="{{ active ? 'visible' : 'collapsed' }}" text="This group is currently active" />
-                            <Label class="group-msg msg-inactive" visibility="{{ active ? 'collapsed' : 'visible' }}" text="This group is currently inactive" />
+                            <Label class="group-msg msg-inactive" visibility="{{ inactive ? 'visible' : 'collapsed' }}" text="This group is currently inactive" />
 
-                            <GridLayout class="group-meta-active" columns="auto,*" rows="auto,auto,auto" visibility="{{ active ? 'visible' : 'collapsed' }}" ontap="teamSelect">
+                            <GridLayout class="group-trophy" columns="*,*" rows="auto,auto" visibility="{{ hasTrophy ? 'visible' : 'collapsed' }}">
+                                <Label class="group-trophy-name" col="0" row="0" colspan="2" text="{{ trophyName }}" />
+                                <StackLayout col="0" row="1" colspan="2" horizontalAlignment="center" orientation="horizontal">
+                                    <Label class="group-trophy-round-label" text="ROUND" />
+                                    <Label class="group-trophy-round-number" text="{{ round }}" />
+                                </StackLayout>
+                            </GridLayout>
+
+                            <GridLayout class="group-meta-active" columns="auto,*" rows="auto,auto,auto" visibility="{{ userStatus==3 ? 'visible' : 'collapsed' }}" ontap="teamSelect">
                                 <Label row="0" col="0" text="Gameweek" class="group-meta-active-gw-label" />
                                 <Label row="1" col="0" text="{{ gw }}" class="group-meta-active-gw-number" />
                                 <Label row="0" col="1" colspan="2" text="Selection" class="group-meta-active-team-label" />
@@ -41,6 +49,12 @@
                                         </StackLayout>
                                     </ListView.itemTemplate>
                                 </ListView>
+                            </GridLayout>
+
+                            <GridLayout class="group-meta-notentered" columns="auto,*" rows="auto,auto,auto" visibility="{{ userStatus==2&&trophyDeadline ? 'visible' : 'collapsed' }}" ontap="teamSelect">
+                                <Label row="0" col="0" text="Gameweek" class="group-meta-notentered-gw-label" />
+                                <Label row="1" col="0" text="{{ gw }}" class="group-meta-notentered-gw-number" />
+                                <Label row="1" col="2" rowspan="2" text="Tap To Enter" class="group-meta-notentered-button" ontap="enterTrophy" />
                             </GridLayout>
 
                             <GridLayout class="group-meta-inactive" columns="auto,*" rows="auto,auto,auto,auto" visibility="{{ active ? 'collapsed' : 'visible' }}">
@@ -90,11 +104,13 @@
                                 <Label class="list-groups-title" text="Members" />
                                 <ListView items="{{ groupArray }}" height="{{ groupsHeight }}" itemTap="groupTap">
                                     <ListView.itemTemplate>
-                                        <GridLayout class="list-groups-item" columns="25,*,auto,auto" rows="41">
+                                        <GridLayout class="list-groups-item" columns="25,*,auto" rows="41">
                                             <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
                                             <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
-                                            <Label row="0" col="2" text="{{ selectionName }}" visibility="{{ (selectionName && active) ? 'visible' : 'collapsed' }}" class="list-groups-selection-name" />
-                                            <Label row="0" col="3" text="Undecided" visibility="{{ active ? (selectionName ? 'collapsed' : 'visible') : 'collapsed' }}" class="list-groups-selection-unchosen" />
+                                            <Label row="0" col="2" text="{{ selectionName }}" visibility="{{ status==1 ? 'visible' : 'collapsed' }}" class="list-groups-selection-name" />
+                                            <Label row="0" col="2" text="Not Yet Entered" visibility="{{ status==2&&trophyDeadline ? 'visible' : 'collapsed' }}" class="list-groups-selection-notentered" />
+                                            <Label row="0" col="2" text="Not In Trophy" visibility="{{ status==2&&!trophyDeadline ? 'visible' : 'collapsed' }}" class="list-groups-selection-notintrophy" />
+                                            <Label row="0" col="2" text="Undecided" visibility="{{ status==3 ? 'visible' : 'collapsed' }}" class="list-groups-selection-unchosen" />
                                         </GridLayout>
                                     </ListView.itemTemplate>
                                 </ListView>

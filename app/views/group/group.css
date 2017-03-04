@@ -23,6 +23,41 @@ Page {
     font-style: italic;
 }
 
+/* Trophy */
+
+.group-trophy {
+    margin: 10;
+}
+
+.group-trophy-name {
+    text-align: center;
+    text-transform: uppercase;
+    font-size:24;
+    color: #fff;
+    font-family: 'Roboto-Black';
+    border-width: 0 0 1 0;
+    border-color: #ccc;
+    padding: 10;
+    margin: 10;
+}
+
+.group-trophy-round-label {
+    font-family: 'Roboto-Medium';
+    color: #ccc;
+    text-align: right;
+    padding: 3;
+}
+
+.group-trophy-round-number {
+    padding: 3;
+    text-align: left;
+    font-family: 'Roboto-Medium';
+    color: white;
+}
+
+
+/* Group Meta */
+
 .group-meta-active {
     margin: 10 10 0 10;
     padding: 0;
@@ -204,6 +239,72 @@ Page {
 .group-meta-inactive-team-name {
     text-align: right;
     padding: 0 10 10 0;
+    text-transform: uppercase;
+    vertical-align: center;
+    font-size: 18;
+    font-family: 'Roboto-Black';
+}
+
+/* Group Meta Not Entered */
+
+.group-meta-notentered {
+    margin: 10 10 0 10;
+    padding: 10 0 0 0;
+    background-color: #d4980e;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 2;
+    border-width: 2 0 0 0;
+    border-color: white;
+
+    opacity: 0;
+    transform: scale(0);
+    animation-name: group-meta-anim;
+    animation-duration: 0.3;
+    animation-delay: 0.2;
+    animation-fill-mode: forwards;
+}
+
+.group-meta-notentered-activate {
+    padding: 10;
+    border-radius: 2;
+    font-size: 18;
+    font-family: 'Roboto-Black';
+    text-align: center;
+    background-color: #300a3c;
+    text-transform: uppercase;
+    border-width: 2 0 0 0;
+    border-color: white;
+}
+
+.group-meta-notentered-gw-label {
+    text-transform: uppercase;
+    font-size: 10;
+    text-align: center;
+    padding: 0 10 0 10;
+    margin: 0 10 0 0;
+    border-width: 0 1 0 0;
+    border-color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    color: #300a3c;
+}
+
+.group-meta-notentered-gw-number {
+    font-size: 24;
+    text-align: center;
+    font-family: 'Roboto-Black';
+    padding: 0 10 0 0;
+    margin: 0 10 10 10;
+    border-width: 0 1 0 0;
+    border-color: rgba(255,255,255,0.2);
+    vertical-align: center;
+
+    color: #300a3c;
+}
+
+.group-meta-notentered-button {
+    text-align: right;
+    padding: 0 10 20 0;
     text-transform: uppercase;
     vertical-align: center;
     font-size: 18;
@@ -468,6 +569,34 @@ Page {
     font-size: 8;
     background-color: rgba(0,0,0,0.6);
     color: white;
+    text-transform: uppercase;
+}
+
+.list-groups-selection-notentered {
+    margin: 12 5 12 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: #D4980E;
+    color: white;
+    text-transform: uppercase;
+}
+
+.list-groups-selection-notintrophy {
+    margin: 12 5 12 3;
+    border-radius: 2;
+    border-width: 1;
+    border-color: rgba(0,0,0,0.2);
+    padding: 2 4;
+    opacity:0.8;
+    font-family: "Roboto-Black";
+    font-size: 8;
+    background-color: white;
+    color: #aaa;
     text-transform: uppercase;
 }
 

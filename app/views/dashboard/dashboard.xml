@@ -42,14 +42,17 @@
                                             </GridLayout>
                                         </template>
                                         <template key="league">
-                                            <GridLayout class="list-groups-item" columns="auto,25,*,auto,auto,auto" rows="43">
+                                            <GridLayout class="list-groups-item" columns="auto,25,*,auto,auto" rows="43">
                                                 <Label row="0" col="0" class="list-groups-item-indicator-inactive" visibility="{{ active ? 'collapsed' : 'visible' }}" />
-                                                <Label row="0" col="0" class="list-groups-item-indicator-active" visibility="{{ active ? 'visible' : 'collapsed' }}" />
+                                                <Label row="0" col="0" class="list-groups-item-indicator-active" visibility="{{ active&&!pending ? 'visible' : 'collapsed' }}" />
+                                                <Label row="0" col="0" class="list-groups-item-indicator-pending" visibility="{{ pending ? 'visible' : 'collapsed' }}" />
                                                 <Image row="0" col="1" class="list-groups-item-icon" src="{{ icon }}" />
                                                 <Label row="0" col="2" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
-                                                <Label row="0" col="3" class="list-groups-icon-cost" text="{{ cost }}" visibility="{{ active ? 'visible' : 'collapse' }}" />
-                                                <Label row="0" col="4" class="list-groups-icon-inactive" text="Inactive" visibility="{{ active ? 'collapse' : 'visible' }}" />
-                                                <Label row="0" col="5" class="list-groups-icon-paid" text="Premium" visibility="{{ active ? (paid ? 'visible' : 'collapse') : 'collapse' }}" />
+                                                <Label row="0" col="3" class="list-groups-icon-cost" text="ERROR" visibility="{{ active&&selection==4 ? 'visible' : 'collapse' }}" />
+                                                <Label row="0" col="3" class="list-groups-icon-club" text="{{ selection }}" visibility="{{ active&&selection!=1&&selection!=2&&selection!=3&&selection!=4 ? 'visible' : 'collapse' }}" />
+                                                <Label row="0" col="3" class="list-groups-icon-cost" text="{{ 'ENTRY: '+cost }}" visibility="{{ active&&selection==1 ? 'visible' : 'collapse' }}" />
+                                                <Label row="0" col="3" class="list-groups-icon-inactive" text="Inactive" visibility="{{ active ? 'collapse' : 'visible' }}" />
+                                                <Label row="0" col="4" class="list-groups-icon-paid" text="Premium" visibility="{{ active&&paid ? 'visible' : 'collapse' }}" />
                                             </GridLayout>
                                         </template>
                                     </ListView.itemTemplates>

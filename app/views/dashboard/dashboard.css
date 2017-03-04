@@ -146,6 +146,12 @@ Page {
     background-color: #108858;
 }
 
+.list-groups-item-indicator-pending {
+    width: 5;
+    height: 100%;
+    background-color: #d4980e;
+}
+
 .list-groups-item-indicator-inactive {
     width: 5;
     height: 100%;

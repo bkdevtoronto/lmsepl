@@ -16,8 +16,7 @@ var pullRefresh = require("nativescript-pulltorefresh");
 var admob = require("nativescript-admob");
 var displayAds = false;
 
-var page;
-var drawer;
+var page, drawer, gw;
 
 /* Loading Indicator */
 var loader = new loadingIndicator;
@@ -95,6 +94,7 @@ exports.loaded = function(args){
                 var username = r.data[0].username;
                 pageData.points = points;
                 pageData.username = username;
+                gw = r.data.gw;
 
                 //Get Group Data
                 fetchModule.fetch(apiURL+"groups/user/"+userId,{
@@ -145,6 +145,8 @@ exports.loaded = function(args){
                                         name: e.name,
                                         date: e.date,
                                         active: e.active==1 ? true : false,
+                                        pending: e.trophy,
+                                        selection: displaySelection(e.user_status,gw),
                                         id: e.gid,
                                         paid: e.trophy && e.trophy.premium==1 ? true : false,
                                         cost: e.trophy ? displayCost(e.trophy.cost,e.trophy.premium) : null
@@ -282,6 +284,26 @@ function refreshPage(args) {
         animated: false,
         clearHistory: false
     });
+}
+
+function displaySelection(s,gw){
+    switch(s){
+        case "{{GROUP_INACTIVE}}":
+            return 0;
+            break;
+        case "{{NOT_ENTERED}}":
+            return 1;
+            break;
+        case "{{NO_SELECTION}}":
+            return 2;
+            break;
+        case "{{UNDEFINED}}":
+            return 4;
+            break;
+        default:
+            return s;
+            break;
+    }
 }
 
 function displayCost(c,p){
