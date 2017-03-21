@@ -125,6 +125,14 @@ Page {
     font-family: "FontAwesome", "fontawesome-webfont";
 }
 
+TabView {
+    tab-text-color: #a6c9b8;
+    tab-background-color: #108858;
+    selected-tab-text-color: white;
+    android-selected-tab-highlight-color: white;
+    font-family: 'Roboto-Medium';
+}
+
 /*
 In many cases you may want to use the NativeScript core theme instead
 of writing your own CSS rules. For a full list of class names in the theme

@@ -1,8 +1,7 @@
 <Page xmlns:sd="nativescript-telerik-ui/sidedrawer"
     xmlns:shared="shared"
     loaded="loaded"
-    actionBarHidden="true"
-    xmlns:PullRefresh="nativescript-pulltorefresh">
+    actionBarHidden="true">
 
     <!-- side drawer content -->
     <sd:RadSideDrawer id="sideDrawer">
@@ -19,68 +18,56 @@
                     <Label row="0" col="2" class="action-icon-right fa" text="&#xf013;" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" onTap="groupSettings" />
                     <Label row="1" colspan="3" class="action-meta" text="{{ teamDate }}" />
                 </GridLayout>
+                <ScrollView>
+                    <StackLayout visibility="{{ pageLoaded===1 ? 'visible' : 'collapsed' }}">
 
-                <!--<PullRefresh:PullToRefresh refresh="refreshPage">-->
-                    <ScrollView>
-                        <StackLayout>
-                            <Label class="group-msg msg-active" visibility="{{ active ? 'visible' : 'collapsed' }}" text="This group is currently active" />
-                            <Label class="group-msg msg-inactive" visibility="{{ inactive ? 'visible' : 'collapsed' }}" text="This group is currently inactive" />
+                        <!-- No Trophy -->
+                        <StackLayout visibility="{{ !hasTrophy ? 'visible' : 'collapsed' }}">
+                            <GridLayout class="group-trophy" columns="*" rows="auto,auto" >
+                                <Label class="group-trophy-name" col="0" row="0" colspan="2" text="No Trophy" />
+                                <Label class="group-trophy-no-trophy" col="0" row="1" text="The captain hasn't created a trophy yet!" />
+                            </GridLayout>
+                        </StackLayout>
 
+                        <!-- Has Trophy -->
+                        <StackLayout visibility="{{ hasTrophy ? 'visible' : 'collapsed' }}">
                             <GridLayout class="group-trophy" columns="*,*" rows="auto,auto" visibility="{{ hasTrophy ? 'visible' : 'collapsed' }}">
                                 <Label class="group-trophy-name" col="0" row="0" colspan="2" text="{{ trophyName }}" />
                                 <StackLayout col="0" row="1" colspan="2" horizontalAlignment="center" orientation="horizontal">
-                                    <Label class="group-trophy-round-label" text="ROUND" />
-                                    <Label class="group-trophy-round-number" text="{{ round }}" />
+                                    <Label class="group-trophy-round-entry" text="{{ 'ENTRY FOR GW ' + trophyStartWeek }}" visibility="{{ trophyRound=='ENTRY' ? 'visible' : 'collapsed' }}" />
+                                    <Label class="group-trophy-round-label" text="ROUND" visibility="{{ trophyRound=='ENTRY' ? 'collapsed' : 'visible' }}" />
+                                    <Label class="group-trophy-round-number" text="{{ trophyRound }}" visibility="{{ trophyRound=='ENTRY' ? 'collapsed' : 'visible' }}" />
                                 </StackLayout>
                             </GridLayout>
+                        </StackLayout>
 
-                            <GridLayout class="group-meta-active" columns="auto,*" rows="auto,auto,auto" visibility="{{ userStatus==3 ? 'visible' : 'collapsed' }}" ontap="teamSelect">
-                                <Label row="0" col="0" text="Gameweek" class="group-meta-active-gw-label" />
-                                <Label row="1" col="0" text="{{ gw }}" class="group-meta-active-gw-number" />
-                                <Label row="0" col="1" colspan="2" text="Selection" class="group-meta-active-team-label" />
-                                <Label row="1" col="1" text="{{ selectionName || '' }}" id="{{ selectionId || 0 }}" visibility="{{ selectionId ? 'visible' : 'collapsed'}}" class="group-meta-active-team-name" />
-                                <Label row="1" col="2" text="Tap To Decide" visibility="{{ selectionId ? 'collapsed' : 'visible'}}" class="group-meta-active-team-decide" />
-                                <ListView items="{{ clubArray }}" row="2" col="0" colspan="2" height="{{ clubHeight }}" class="list-clubs" itemTap="selectTeam" visibility="{{ clubSelect }}">
-                                    <ListView.itemTemplate>
-                                        <StackLayout orientation="horizontal" class="list-clubs-cont">
-                                            <Label text="{{ name || 'Loading...' }}" textWrap="false" class="list-clubs-label" />
-                                            <Label text="vs" textWrap="false" class="list-clubs-vs" />
-                                            <Label text="{{ opp || 'Loading...' }}" textWrap="false" class="list-clubs-opp" />
-                                        </StackLayout>
-                                    </ListView.itemTemplate>
-                                </ListView>
-                            </GridLayout>
+                        <!-- Not Entered -->
+                        <GridLayout class="group-not-entered" visibility="{{ !userEntered&&hasTrophy ? 'visible' : 'collapsed' }}" columns="auto,auto,auto,*" rows="auto" ontap="pushEnter">
+                            <Label col="0" row="0" class="group-not-entered-pts" text="{{ trophyPremium ? '£' : '' }}" />
+                            <Label col="1" row="0" class="group-not-entered-cost" text="{{ trophyCost }}" />
+                            <Label col="2" row="0" class="group-not-entered-pts" text="{{ trophyPremium ? '' : 'PTS' }}" />
+                            <Label col="3" row="0" class="group-not-entered-label" text="Enter" />
+                        </GridLayout>
 
-                            <GridLayout class="group-meta-notentered" columns="auto,*" rows="auto,auto,auto" visibility="{{ userStatus==2&&trophyDeadline ? 'visible' : 'collapsed' }}" ontap="teamSelect">
-                                <Label row="0" col="0" text="Gameweek" class="group-meta-notentered-gw-label" />
-                                <Label row="1" col="0" text="{{ gw }}" class="group-meta-notentered-gw-number" />
-                                <Label row="1" col="2" rowspan="2" text="Tap To Enter" class="group-meta-notentered-button" ontap="enterTrophy" />
-                            </GridLayout>
-
-                            <GridLayout class="group-meta-inactive" columns="auto,*" rows="auto,auto,auto,auto" visibility="{{ active ? 'collapsed' : 'visible' }}">
-                                <Label row="0" col="0" text="Gameweek" class="group-meta-inactive-gw-label" />
-                                <Label row="1" col="0" text="{{ gw }}" class="group-meta-inactive-gw-number" />
-                                <Label row="0" col="1" rowspan="2" text="League Inactive" class="group-meta-inactive-team-name" />
-                                <GridLayout id="group-activate" row="2" col="0" colspan="3" columns="*,*,auto,*" rows="auto,auto,auto,auto,auto" visibility="{{ activateForm ? 'visible' : 'collapsed' }}">
-                                    <Label class="group-activate-field" row="0" col="0" text="{{ activateFormPremium ? 'Premium' : 'Points' }}" />
-                                    <Switch class="group-activate-field-switch" row="0" col="1" checked="{{ activateFormPremium }}" />
-                                    <Label class="group-activate-field bold" row="0" col="2" text="£" opacity="{{ activateFormPremium ? 1 : 0 }}" />
-                                    <TextField keyboardType="number" id="activateFormCost" class="group-activate-field-text centered" text="{{ activateFormCost }}" row="0" col="3" />
-
-                                    <Label class="group-activate-field" row="1" col="0" text="Trophy Name" />
-                                    <TextField class="group-activate-field-text" row="1" col="1" colspan="3" id="activateFormName" text="{{ activateFormName }}" />
-                                    <!--<TextField class="group-activate-field-text" row="1" col="1" text="Text Field" />-->
-                                </GridLayout>
-                                <Label row="3" col="0" colspan="2" text="Activate" class="group-meta-inactive-activate" ontap="showActivateForm" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" />
-                            </GridLayout>
-
-                            <GridLayout class="list-matches-toggle" columns="*,auto" rows="auto" ontap="toggleFixtures" visibility="{{ active ? 'visible' : 'collapsed' }}" >
-                                <Label class="list-matches-toggle-icon" col="0" row="0" text="&#xf078;" visibility="{{ fixturesToggle=='collapsed' ? 'visible' : 'collapsed' }}" />
-                                <Label class="list-matches-toggle-icon" col="0" row="0" text="&#xf077;" visibility="{{ fixturesToggle=='collapsed' ? 'collapsed' : 'visible' }}" />
+                        <!-- Fixtures -->
+                        <StackLayout visibility="{{ hasTrophy ? 'visible' : 'collapsed' }}">
+                            <GridLayout class="list-matches-toggle" columns="*,auto" rows="auto" ontap="toggleFixtures" >
+                                <Label class="list-matches-toggle-icon" col="0" row="0" text="&#xf078;" visibility="{{ !showFixtures ? 'visible' : 'collapsed' }}" />
+                                <Label class="list-matches-toggle-icon" col="0" row="0" text="&#xf077;" visibility="{{ showFixtures ? 'visible' : 'collapsed' }}" />
                                 <Label class="list-matches-toggle-label" col="1" row="0" text="Toggle Fixtures" />
                             </GridLayout>
-                            <ListView items="{{ matchArray }}" height="{{ matchHeight }}" visibility="{{ fixturesToggle }}" class="list-matches" itemTemplateSelector="ko ? 'ko' : 'match'">
+                            <ListView items="{{ fixturesList }}" height="{{ fixturesHeight }}" visibility="{{ showFixtures ? 'visible' : 'collapsed' }}" class="list-matches" itemTemplateSelector="isHeader ? 'header' : 'match'">
                                 <ListView.itemTemplates>
+                                    <template key="header">
+                                        <GridLayout class="list-groups-header" rows="30" columns="auto,*">
+                                            <Label row="0" col="0" class="list-groups-header-date" text="{{ koLabelDate }}" />
+                                            <Label row="0" col="1" class="list-groups-header-time" text="{{ koLabelTime }}" />
+                                        </GridLayout>
+                                        <!--<GridLayout class="list-matches-ko" rows="30" columns="auto,*">
+                                            <Label row="0" col="0" class="list-matches-ko-date" text="{{ koLabelDate }}" />
+                                            <Label row="0" col="1" class="list-matches-ko-time" text="{{ koLabelTime }}" />
+                                        </GridLayout>-->
+                                    </template>
                                     <template key="match">
                                         <GridLayout columns="*,auto,auto,auto,*" rows="24" class="list-matches-item">
                                             <Label row="0" col="0" class="list-matches-item-label-home" text="{{ home || 'Loading...' }}" />
@@ -90,35 +77,13 @@
                                             <Label row="0" col="4" class="list-matches-item-label-away" text="{{ away || 'Loading...' }}" />
                                         </GridLayout>
                                     </template>
-                                    <template key="ko">
-                                        <GridLayout class="list-matches-ko" rows="30" columns="auto,*">
-                                            <Label row="0" col="0" class="list-matches-ko-date" text="{{ koLabelDate }}" />
-                                            <Label row="0" col="1" class="list-matches-ko-time" text="{{ koLabelTime }}" />
-                                        </GridLayout>
-                                    </template>
                                 </ListView.itemTemplates>
                             </ListView>
-                            <Label class="list-matches-toggle-baseline" text=""  visibility="{{ active ? 'visible' : 'collapsed' }}" />
-
-                            <StackLayout class="list-groups-animated">
-                                <Label class="list-groups-title" text="Members" />
-                                <ListView items="{{ groupArray }}" height="{{ groupsHeight }}" itemTap="groupTap">
-                                    <ListView.itemTemplate>
-                                        <GridLayout class="list-groups-item" columns="25,*,auto" rows="41">
-                                            <Image class="list-groups-item-icon" src="{{ icon }}" row="0" col="0" />
-                                            <Label row="0" col="1" text="{{ name || 'Loading...' }}" textWrap="false" class="list-groups-label" />
-                                            <Label row="0" col="2" text="{{ selectionName }}" visibility="{{ status==1 ? 'visible' : 'collapsed' }}" class="list-groups-selection-name" />
-                                            <Label row="0" col="2" text="Not Yet Entered" visibility="{{ status==2&&trophyDeadline ? 'visible' : 'collapsed' }}" class="list-groups-selection-notentered" />
-                                            <Label row="0" col="2" text="Not In Trophy" visibility="{{ status==2&&!trophyDeadline ? 'visible' : 'collapsed' }}" class="list-groups-selection-notintrophy" />
-                                            <Label row="0" col="2" text="Undecided" visibility="{{ status==3 ? 'visible' : 'collapsed' }}" class="list-groups-selection-unchosen" />
-                                        </GridLayout>
-                                    </ListView.itemTemplate>
-                                </ListView>
-                            </StackLayout>
-                            <Label class="admob-spacer" text="" />
+                            <Label class="list-matches-toggle-baseline" text=""  visibility="{{ hasTrophy ? 'visible' : 'collapsed' }}" />
                         </StackLayout>
-                    </ScrollView>
-                <!--</PullRefresh:PullToRefresh>-->
+                        <Label class="admob-spacer" text="" />
+                    </StackLayout>
+                </ScrollView>
             </StackLayout>
         </sd.RadSideDrawer.mainContent>
     </sd:RadSideDrawer>

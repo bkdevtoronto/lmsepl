@@ -91,6 +91,7 @@ exports.loaded = function(args){
             var r = JSON.parse(response._bodyText);
             if(r.response=="success"){
                 var points = r.data[0].points;
+                appSettings.setString("points", points);
                 var username = r.data[0].username;
                 pageData.points = points;
                 pageData.username = username;

@@ -3,7 +3,10 @@
         <Image col="0" row="0" class="sd-profile-pic" src="{{ profilePic }}" />
         <StackLayout col="1" row="0" class="sd-profile-meta" orientation="vertical" verticalAlignment="center" horizontalAlignment="left">
             <Label class="sd-profile-meta-name" text="{{ username }}" />
-            <Label class="sd-profile-meta-label" text="Score" />
+            <StackLayout orientation="horizontal" verticalAlignment="center" horizontalAlignment="left">
+                <Label class="sd-profile-meta-label" text="Score" />
+                <Label class="sd-profile-meta-label" text="{{ scorevalue }}" />
+            </StackLayout>
         </StackLayout>
     </GridLayout>
     <StackLayout class="sd-content">
