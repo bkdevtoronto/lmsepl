@@ -25,6 +25,7 @@ hooks/
 fonts/
 App_Resources/
 .tmp_backup/
+views/group_bak/
 
 #Irrelevant files
 .npmrc
