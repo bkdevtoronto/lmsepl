@@ -37,10 +37,17 @@ function loaded(args){
     pageData.username = appSettings.getString("username");
     pageData.scorevalue = appSettings.getString("points") || 0;
 
-    //Team Meta
-    pageData.teamName = "Loading...";
-    pageData.teamDate = "Loading...";
+    //Group Meta
+    pageData.groupName = "Loading...";
+    pageData.groupDate = "Loading...";
     pageData.isCaptain = false;
+    pageData.upcomingGw = false;
+
+    //Activate Form
+    pageData.activateFormName = "The Royal Trophy";
+    pageData.activateFormPremium = false;
+    pageData.activateFormCost = 100;
+    pageData.activateFormGw = 0;
 
     //Members
     pageData.membersList = new observableArray({});
@@ -74,10 +81,19 @@ function loaded(args){
 
                 if(r.data.group){
                     var group = r.data.group;
-                    pageData.set("teamName",(group.groupName));
-                    pageData.set("teamDate",("Est. " + formatDate(new Date(group.groupDate))));
+                    pageData.set("groupName",(group.groupName));
+                    pageData.set("groupDate",("Est. " + formatDate(new Date(group.groupDate))));
                     pageData.set("isCaptain",((appSettings.getString("id")==group.groupCaptain) ? true : false));
+                    pageData.set("upcomingGw", gw);
+
+                    if(appSettings.getString("id")==group.groupCaptain){
+                        pageData.set("activateFormName", "The " + group.groupName + " Cup");
+                        pageData.set("activateFormPremium", false);
+                        pageData.set("activateFormCost", 100);
+                        pageData.set("activateFormGw", gw+1);
+                    }
                 }
+
 
                 if(r.data.trophy){
                     var trophy = r.data.trophy;
@@ -204,6 +220,18 @@ function groupSettings(){
 exports.pushEnter = pushEnter;
 function pushEnter(){
     loader.show();
+
+    if(parseInt(pageData.trophyCost) > parseInt(pageData.scorevalue)){
+        dialogs.alert({
+            title: "Trophy Entry",
+            message: "You need more "+(pageData.trophyPremium==1 ? 'cash' : 'points')+' to enter this trophy!',
+            okButtonText: "Back to League"
+        }).then(function(){
+            loader.hide();
+        });
+        return false;
+    }
+
     fetchModule.fetch(apiURL+"trophies/join", {
         method: "POST",
         headers: {"Content-Type":"application/json"},
@@ -213,8 +241,19 @@ function pushEnter(){
         })
     }).then(function(response){
         var r = JSON.parse(response._bodyText);
-        console.log(JSON.stringify(r));
         if(r.response=="success"){
+            dialogs.alert({
+                title: "Trophy Entry",
+                message: "You have now entered "+pageData.trophyName+". Good luck!",
+                okButtonText: "Thanks"
+            }).then(function(){
+                frameModule.topmost().navigate({
+                    moduleName: "views/group/group",
+                    animated: false,
+                    clearHistory: false
+                });
+                loader.hide();
+            });
         }
         loader.hide();
     });
@@ -260,4 +299,86 @@ function formatDate(date, type) {
         ];
     }
 
+}
+
+exports.activateForm = activateForm;
+function activateForm(args){
+    page.getViewById("activateFormCost").android.clearFocus();
+    page.getViewById("activateFormName").android.clearFocus();
+
+    dialogs.confirm({
+        title: "Trophy",
+        message: "Are you sure you want to activate this trophy?",
+        okButtonText: "Yes",
+        cancelButtonText: "No",
+        neutralButtonText: "Cancel"
+    }).then(function(result){
+        if(result){
+            var loadingData = {
+                message: 'Creating Trophy...',
+                progress: 0
+            };
+
+            loader.show(loadingData);
+
+            //Post to API
+            fetchModule.fetch(apiURL+"trophies", {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    gid : groupId,
+                    trCost : pageData.activateFormCost,
+                    trName : pageData.activateFormName,
+                    trGw : pageData.activateFormGw,
+                    uid : appSettings.getString("id"),
+                    premium : pageData.activateFormPremium ? 1 : 0
+                })
+            }).then(function(response){
+                var r = JSON.parse(response._bodyText);
+                if(r.response=="success"){
+                    dialogs.alert({
+                        title: "Trophy Creation",
+                        message: pageData.activateFormName+" is now open for applications!",
+                        okButtonText: "Back to League"
+                    }).then(function(){
+                        frameModule.topmost().navigate({
+                            moduleName: "views/group/group",
+                            animated: false,
+                            clearHistory: false
+                        });
+                        loader.hide();
+                    });
+                } else {
+                    loader.hide();
+                    if(r.response=="failure"){
+                        r.errors.forEach(function(e){
+                            dialogs.alert({
+                                title: "Trophy Creation",
+                                message: "Could not create trophy: "+e[0],
+                                okButtonText: "OK"
+                            });
+                        });
+                        loader.hide();
+                    } else {
+                        loader.hide();
+                    }
+                }
+            },function(error){
+                loader.hide();
+            });
+        } else {
+            return false;
+        }
+    })
+
+}
+
+exports.formFnGwUp = formFnGwUp;
+function formFnGwUp(args){
+    pageData.set("activateFormGw", (((parseInt(pageData.activateFormGw) + 1) <= 35) ? (parseInt(pageData.activateFormGw) + 1) : 35));
+}
+
+exports.formFnGwDown = formFnGwDown;
+function formFnGwDown(args){
+    pageData.set("activateFormGw", ((parseInt(pageData.activateFormGw) - 1) < gw) ? gw : (parseInt(pageData.activateFormGw) - 1));
 }

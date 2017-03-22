@@ -14,12 +14,15 @@
             <StackLayout orientation="vertical" verticalAlignment="top" horizontalAlignment="center">
                 <GridLayout class="action-bar" columns="50,*,50" rows="auto,auto">
                     <Label row="0" col="0" class="action-icon-left fa" text="&#xf0c9;" tap="toggleDrawer"  />
-                    <Label row="0" col="1" class="action-label" text="{{ teamName }}" />
+                    <Label row="0" col="1" class="action-label" text="{{ groupName }}" />
                     <Label row="0" col="2" class="action-icon-right fa" text="&#xf013;" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}" onTap="groupSettings" />
-                    <Label row="1" colspan="3" class="action-meta" text="{{ teamDate }}" />
+                    <Label row="1" colspan="3" class="action-meta" text="{{ groupDate }}" />
                 </GridLayout>
                 <ScrollView>
                     <StackLayout visibility="{{ pageLoaded===1 ? 'visible' : 'collapsed' }}">
+
+                        <!-- Gameweek Announcement -->
+                        <Label class="group-msg msg-active" visibility="{{ !hasTrophy && upcomingGw ? 'visible' : 'collapsed' }}" text="{{ 'Gameweek ' + upcomingGw }}" />
 
                         <!-- No Trophy -->
                         <StackLayout visibility="{{ !hasTrophy ? 'visible' : 'collapsed' }}">
@@ -27,6 +30,29 @@
                                 <Label class="group-trophy-name" col="0" row="0" colspan="2" text="No Trophy" />
                                 <Label class="group-trophy-no-trophy" col="0" row="1" text="The captain hasn't created a trophy yet!" />
                             </GridLayout>
+
+                            <!-- Is Captain? -->
+                            <StackLayout class="formActivate" visibility="{{ isCaptain ? 'visible' : 'collapsed' }}">
+
+                                <GridLayout columns="*" rows="1"><Label class="spacer" /></GridLayout>
+
+                                <Label class="form-header" text="Set Up Trophy" />
+                                <Label class="form-label" text="{{ activateFormPremium ? 'Play for cash' : 'Play for points' }}" />
+                                <Switch class="form-switch" checked="{{ activateFormPremium }}" />
+
+                                <Label class="form-label" text="{{ activateFormPremium ? 'Entry (£)' : 'Entry (points)' }}" />
+                                <TextField id="activateFormCost" keyboardType="number" returnKeyType="next" class="form-textfield" text="{{ activateFormCost }}" />
+
+                                <Label class="form-label" text="Trophy Name" />
+                                <TextField id="activateFormName" returnKeyType="next" class="form-textfield" text="{{ activateFormName }}" />
+
+                                <Label class="form-label" text="Starting Gameweek" />
+                                <Button class="form-icon fa" text="&#xf077;" ontap="formFnGwUp" />
+                                <Label class="form-textfield-prompt" text="{{ activateFormGw }}" />
+                                <Button class="form-icon fa" text="&#xf078;" ontap="formFnGwDown" />
+
+                                <Button class="form-activate" text="Activate" ontap="activateForm" />
+                            </StackLayout>
                         </StackLayout>
 
                         <!-- Has Trophy -->

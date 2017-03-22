@@ -10,7 +10,6 @@ Page {
 
 .action-bar {
     height: auto;
-    border-width: 0;
 }
 
 .action-meta {
@@ -94,14 +93,15 @@ Page {
 .group-not-entered-label {
     text-transform: uppercase;
     font-size: 24;
-    font-family: 'Roboto-Black';
+    color: rgba(255,255,255,0.5);
     text-align: right;
+    font-family: 'Roboto-Black';
 }
 
 .group-not-entered-pts {
     font-size: 14;
     vertical-align: middle;
-    color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
     text-align: left;
     text-transform: uppercase;
     padding: 0 5;
@@ -111,7 +111,8 @@ Page {
     vertical-align: middle;
     text-align: left;
     font-size: 24;
-    color: rgba(255,255,255,0.5);
+
+    font-family: 'Roboto-Black';
 }
 
 
@@ -606,6 +607,7 @@ Page {
 .msg-active {
     color: white;
     background-color: #108858;
+    font-family: 'Roboto-Bold';
 }
 
 .msg-inactive {
@@ -678,4 +680,62 @@ Page {
 
 .admob-spacer {
     height: 50;
+}
+
+.formActivate {
+    background: white;
+    border-radius: 2;
+    background-color: white;
+    margin: 10;
+    padding: 10;
+}
+
+.form-header {
+    font-family: 'Roboto-Black';
+    text-align: center;
+    color: #108858;
+    font-size: 24;
+    text-transform: uppercase;
+}
+
+.form-label {
+    font-size: 12;
+    text-transform: uppercase;
+    border-width: 1 0 0 0;
+    border-color: #eee;
+    margin: 10 0 0 0;
+    padding: 10 0 0 0;
+}
+
+.form-textfield {
+    font-size: 14;
+}
+
+.form-textfield-prompt {
+    font-size: 18;
+    font-family: 'Roboto-Medium';
+    text-align: center;
+}
+
+.form-icon {
+    width: 100;
+    background-color: white;
+    border-radius: 2;
+}
+
+.form-icon:active {
+    color: #108858;
+}
+
+.form-activate {
+    font-family: 'Roboto-Black';
+    text-align: center;
+    font-size: 18;
+    text-transform: uppercase;
+    background-color: #300a3c;
+    color: white;
+}
+
+.form-activate:active {
+    background-color: #108858;
 }

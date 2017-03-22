@@ -25,10 +25,10 @@ hooks/
 fonts/
 App_Resources/
 .tmp_backup/
-views/group_bak/
 
 #Irrelevant files
 .npmrc
 app/bundle-config.js
 app/references.d.ts
 app/views/template/
+app/views/group_bak/
